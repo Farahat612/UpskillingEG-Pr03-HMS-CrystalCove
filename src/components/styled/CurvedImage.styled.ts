@@ -13,11 +13,11 @@ const RecVerticalCurvedImage = styled(CurvedImage)`
 `
 
 export const HeroCurvedImage = styled(SQCurvedImage)`
-  border-top-left-radius: 4rem;
+  border-top-left-radius: 20%;
   box-shadow: 1rem 1rem 0px rgba(26, 188, 156, 1);
 `
 
 export const TestmonialCurvedImage = styled(RecVerticalCurvedImage)`
-  border-bottom-right-radius: 4rem;
+  border-bottom-right-radius: 23%;
   box-shadow: -1rem -1rem 0px rgba(255, 73, 139, 1);
 `
