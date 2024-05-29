@@ -28,7 +28,7 @@ function App() {
         <Route path="add-room" element={<AddRoom />} />
         <Route path="ads" element={<Ads />} />
         <Route path="bookings" element={<Bookings />} />
-        <Route path="called-Components" element={<CalledComponents />} />
+        <Route index element={<CalledComponents />} />
       </Route>,
     ])
   );
