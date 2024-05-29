@@ -5,7 +5,7 @@ import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft'
 
 const TestmonialsData = () => {
   return (
-    <Stack spacing={1}>
+    <Stack spacing={1} width={'300px'}>
       <Typography variant='h6' gutterBottom>
         Happy Family
       </Typography>
@@ -23,7 +23,7 @@ const TestmonialsData = () => {
         <Typography variant='caption'>5/5</Typography>
       </Stack>
 
-      <Stack direction='row' spacing={2}>
+      <Stack direction='row' spacing={2}> 
         <IconButton color='primary'>
           <ArrowCircleLeftIcon />
         </IconButton>
