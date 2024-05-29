@@ -1,6 +1,7 @@
 import { Stack, Divider, Typography, Paper } from '@mui/material'
 
 import { HeroImage, TestmonialsImage } from '../ui'
+import { StartBookingForm } from '../forms'
 
 const CalledComponents = () => {
   return (
@@ -11,10 +12,14 @@ const CalledComponents = () => {
         </Paper>
         <Divider />
         <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
-          <Typography variant='h4' gutterBottom> Individual Elements </Typography>
+          <Typography variant='h4' gutterBottom>
+            {' '}
+            Individual Elements{' '}
+          </Typography>
           <Stack direction='row' spacing={8} sx={{ pt: 2 }}>
             <HeroImage />
             <TestmonialsImage />
+            <StartBookingForm />
           </Stack>
         </Paper>
         <Divider />

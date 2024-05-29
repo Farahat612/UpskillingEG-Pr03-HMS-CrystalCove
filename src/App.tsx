@@ -5,6 +5,9 @@ import {
   RouterProvider,
 } from '../node_modules/react-router-dom/dist/index'
 
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+
 import {
   LoginPage,
   RegisterPage,
@@ -34,7 +37,9 @@ function App() {
   )
   return (
     <>
-      <RouterProvider router={route} />
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <RouterProvider router={route} />
+      </LocalizationProvider>
     </>
   )
 }
