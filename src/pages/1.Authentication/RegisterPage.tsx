@@ -126,17 +126,16 @@ const RegisterPage = () => {
                 }}
               />
             </Stack>
-          </Stack>
-
-          {/* Submit Button */}
-          <Stack spacing={0} sx={{ mt: 3 }}>
-            <Button
-              type='submit'
-              className='btn btn-primary btn-block'
-              variant='contained'
-            >
-              Sign Up
-            </Button>
+            {/* Submit Button */}
+            <Stack spacing={0} sx={{ mt: 3 }}>
+              <Button
+                type='submit'
+                className='btn btn-primary btn-block'
+                variant='contained'
+              >
+                Sign Up
+              </Button>
+            </Stack>
           </Stack>
         </form>
       </AuthForm>
