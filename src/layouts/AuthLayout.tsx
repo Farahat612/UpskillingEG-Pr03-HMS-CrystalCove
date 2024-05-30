@@ -17,7 +17,11 @@ const AuthLayout = ({
 }: AuthLayoutProps) => {
   return (
     <>
-      <Grid component={'section'} container sx={{ height: '100vh', p: 3 }}>
+      <Grid
+        component={'section'}
+        container
+        sx={{ minHeight: '100vh', height: { xs: 'auto', md: '100vh' }, p: 3 }}
+      >
         <Grid item xs={12} md={6} sx={{ height: { xs: '50%', md: '100%' } }}>
           <Box
             height='100%'
@@ -51,6 +55,7 @@ const AuthLayout = ({
           <Box
             sx={{
               width: '100%',
+              minHeight: '50vh',
               height: '100%',
               borderRadius: '1rem',
               position: 'relative',
