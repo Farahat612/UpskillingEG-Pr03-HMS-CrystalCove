@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { apiPublic } from '../../utils/api'
 import { Login } from '../../hooks/useLoginPage'
-import { LoginData } from '../../types'
+import { FormData } from '../../types'
 
 const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false)
@@ -20,10 +20,14 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<LoginData>()
-  const onSubmit = (data: LoginData) => {
-    Login(data)
+    formState: { errors, isSubmitting },
+  } = useForm<FormData>()
+  const onSubmit = async (data: FormData) => {
+    try {
+      await Login(data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -52,6 +56,7 @@ const LoginPage = () => {
                 Email Address
               </Typography>
               <TextField
+                placeholder='Please Inter Your Email'
                 type='text'
                 variant='outlined'
                 fullWidth
@@ -74,7 +79,7 @@ const LoginPage = () => {
                     color: 'white',
                     mt: 1,
                     p: 1,
-                    borderRadius: '4px'
+                    borderRadius: '4px',
                   }}
                 >
                   {errors.email.message}
@@ -90,6 +95,7 @@ const LoginPage = () => {
                 Password
               </Typography>
               <TextField
+                placeholder='Please Inter Your Password'
                 type={passwordVisible ? 'text' : 'password'}
                 variant='outlined'
                 fullWidth
@@ -137,16 +143,19 @@ const LoginPage = () => {
             </Stack>
 
             {/* Submit Button */}
-            <Stack spacing={0} sx={{ mt: 3 }}>
+            <Stack
+              spacing={0}
+              sx={{ mt: 3 }}
+            >
               <Button
                 type='submit'
                 className='btn btn-primary btn-block'
                 variant='contained'
+                disabled={isSubmitting}
               >
-                Login
+                {isSubmitting ? 'logging...' : 'Login'}
               </Button>
             </Stack>
-
           </Stack>
         </form>
       </AuthForm>
