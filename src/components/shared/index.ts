@@ -1,4 +1,4 @@
-import NotFound from "./NotFound";
-import RouteGuard from "./RouteGuard";
-import CalledComponents from "./CalledComponents";
-export { CalledComponents, NotFound, RouteGuard };
+import NotFound from './NotFound'
+import RouteGuard from './RouteGuard'
+
+export { NotFound, RouteGuard }

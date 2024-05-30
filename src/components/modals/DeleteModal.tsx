@@ -6,7 +6,7 @@ import {
   DialogActions,
   Typography,
 } from '@mui/material'
-import CancelIcon from '@mui/icons-material/Cancel'
+import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import deleteDataImg from '../../assets/images/delete-data.png'
 
 const DeleteModal = () => {
@@ -24,7 +24,7 @@ const DeleteModal = () => {
         aria-describedby='dialog-description'
       >
         <DialogActions>
-          <CancelIcon
+          <HighlightOffIcon
             onClick={() => setOpen(false)}
             color='error'
             sx={{ cursor: 'pointer' }}

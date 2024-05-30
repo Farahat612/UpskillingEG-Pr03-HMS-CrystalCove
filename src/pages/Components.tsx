@@ -1,10 +1,10 @@
 import { Stack, Divider, Typography, Paper } from '@mui/material'
 
-import { HeroImage, TestmonialsData, TestmonialsImage } from '../ui'
-import { StartBookingForm } from '../forms'
-import { DeleteModal, AddItemsModal } from '../modals/'
+import { HeroImage, TestmonialsData, TestmonialsImage } from '../components/ui'
+import { StartBookingForm } from '../components/forms'
+import { DeleteModal, AddItemsModal } from '../components/modals'
 
-const CalledComponents = () => {
+const Components = () => {
   return (
     <>
       <Stack>
@@ -38,9 +38,15 @@ const CalledComponents = () => {
           </Typography>
         </Paper>
         <Divider />
+
+        <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
+          <Typography variant='h4' gutterBottom>
+            Authentication Elements
+          </Typography>
+        </Paper>
       </Stack>
     </>
   )
 }
 
-export default CalledComponents
+export default Components

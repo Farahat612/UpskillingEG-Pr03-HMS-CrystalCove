@@ -18,8 +18,8 @@ import {
   ResetPassPage,
   ForgotPassPage,
 } from './pages/1.Authentication'
-import { Home, Rooms, AddRoom, Ads, Users, Bookings } from './pages'
-import { CalledComponents, NotFound, RouteGuard } from './components/shared'
+import { Home, Rooms, AddRoom, Ads, Users, Bookings, Components } from './pages'
+import { NotFound, RouteGuard } from './components/shared'
 
 function App() {
   const route = createBrowserRouter(
@@ -36,7 +36,7 @@ function App() {
         <Route path='add-room' element={<AddRoom />} />
         <Route path='ads' element={<Ads />} />
         <Route path='bookings' element={<Bookings />} />
-        <Route index element={<CalledComponents />} />
+        <Route index element={<Components />} />
       </Route>,
     ])
   )

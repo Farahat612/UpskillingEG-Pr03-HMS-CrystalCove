@@ -7,7 +7,7 @@ import {
   DialogActions,
   Typography,
 } from '@mui/material'
-import CancelIcon from '@mui/icons-material/Cancel'
+import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 
 const AddItemsModal = ({
   children,
@@ -41,7 +41,7 @@ const AddItemsModal = ({
             {title}
           </Typography>
           <DialogActions>
-            <CancelIcon
+            <HighlightOffIcon
               onClick={() => setOpen(false)}
               color='error'
               sx={{ cursor: 'pointer' }}
