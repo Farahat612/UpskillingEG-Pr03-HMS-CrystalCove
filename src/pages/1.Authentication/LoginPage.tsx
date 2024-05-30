@@ -23,11 +23,9 @@ const LoginPage = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormData>()
   const onSubmit = async (data: FormData) => {
-    try {
+   
       await Login(data)
-    } catch (error) {
-      console.error(error)
-    }
+    
   }
 
   return (

@@ -26,11 +26,7 @@ const RegisterPage = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormData>()
   const onSubmit = async (data: FormData) => {
-    try {
-      await Register(data)
-    } catch (error) {
-      console.error(error)
-    }
+    await Register(data)
   }
   return (
     <AuthLayout
