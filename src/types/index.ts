@@ -5,5 +5,5 @@ export interface FormData {
   confirmPassword?: string
   phoneNumber?: number
   country?: string
-  otp?: string
+  seed?: string
 }
