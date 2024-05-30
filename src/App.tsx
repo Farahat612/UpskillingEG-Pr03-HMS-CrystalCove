@@ -3,10 +3,14 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
-} from '../node_modules/react-router-dom/dist/index'
+
+} from "react-router-dom";
+
+
 
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+
 
 import {
   LoginPage,
@@ -20,6 +24,7 @@ import { CalledComponents, NotFound, RouteGuard } from './components/shared'
 function App() {
   const route = createBrowserRouter(
     createRoutesFromElements([
+
       <Route path='/' element={<RouteGuard />} errorElement={<NotFound />}>
         <Route path='login' element={<LoginPage />} />
         <Route path='register' element={<RegisterPage />} />
