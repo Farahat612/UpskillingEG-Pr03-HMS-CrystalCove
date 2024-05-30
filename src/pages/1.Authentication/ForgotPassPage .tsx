@@ -50,6 +50,7 @@ const ForgotPassPage = () => {
                 Email Address
               </Typography>
               <TextField
+              placeholder='Please Inter Your Email'
                 type='text'
                 variant='outlined'
                 fullWidth

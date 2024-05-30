@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Register } from '../../hooks/useRegisterPage'
 import { FormData } from '../../types'
+import { useNavigate } from 'react-router-dom'
 
 const RegisterPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false)
@@ -19,6 +20,9 @@ const RegisterPage = () => {
   const toggleConfirmPasswordVisibility = () => {
     setConfirmPasswordVisible(!confirmPasswordVisible)
   }
+
+  const navigat = useNavigate()
+  
   const {
     register,
     handleSubmit,
@@ -26,7 +30,11 @@ const RegisterPage = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormData>()
   const onSubmit = async (data: FormData) => {
-    await Register(data)
+    await Register(data, (nav) => {
+      if(nav == true) {
+        navigat('/login')
+      }
+    })
   }
   return (
     <AuthLayout
