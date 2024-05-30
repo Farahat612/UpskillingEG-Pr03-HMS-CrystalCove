@@ -11,8 +11,9 @@ const LoginPage = () => {
     >
       <AuthForm
         heading='Login'
-        paragraph='If you already have an account register You can'
-        spanText='Login here !'
+        subtitle={`If you don't have an account, You can`}
+        linkText='Register here!'
+        linkDestination='/register'
       >
         <h3>Login</h3>
       </AuthForm>

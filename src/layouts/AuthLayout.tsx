@@ -34,7 +34,7 @@ const AuthLayout = ({
 
             <Box
               sx={{
-                p: 6,
+                p: 4,
                 flexGrow: 1,
                 display: 'flex',
                 flexDirection: 'column',
