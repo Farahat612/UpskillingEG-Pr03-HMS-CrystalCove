@@ -5,8 +5,8 @@ type AuthFormProps = {
   children: React.ReactNode
   heading: string
   subtitle: string
-  linkText: string
-  linkDestination: string
+  linkText?: string
+  linkDestination?: string
 }
 
 const AuthForm = ({
@@ -25,9 +25,11 @@ const AuthForm = ({
 
         <Typography variant='body1'>
           {subtitle}{' '}
-          <Link to={linkDestination} style={{ color: 'red' }}>
-            {linkText}
-          </Link>
+          {linkText && linkDestination && (
+            <Link to={linkDestination} style={{ color: 'red' }}>
+              {linkText}
+            </Link>
+          )}
         </Typography>
 
         {children}
