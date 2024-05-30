@@ -44,7 +44,7 @@ const AuthLayout = ({
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'start',
-                maxWidth: '100%',
+                width: '100%',
               }}
             >
               {children}
