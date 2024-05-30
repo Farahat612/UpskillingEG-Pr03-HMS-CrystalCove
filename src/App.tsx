@@ -3,7 +3,7 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
-} from "../node_modules/react-router-dom/dist/index";
+} from "react-router-dom";
 
 import {
   LoginPage,
@@ -18,7 +18,7 @@ function App() {
   const route = createBrowserRouter(
     createRoutesFromElements([
       <Route path="/" element={<RouteGuard />} errorElement={<NotFound />}>
-        <Route path="login" element={<LoginPage />} />
+        <Route index path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="reset-password" element={<ResetPassPage />} />
         <Route path="forgot-password" element={<ForgotPassPage />} />
