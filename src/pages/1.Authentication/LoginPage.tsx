@@ -6,12 +6,26 @@ import { Button, Stack, TextField, Typography } from '@mui/material'
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { apiPublic } from '../../utils/api'
+import { Login } from '../../hooks/useLoginPage'
+import { LoginData } from '../../types'
 
 const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false)
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible)
   }
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginData>()
+  const onSubmit = (data: LoginData) => {
+    Login(data)
+  }
+
   return (
     <AuthLayout
       imageSrc={SigninImage}
@@ -24,11 +38,17 @@ const LoginPage = () => {
         linkText='Register here!'
         linkDestination='/register'
       >
-        <form>
-          <Stack spacing={3} sx={{ mt: 4 }}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack
+            spacing={3}
+            sx={{ mt: 4 }}
+          >
             {/* Email */}
             <Stack spacing={0}>
-              <Typography variant='subtitle2' color={'primary.main'}>
+              <Typography
+                variant='subtitle2'
+                color={'primary.main'}
+              >
                 Email Address
               </Typography>
               <TextField
@@ -39,11 +59,34 @@ const LoginPage = () => {
                 sx={{
                   bgcolor: 'rgba(245, 246, 248, 1)',
                 }}
+                {...register('email', {
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^[A-Z0-9._%=-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: 'Invalid E-mail !',
+                  },
+                })}
               />
+              {errors.email && (
+                <Typography
+                  sx={{
+                    backgroundColor: '#ff5252',
+                    color: 'white',
+                    mt: 1,
+                    p: 1,
+                    borderRadius: '4px'
+                  }}
+                >
+                  {errors.email.message}
+                </Typography>
+              )}
             </Stack>
             {/* Password */}
             <Stack spacing={0}>
-              <Typography variant='subtitle2' color={'primary.main'}>
+              <Typography
+                variant='subtitle2'
+                color={'primary.main'}
+              >
                 Password
               </Typography>
               <TextField
@@ -54,9 +97,36 @@ const LoginPage = () => {
                 sx={{
                   bgcolor: 'rgba(245, 246, 248, 1)',
                 }}
+                {...register('password', {
+                  required: 'password is required',
+                  pattern: {
+                    value:
+                      /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                    message:
+                      'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
+                  },
+                })}
               />
+
+              {errors.password && (
+                <Typography
+                  sx={{
+                    backgroundColor: '#ff5252',
+                    color: 'white',
+                    mt: 1,
+                    p: 1,
+                    borderRadius: '4px',
+                  }}
+                >
+                  {errors.password.message}
+                </Typography>
+              )}
+
               {/* Forgot Password Link */}
-              <Typography variant='subtitle2' sx={{ mt: 1, ml: 'auto' }}>
+              <Typography
+                variant='subtitle2'
+                sx={{ mt: 1, ml: 'auto' }}
+              >
                 <Link
                   to={'/forgot-password'}
                   style={{ color: 'rgba(0, 0, 0, 0.54)' }}
@@ -65,6 +135,7 @@ const LoginPage = () => {
                 </Link>
               </Typography>
             </Stack>
+
             {/* Submit Button */}
             <Stack spacing={0} sx={{ mt: 3 }}>
               <Button
@@ -75,6 +146,7 @@ const LoginPage = () => {
                 Login
               </Button>
             </Stack>
+
           </Stack>
         </form>
       </AuthForm>
