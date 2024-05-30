@@ -135,20 +135,18 @@ const LoginPage = () => {
                 </Link>
               </Typography>
             </Stack>
-          </Stack>
 
-          {/* Submit Button */}
-          <Stack
-            spacing={0}
-            sx={{ mt: 3 }}
-          >
-            <Button
-              type='submit'
-              className='btn btn-primary btn-block'
-              variant='contained'
-            >
-              Login
-            </Button>
+            {/* Submit Button */}
+            <Stack spacing={0} sx={{ mt: 3 }}>
+              <Button
+                type='submit'
+                className='btn btn-primary btn-block'
+                variant='contained'
+              >
+                Login
+              </Button>
+            </Stack>
+
           </Stack>
         </form>
       </AuthForm>

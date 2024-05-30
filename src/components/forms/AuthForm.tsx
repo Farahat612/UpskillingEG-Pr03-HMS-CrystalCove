@@ -18,7 +18,7 @@ const AuthForm = ({
 }: AuthFormProps) => {
   return (
     <>
-      <Box>
+      <Box sx={{ width: 'inherit' }}>
         <Typography variant='h6' fontSize={25} gutterBottom>
           {heading}
         </Typography>

@@ -44,7 +44,7 @@ const AuthLayout = ({
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'start',
-                maxWidth: '100%',
+                width: '100%',
               }}
             >
               {children}
@@ -94,8 +94,9 @@ const AuthLayout = ({
                   color: 'white',
                   position: 'absolute',
                   zIndex: 10,
-                  bottom: '2rem',
-                  left: '2rem',
+                  bottom: '0',
+                  left: '0',
+                  padding: '2rem',
                 }}
               >
                 <Typography variant='h6' fontSize={30}>
