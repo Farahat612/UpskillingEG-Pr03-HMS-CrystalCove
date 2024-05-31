@@ -1,32 +1,41 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 type AuthFormProps = {
-  children: React.ReactNode;
-  heading: string;
-  paragraph: string;
-  spanText: string;
-};
+  children: React.ReactNode
+  heading: string
+  subtitle: string
+  linkText?: string
+  linkDestination?: string
+}
 
 const AuthForm = ({
   children,
   heading,
-  paragraph,
-  spanText,
+  subtitle,
+  linkText,
+  linkDestination,
 }: AuthFormProps) => {
   return (
     <>
-      <Box>
-        <Typography variant="h5" component="h5">
+      <Box sx={{ width: 'inherit' }}>
+        <Typography variant='h6' fontSize={25} gutterBottom>
           {heading}
         </Typography>
-        <Typography>
-          {paragraph}
-          <span style={{ color: "red" }}> {spanText} </span>
+
+        <Typography variant='body1'>
+          {subtitle}{' '}
+          {linkText && linkDestination && (
+            <Link to={linkDestination} style={{ color: 'red' }}>
+              {linkText}
+            </Link>
+          )}
         </Typography>
+
         {children}
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default AuthForm;
+export default AuthForm
