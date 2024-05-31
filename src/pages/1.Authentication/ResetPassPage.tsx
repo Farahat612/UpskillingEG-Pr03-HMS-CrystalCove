@@ -4,7 +4,7 @@ import { AuthForm } from '../../components/forms'
 import { Button, Stack, TextField, Typography } from '@mui/material'
 
 import { emailValidation, newPasswordValidation } from '../../utils/validations'
-import useResetPass from '../../hooks/useResetPassPage'
+import {useResetPass} from '../../hooks/auth'
 
 import ResetPassImg from '../../assets/forms/reset-password.png'
 

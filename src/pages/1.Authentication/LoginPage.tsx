@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Link } from 'react-router-dom'
-import { emailValidation, passwordValidation } from '../../utils/validations'
-import useLogin from '../../hooks/useLoginPage'
-
 import { AuthLayout } from '../../layouts'
 import { AuthForm } from '../../components/forms'
 import { Button, Stack, TextField, Typography } from '@mui/material'
+
+import { Link } from 'react-router-dom'
+import { emailValidation, passwordValidation } from '../../utils/validations'
+import {useLogin} from '../../hooks/auth'
 
 import SigninImage from '../../assets/forms/sign-in.png'
 

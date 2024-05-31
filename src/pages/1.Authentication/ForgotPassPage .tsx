@@ -3,8 +3,8 @@ import { AuthLayout } from '../../layouts'
 import { AuthForm } from '../../components/forms'
 import { Button, Stack, TextField, Typography } from '@mui/material'
 
-import useForgotPass from '../../hooks/useForgotPassPage'
 import { emailValidation } from '../../utils/validations'
+import {useForgotPass} from '../../hooks/auth'
 
 import ForgotPassImg from '../../assets/forms/forgot-password.png'
 

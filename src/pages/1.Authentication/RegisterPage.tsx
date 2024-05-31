@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { AuthLayout } from '../../layouts'
 import { AuthForm } from '../../components/forms'
 import { Button, Stack, TextField, Typography } from '@mui/material'
 
-import SignUpImage from '../../assets/forms/sign-up.png'
 import {
   emailValidation,
   newPasswordValidation,
   phoneNumberValidation,
   userNameValidation,
 } from '../../utils/validations'
-import useRegister from '../../hooks/useRegisterPage'
+import {useRegister} from '../../hooks/auth'
+
+import SignUpImage from '../../assets/forms/sign-up.png'
 
 const RegisterPage = () => {
   const {
