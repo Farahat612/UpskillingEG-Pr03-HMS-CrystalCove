@@ -1,41 +1,30 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { Button, Stack, TextField, Typography } from '@mui/material'
-import SignUpImage from '../../assets/forms/sign-up.png'
-import { AuthForm } from '../../components/forms'
 import { AuthLayout } from '../../layouts'
+import { AuthForm } from '../../components/forms'
+import { Button, Stack, TextField, Typography } from '@mui/material'
 
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { Register } from '../../hooks/useRegisterPage'
-import { FormData } from '../../types'
-import { useNavigate } from 'react-router-dom'
+import SignUpImage from '../../assets/forms/sign-up.png'
+import {
+  emailValidation,
+  newPasswordValidation,
+  phoneNumberValidation,
+  userNameValidation,
+} from '../../utils/validations'
+import useRegister from '../../hooks/useRegisterPage'
 
 const RegisterPage = () => {
-  const [passwordVisible, setPasswordVisible] = useState(false)
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible)
-  }
-  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false)
-  const toggleConfirmPasswordVisibility = () => {
-    setConfirmPasswordVisible(!confirmPasswordVisible)
-  }
-
-  const navigat = useNavigate()
-  
   const {
+    passwordVisible,
+    confirmPasswordVisible,
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting },
-  } = useForm<FormData>()
-  const onSubmit = async (data: FormData) => {
-    await Register(data, (nav) => {
-      if(nav == true) {
-        navigat('/login')
-      }
-    })
-  }
+    errors,
+    isSubmitting,
+    onSubmit,
+  } = useRegister()
+
   return (
     <AuthLayout
       imageSrc={SignUpImage}
@@ -49,16 +38,10 @@ const RegisterPage = () => {
         linkDestination='/login'
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack
-            spacing={3}
-            sx={{ mt: 4 }}
-          >
+          <Stack spacing={3} sx={{ mt: 4 }}>
             {/* User Name */}
             <Stack spacing={0}>
-              <Typography
-                variant='subtitle2'
-                color={'primary.main'}
-              >
+              <Typography variant='subtitle2' color={'primary.main'}>
                 UserName
               </Typography>
               <TextField
@@ -70,13 +53,7 @@ const RegisterPage = () => {
                 sx={{
                   bgcolor: 'rgba(245, 246, 248, 1)',
                 }}
-                {...register('userName', {
-                  required: 'Email is required',
-                  maxLength: {
-                    value: 8,
-                    message: 'Username should not exceed 8 characters',
-                  },
-                })}
+                {...register('userName', userNameValidation)}
               />
             </Stack>
             {errors.userName && (
@@ -98,14 +75,8 @@ const RegisterPage = () => {
               direction='row'
               divider={<div style={{ width: 10 }} />}
             >
-              <Stack
-                spacing={0}
-                sx={{ flex: 1 }}
-              >
-                <Typography
-                  variant='subtitle2'
-                  color={'primary.main'}
-                >
+              <Stack spacing={0} sx={{ flex: 1 }}>
+                <Typography variant='subtitle2' color={'primary.main'}>
                   Phone Number
                 </Typography>
                 <TextField
@@ -117,13 +88,7 @@ const RegisterPage = () => {
                   sx={{
                     bgcolor: 'rgba(245, 246, 248, 1)',
                   }}
-                  {...register('phoneNumber', {
-                    required: 'phoneNumber is required',
-                    pattern: {
-                      value: /^[0-9]{11}$/,
-                      message: 'Invalid Phone Number',
-                    },
-                  })}
+                  {...register('phoneNumber', phoneNumberValidation)}
                 />
                 {errors.phoneNumber && (
                   <Typography
@@ -140,14 +105,8 @@ const RegisterPage = () => {
                 )}
               </Stack>
               {/* Country */}
-              <Stack
-                spacing={0}
-                sx={{ flex: 1 }}
-              >
-                <Typography
-                  variant='subtitle2'
-                  color={'primary.main'}
-                >
+              <Stack spacing={0} sx={{ flex: 1 }}>
+                <Typography variant='subtitle2' color={'primary.main'}>
                   Country
                 </Typography>
                 <TextField
@@ -180,10 +139,7 @@ const RegisterPage = () => {
             </Stack>
             {/* Email */}
             <Stack spacing={0}>
-              <Typography
-                variant='subtitle2'
-                color={'primary.main'}
-              >
+              <Typography variant='subtitle2' color={'primary.main'}>
                 Email Address
               </Typography>
               <TextField
@@ -195,13 +151,7 @@ const RegisterPage = () => {
                 sx={{
                   bgcolor: 'rgba(245, 246, 248, 1)',
                 }}
-                {...register('email', {
-                  required: 'Email is required',
-                  pattern: {
-                    value: /^[A-Z0-9._%=-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid E-mail !',
-                  },
-                })}
+                {...register('email', emailValidation)}
               />
               {errors.email && (
                 <Typography
@@ -219,10 +169,7 @@ const RegisterPage = () => {
             </Stack>
             {/* Password */}
             <Stack spacing={0}>
-              <Typography
-                variant='subtitle2'
-                color={'primary.main'}
-              >
+              <Typography variant='subtitle2' color={'primary.main'}>
                 Password
               </Typography>
               <TextField
@@ -234,15 +181,7 @@ const RegisterPage = () => {
                 sx={{
                   bgcolor: 'rgba(245, 246, 248, 1)',
                 }}
-                {...register('password', {
-                  required: 'password is required',
-                  pattern: {
-                    value:
-                      /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
-                    message:
-                      'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
-                  },
-                })}
+                {...register('password', newPasswordValidation)}
               />
               {errors.password && (
                 <Typography
@@ -260,10 +199,7 @@ const RegisterPage = () => {
             </Stack>
             {/* Confirm Password */}
             <Stack spacing={0}>
-              <Typography
-                variant='subtitle2'
-                color={'primary.main'}
-              >
+              <Typography variant='subtitle2' color={'primary.main'}>
                 Confirm Password
               </Typography>
               <TextField
@@ -297,10 +233,7 @@ const RegisterPage = () => {
               )}
             </Stack>
             {/* Submit Button */}
-            <Stack
-              spacing={0}
-              sx={{ mt: 3 }}
-            >
+            <Stack spacing={0} sx={{ mt: 3 }}>
               <Button
                 type='submit'
                 className='btn btn-primary btn-block'

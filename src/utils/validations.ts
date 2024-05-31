@@ -1,3 +1,20 @@
+
+export const userNameValidation = {
+  required: 'Email is required',
+  maxLength: {
+    value: 8,
+    message: 'Username should not exceed 8 characters',
+  },
+}
+
+export const phoneNumberValidation = {
+  required: 'phoneNumber is required',
+  pattern: {
+    value: /^[0-9]{11}$/,
+    message: 'Invalid Phone Number',
+  },
+}
+
 export const emailValidation = {
   required: 'Email is required',
   pattern: {
@@ -14,6 +31,7 @@ export const newPasswordValidation = {
       'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
   },
 }
+
 
 export const passwordValidation = {
   required: 'Password is required',
