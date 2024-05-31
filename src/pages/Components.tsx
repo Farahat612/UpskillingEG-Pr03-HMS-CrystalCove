@@ -1,11 +1,12 @@
-import { Stack, Divider, Typography, Paper } from '@mui/material'
+import { Stack, Divider, Typography, Paper, Container } from '@mui/material'
 
 import { HeroImage, TestmonialsData, TestmonialsImage } from '../components/ui'
 import { StartBookingForm } from '../components/forms'
 import { DeleteModal, AddItemsModal } from '../components/modals'
-import Navbar from '../components/shared/Navbar'
+
 import Header from '../components/shared/Header'
 import Hero from '../components/ui/DetailsPageHero'
+import Navbar from '../components/shared/Navbar'
 
 const Components = () => {
   return (
@@ -55,9 +56,12 @@ const Components = () => {
             Details Page Elements
           </Typography>
           <Stack direction='column' spacing={4} sx={{ pt: 2 }}>
+          <Container maxWidth="xl" sx={{margin: 'auto',}}>
+
             <Navbar />
             <Header />
             <Hero />
+            </Container>
           </Stack>
         </Paper>
       </Stack>

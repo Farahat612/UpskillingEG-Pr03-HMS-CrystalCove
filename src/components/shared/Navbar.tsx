@@ -77,7 +77,7 @@ export default function Navbar(props: Props) {
         <AppBar
           component='nav'
           color='inherit'
-          sx={{boxShadow: 'none', borderBottom: '1px solid #E5E5E5'}}
+          sx={{boxShadow: 'none', borderBottom: '1px solid #E5E5E5', position: 'static', mb: 2}}
         >
           <Toolbar >
             <IconButton
