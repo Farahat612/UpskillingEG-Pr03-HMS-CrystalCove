@@ -1,6 +1,7 @@
-import { Box, Breadcrumbs, Link } from '@mui/material'
+import { Box, Breadcrumbs } from '@mui/material'
 import React from 'react'
 import { useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Breadcrumb = () => {
   function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -19,18 +20,16 @@ const Breadcrumb = () => {
         sx={{ display: 'flex', alignContent: 'center' }}
       >
         <Link
-          underline='hover'
-          color='inherit'
-          href='/'
+          style={{ color: 'inherit' }}
+          to='/'
         >
           Home
         </Link>
         {pathnames.map((name) => {
           return (
             <Link
-              underline='hover'
-              color='#0d47a1'
-              href='/'
+              style={{ color: '#0d47a1' }}
+              to={''}
             >
               {name}
             </Link>
