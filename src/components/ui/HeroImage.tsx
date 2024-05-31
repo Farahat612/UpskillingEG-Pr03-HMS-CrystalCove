@@ -5,7 +5,7 @@ import HeroImg from '../../assets/images/hero.png'
 
 const HeroImage = () => {
   return (
-    <Box width={200} >
+    <Box width={300}>
       <HeroCurvedImage src={HeroImg} alt='Hero Image' />
     </Box>
   )

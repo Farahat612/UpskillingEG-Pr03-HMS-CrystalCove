@@ -10,6 +10,7 @@ const SQCurvedImage = styled(CurvedImage)`
 
 const RecVerticalCurvedImage = styled(CurvedImage)`
   aspect-ratio: 3/4;
+  object-fit: cover;
 `
 
 export const HeroCurvedImage = styled(SQCurvedImage)`

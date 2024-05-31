@@ -5,13 +5,13 @@ const StartBookingForm = () => {
   return (
     <>
       <Stack direction='column' spacing={2} sx={{ pt: 2 }}>
-        <Typography variant='body1' gutterBottom>
+        <Typography variant='h6' gutterBottom>
           Start Booking
         </Typography>
         <DatePick />
         <CapacityButtonGroup />
         <Button variant='contained' fullWidth>
-          Book Now
+          Explore
         </Button>
       </Stack>
     </>

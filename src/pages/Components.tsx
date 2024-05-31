@@ -11,17 +11,18 @@ import {
   HeroImage,
   TestmonialsData,
   TestmonialsImage,
-  Hero,
+  DetailsHero,
 } from '../components/ui'
 import { StartBookingForm } from '../components/forms'
 import { DeleteModal, AddItemsModal } from '../components/modals'
 import { Header, Navbar } from '../components/shared'
+import { Testmonial, LandingHero } from '../components/combined'
 
 const Components = () => {
   return (
     <>
       <Stack sx={{ p: 2 }}>
-        {/* First paper */}
+        {/* Individual Elements */}
         <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
           <Badge
             badgeContent={'saje - farahat'}
@@ -68,6 +69,7 @@ const Components = () => {
 
         <Divider sx={{ my: 4 }} />
 
+        {/* Combined Elements */}
         <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
           <Badge
             badgeContent={'farahat'}
@@ -81,10 +83,45 @@ const Components = () => {
               Combined Elements
             </Typography>
           </Badge>
+
+          <Stack direction={'column'}>
+            {/* Testmonail */}
+            <Stack direction='row' spacing={8} sx={{ p: 2, mt: 5 }}>
+              <Badge
+                badgeContent='Tetmonial'
+                color='secondary'
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+              >
+                <Paper elevation={3} sx={{ p: 5 }}>
+                  <Testmonial />
+                </Paper>
+              </Badge>
+            </Stack>
+
+            {/* Landing Hero */}
+            <Stack direction='row' spacing={8} sx={{ p: 2, mt: 5 }}>
+              <Badge
+                badgeContent='Landing Hero'
+                color='secondary'
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+              >
+                <Paper elevation={3} sx={{ p: 5 }}>
+                  <LandingHero />
+                </Paper>
+              </Badge>
+            </Stack>
+          </Stack>
         </Paper>
 
         <Divider sx={{ my: 4 }} />
 
+        {/* Authentication Elements */}
         <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
           <Badge
             badgeContent={'asmaa'}
@@ -102,6 +139,7 @@ const Components = () => {
 
         <Divider sx={{ my: 4 }} />
 
+        {/* Details Page Elements */}
         <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
           <Badge
             badgeContent={'abdalrahman'}
@@ -119,7 +157,7 @@ const Components = () => {
             <Container maxWidth='xl' sx={{ margin: 'auto' }}>
               <Navbar />
               <Header />
-              <Hero />
+              <DetailsHero />
             </Container>
           </Stack>
         </Paper>

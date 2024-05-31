@@ -1,8 +1,7 @@
-import React from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
-const Hero = () => {
+const DetailsHero = () => {
   return (
     <Box mt={10}>
       <Grid container spacing={2}>
@@ -49,4 +48,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default DetailsHero;
