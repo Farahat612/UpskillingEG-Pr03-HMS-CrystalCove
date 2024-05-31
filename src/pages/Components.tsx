@@ -3,6 +3,9 @@ import { Stack, Divider, Typography, Paper } from '@mui/material'
 import { HeroImage, TestmonialsData, TestmonialsImage } from '../components/ui'
 import { StartBookingForm } from '../components/forms'
 import { DeleteModal, AddItemsModal } from '../components/modals'
+import Navbar from '../components/shared/Navbar'
+import Header from '../components/shared/Header'
+import Hero from '../components/ui/DetailsPageHero'
 
 const Components = () => {
   return (
@@ -43,6 +46,19 @@ const Components = () => {
           <Typography variant='h4' gutterBottom>
             Authentication Elements
           </Typography>
+        </Paper>
+
+
+
+        <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
+          <Typography variant='h4' gutterBottom>
+            Details Page Elements
+          </Typography>
+          <Stack direction='column' spacing={4} sx={{ pt: 2 }}>
+            <Navbar />
+            <Header />
+            <Hero />
+          </Stack>
         </Paper>
       </Stack>
     </>
