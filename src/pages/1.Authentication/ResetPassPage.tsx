@@ -1,39 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Button, Stack, TextField, Typography } from '@mui/material'
-import ResetPassImg from '../../assets/forms/reset-password.png'
-import { AuthForm } from '../../components/forms'
 import { AuthLayout } from '../../layouts'
+import { AuthForm } from '../../components/forms'
+import { Button, Stack, TextField, Typography } from '@mui/material'
 
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { FormData } from '../../types'
-import { ResetPass } from '../../hooks/useResetPassPage'
-import { useNavigate } from 'react-router-dom'
+import { emailValidation, newPasswordValidation } from '../../utils/validations'
+import useResetPass from '../../hooks/useResetPassPage'
+
+import ResetPassImg from '../../assets/forms/reset-password.png'
 
 const ResetPassPage = () => {
-  const [passwordVisible, setPasswordVisible] = useState(false)
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible)
-  }
-  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false)
-  const toggleConfirmPasswordVisibility = () => {
-    setConfirmPasswordVisible(!confirmPasswordVisible)
-  }
-
-  const navigat = useNavigate()
   const {
+    passwordVisible,
+    confirmPasswordVisible,
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting },
-  } = useForm<FormData>()
-  const onSubmit = async (data: FormData) => {
-    await ResetPass(data, (nav) => {
-      if (nav == true) {
-        navigat('/login')
-      }
-    })
-  }
+    errors,
+    isSubmitting,
+    onSubmit,
+  } = useResetPass()
   return (
     <AuthLayout
       imageSrc={ResetPassImg}
@@ -47,16 +32,10 @@ const ResetPassPage = () => {
         linkDestination='/login'
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack
-            spacing={3}
-            sx={{ mt: 4 }}
-          >
+          <Stack spacing={3} sx={{ mt: 4 }}>
             {/* Email */}
             <Stack spacing={0}>
-              <Typography
-                variant='subtitle2'
-                color={'primary.main'}
-              >
+              <Typography variant='subtitle2' color={'primary.main'}>
                 Email Address
               </Typography>
               <TextField
@@ -67,13 +46,7 @@ const ResetPassPage = () => {
                 sx={{
                   bgcolor: 'rgba(245, 246, 248, 1)',
                 }}
-                {...register('email', {
-                  required: 'Email is required',
-                  pattern: {
-                    value: /^[A-Z0-9._%=-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid E-mail !',
-                  },
-                })}
+                {...register('email', emailValidation)}
               />
               {errors.email && (
                 <Typography
@@ -91,10 +64,7 @@ const ResetPassPage = () => {
             </Stack>
             {/* OTP */}
             <Stack spacing={0}>
-              <Typography
-                variant='subtitle2'
-                color={'primary.main'}
-              >
+              <Typography variant='subtitle2' color={'primary.main'}>
                 OTP
               </Typography>
               <TextField
@@ -125,10 +95,7 @@ const ResetPassPage = () => {
             </Stack>
             {/* Password */}
             <Stack spacing={0}>
-              <Typography
-                variant='subtitle2'
-                color={'primary.main'}
-              >
+              <Typography variant='subtitle2' color={'primary.main'}>
                 Password
               </Typography>
               <TextField
@@ -139,15 +106,7 @@ const ResetPassPage = () => {
                 sx={{
                   bgcolor: 'rgba(245, 246, 248, 1)',
                 }}
-                {...register('password', {
-                  required: 'password is required',
-                  pattern: {
-                    value:
-                      /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
-                    message:
-                      'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
-                  },
-                })}
+                {...register('password', newPasswordValidation)}
               />
               {errors.password && (
                 <Typography
@@ -165,10 +124,7 @@ const ResetPassPage = () => {
             </Stack>
             {/* Confirm Password */}
             <Stack spacing={0}>
-              <Typography
-                variant='subtitle2'
-                color={'primary.main'}
-              >
+              <Typography variant='subtitle2' color={'primary.main'}>
                 Confirm Password
               </Typography>
               <TextField
@@ -201,10 +157,7 @@ const ResetPassPage = () => {
               )}
             </Stack>
             {/* Submit Button */}
-            <Stack
-              spacing={0}
-              sx={{ mt: 3 }}
-            >
+            <Stack spacing={0} sx={{ mt: 3 }}>
               <Button
                 type='submit'
                 className='btn btn-primary btn-block'
