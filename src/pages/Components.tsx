@@ -5,6 +5,7 @@ import {
   Paper,
   Container,
   Badge,
+  Box,
 } from '@mui/material'
 
 import {
@@ -17,6 +18,7 @@ import { StartBookingForm } from '../components/forms'
 import { DeleteModal, AddItemsModal } from '../components/modals'
 import { Header, Navbar } from '../components/shared'
 import { Testmonial, LandingHero } from '../components/combined'
+import { ForgotPassPage } from './1.Authentication'
 
 const Components = () => {
   return (
@@ -124,7 +126,7 @@ const Components = () => {
         {/* Authentication Elements */}
         <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
           <Badge
-            badgeContent={'asmaa'}
+            badgeContent={'Forgor-Password - asmaa'}
             color='success'
             anchorOrigin={{
               vertical: 'bottom',
@@ -132,9 +134,13 @@ const Components = () => {
             }}
           >
             <Typography variant='h4' gutterBottom>
-              Authentication Elements
+              Authentication Layout Example
             </Typography>
           </Badge>
+
+          <Box>
+            <ForgotPassPage />
+          </Box>
         </Paper>
 
         <Divider sx={{ my: 4 }} />
