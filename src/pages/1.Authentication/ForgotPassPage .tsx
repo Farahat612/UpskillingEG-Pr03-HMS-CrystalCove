@@ -1,29 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { AuthLayout } from '../../layouts'
-import ForgotPassImg from '../../assets/forms/forgot-password.png'
 import { AuthForm } from '../../components/forms'
 import { Button, Stack, TextField, Typography } from '@mui/material'
-import { useForm } from 'react-hook-form'
-import { FormData } from '../../types'
-import { ForgetPass } from '../../hooks/useForgotPassPage'
-import { useNavigate  } from 'react-router-dom'
+
+import useForgotPass from '../../hooks/useForgotPassPage'
+import { emailValidation } from '../../utils/validations'
+
+import ForgotPassImg from '../../assets/forms/forgot-password.png'
 
 const ForgotPassPage = () => {
-  const navigat = useNavigate()
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<FormData>()
-  const onSubmit = async (data: FormData) => {
-    
-      await ForgetPass(data, (nav) => {
-        if(nav == true) {
-          navigat('/reset-password')
-        }
-      })
-    
-  }
+  const { register, handleSubmit, errors, isSubmitting, onSubmit } =
+    useForgotPass()
+
   return (
     <AuthLayout
       imageSrc={ForgotPassImg}
@@ -37,20 +25,14 @@ const ForgotPassPage = () => {
         linkDestination='/login'
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack
-            spacing={5}
-            sx={{ mt: 4 }}
-          >
+          <Stack spacing={5} sx={{ mt: 4 }}>
             {/* Email */}
             <Stack spacing={0}>
-              <Typography
-                variant='subtitle2'
-                color={'primary.main'}
-              >
+              <Typography variant='subtitle2' color={'primary.main'}>
                 Email Address
               </Typography>
               <TextField
-              placeholder='Please Inter Your Email'
+                placeholder='Please Inter Your Email'
                 type='text'
                 variant='outlined'
                 fullWidth
@@ -58,13 +40,7 @@ const ForgotPassPage = () => {
                 sx={{
                   bgcolor: 'rgba(245, 246, 248, 1)',
                 }}
-                {...register('email', {
-                  required: 'Email is required',
-                  pattern: {
-                    value: /^[A-Z0-9._%=-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid E-mail !',
-                  },
-                })}
+                {...register('email', emailValidation)}
               />
               {errors.email && (
                 <Typography
@@ -81,10 +57,7 @@ const ForgotPassPage = () => {
               )}
             </Stack>
             {/* Submit Button */}
-            <Stack
-              spacing={0}
-              sx={{ mt: 3 }}
-            >
+            <Stack spacing={0} sx={{ mt: 3 }}>
               <Button
                 type='submit'
                 className='btn btn-primary btn-block'
