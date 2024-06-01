@@ -16,7 +16,7 @@ import {
 } from '../components/ui'
 import { StartBookingForm } from '../components/forms'
 import { DeleteModal, AddItemsModal } from '../components/modals'
-import { Header, Navbar } from '../components/shared'
+import { Footer, Header, Navbar } from '../components/shared'
 import { Testmonial, LandingHero } from '../components/combined'
 import { ForgotPassPage } from './1.Authentication'
 
@@ -159,12 +159,13 @@ const Components = () => {
               Details Page Elements
             </Typography>
           </Badge>
-          <Stack direction='column' spacing={4} sx={{ pt: 2 }}>
+          <Stack direction='column' spacing={0} sx={{ pt: 2 }}>
             <Container maxWidth='xl' sx={{ margin: 'auto' }}>
               <Navbar />
               <Header />
               <DetailsHero />
             </Container>
+              <Footer />
           </Stack>
         </Paper>
       </Stack>
