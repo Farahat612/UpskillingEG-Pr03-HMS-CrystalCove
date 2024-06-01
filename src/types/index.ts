@@ -6,4 +6,5 @@ export interface FormData {
   phoneNumber?: number
   country?: string
   seed?: string
+  profileImage?: File
 }

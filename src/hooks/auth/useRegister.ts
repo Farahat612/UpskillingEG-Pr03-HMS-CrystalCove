@@ -4,6 +4,7 @@ import { toast } from 'sonner'
 import { FormData } from '../../types'
 import { useNavigate } from 'react-router-dom'
 import { apiPublic } from '../../utils/api'
+import { appendFormData } from '../../utils/appendFormData'
 
 const useRegister = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const [passwordVisible, setPasswordVisible] = useState(false)
@@ -17,6 +18,8 @@ const useRegister = ({ userType }: { userType: 'portal' | 'admin' }) => {
 
   const navigate = useNavigate()
 
+  const [previewImage, setPreviewImage] = useState<File | null>(null)
+
   const {
     register,
     handleSubmit,
@@ -25,7 +28,12 @@ const useRegister = ({ userType }: { userType: 'portal' | 'admin' }) => {
   } = useForm<FormData>()
   const onSubmit = async (data: FormData) => {
     try {
-      const res = await apiPublic.post(`/${userType}/users`, data)
+      const signUpData = {
+        ...data,
+        role: userType === 'portal' ? 'user' : 'admin',
+      }
+      const formData = appendFormData(signUpData)
+      const res = await apiPublic.post(`/${userType}/users`, formData)
       toast.success(res.data.message)
       navigate('/login')
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -45,6 +53,8 @@ const useRegister = ({ userType }: { userType: 'portal' | 'admin' }) => {
     errors,
     isSubmitting,
     onSubmit,
+    previewImage,
+    setPreviewImage,
   }
 }
 
