@@ -16,7 +16,7 @@ import {
 } from '../components/ui'
 import { StartBookingForm } from '../components/forms'
 import { DeleteModal, AddItemsModal } from '../components/modals'
-import { Footer, Header, Navbar } from '../components/shared'
+import { Footer, Header, MainNavbar } from '../components/shared'
 import { Testmonial, LandingHero } from '../components/combined'
 import { ForgotPassPage } from './1.Authentication'
 
@@ -25,7 +25,10 @@ const Components = () => {
     <>
       <Stack sx={{ p: 2 }}>
         {/* Individual Elements */}
-        <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
+        <Paper
+          sx={{ p: 2, mb: 2 }}
+          elevation={3}
+        >
           <Badge
             badgeContent={'saje - farahat'}
             color='success'
@@ -34,15 +37,39 @@ const Components = () => {
               horizontal: 'right',
             }}
           >
-            <Typography variant='h4' gutterBottom>
+            <Typography
+              variant='h4'
+              gutterBottom
+            >
               Individual Elements
             </Typography>
           </Badge>
-          <Stack direction='row' spacing={8} sx={{ pt: 2, mt: 5 }}>
+          <Stack
+            direction='row'
+            spacing={8}
+            sx={{ pt: 2, mt: 5 }}
+          >
             <HeroImage />
             <TestmonialsImage />
             <StartBookingForm />
             <TestmonialsData />
+          </Stack>
+
+          <Divider sx={{ my: 4 }} />
+
+          <Stack
+            direction='column'
+            spacing={2}
+            sx={{ pt: 2, mt: 5 }}
+          >
+            {/* Navbar from home */}
+            <MainNavbar
+              navbarItem={['Home', 'Explore', 'Reviews', 'Favorites']}
+            />
+            {/* Navbar from Details */}
+            <MainNavbar
+              navbarItem={['Home', 'Browse by', 'Stories', 'Agents']}
+            />
           </Stack>
 
           <Divider sx={{ my: 4 }} />
@@ -55,14 +82,24 @@ const Components = () => {
               horizontal: 'right',
             }}
           >
-            <Typography variant='h4' gutterBottom>
+            <Typography
+              variant='h4'
+              gutterBottom
+            >
               Modals
             </Typography>
           </Badge>
-          <Stack direction='row' spacing={8} sx={{ mt: 5 }}>
+          <Stack
+            direction='row'
+            spacing={8}
+            sx={{ mt: 5 }}
+          >
             <DeleteModal />
             <AddItemsModal title='Add Items'>
-              <Typography variant='body1' gutterBottom>
+              <Typography
+                variant='body1'
+                gutterBottom
+              >
                 Add your items here
               </Typography>
             </AddItemsModal>
@@ -72,7 +109,10 @@ const Components = () => {
         <Divider sx={{ my: 4 }} />
 
         {/* Combined Elements */}
-        <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
+        <Paper
+          sx={{ p: 2, mb: 2 }}
+          elevation={3}
+        >
           <Badge
             badgeContent={'farahat'}
             color='success'
@@ -81,14 +121,21 @@ const Components = () => {
               horizontal: 'right',
             }}
           >
-            <Typography variant='h4' gutterBottom>
+            <Typography
+              variant='h4'
+              gutterBottom
+            >
               Combined Elements
             </Typography>
           </Badge>
 
           <Stack direction={'column'}>
             {/* Testmonail */}
-            <Stack direction='row' spacing={8} sx={{ p: 2, mt: 5 }}>
+            <Stack
+              direction='row'
+              spacing={8}
+              sx={{ p: 2, mt: 5 }}
+            >
               <Badge
                 badgeContent='Tetmonial'
                 color='secondary'
@@ -97,14 +144,21 @@ const Components = () => {
                   horizontal: 'right',
                 }}
               >
-                <Paper elevation={3} sx={{ p: 5 }}>
+                <Paper
+                  elevation={3}
+                  sx={{ p: 5 }}
+                >
                   <Testmonial />
                 </Paper>
               </Badge>
             </Stack>
 
             {/* Landing Hero */}
-            <Stack direction='row' spacing={8} sx={{ p: 2, mt: 5 }}>
+            <Stack
+              direction='row'
+              spacing={8}
+              sx={{ p: 2, mt: 5 }}
+            >
               <Badge
                 badgeContent='Landing Hero'
                 color='secondary'
@@ -113,7 +167,10 @@ const Components = () => {
                   horizontal: 'right',
                 }}
               >
-                <Paper elevation={3} sx={{ p: 5 }}>
+                <Paper
+                  elevation={3}
+                  sx={{ p: 5 }}
+                >
                   <LandingHero />
                 </Paper>
               </Badge>
@@ -124,7 +181,10 @@ const Components = () => {
         <Divider sx={{ my: 4 }} />
 
         {/* Authentication Elements */}
-        <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
+        <Paper
+          sx={{ p: 2, mb: 2 }}
+          elevation={3}
+        >
           <Badge
             badgeContent={'Forgor-Password - asmaa'}
             color='success'
@@ -133,20 +193,26 @@ const Components = () => {
               horizontal: 'right',
             }}
           >
-            <Typography variant='h4' gutterBottom>
+            <Typography
+              variant='h4'
+              gutterBottom
+            >
               Authentication Layout Example
             </Typography>
           </Badge>
 
           <Box>
-            <ForgotPassPage />
+            <ForgotPassPage userType={'admin'} />
           </Box>
         </Paper>
 
         <Divider sx={{ my: 4 }} />
 
         {/* Details Page Elements */}
-        <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
+        <Paper
+          sx={{ p: 2, mb: 2 }}
+          elevation={3}
+        >
           <Badge
             badgeContent={'abdalrahman'}
             color='success'
@@ -155,17 +221,29 @@ const Components = () => {
               horizontal: 'right',
             }}
           >
-            <Typography variant='h4' gutterBottom>
+            <Typography
+              variant='h4'
+              gutterBottom
+            >
               Details Page Elements
             </Typography>
           </Badge>
-          <Stack direction='column' spacing={0} sx={{ pt: 2 }}>
-            <Container maxWidth='xl' sx={{ margin: 'auto' }}>
-              <Navbar />
+          <Stack
+            direction='column'
+            spacing={0}
+            sx={{ pt: 2 }}
+          >
+            <Container
+              maxWidth='xl'
+              sx={{ margin: 'auto' }}
+            >
+              <MainNavbar
+                navbarItem={['Home', 'Browse by', 'Stories', 'Agents']}
+              />
               <Header />
               <DetailsHero />
             </Container>
-              <Footer />
+            <Footer />
           </Stack>
         </Paper>
       </Stack>
