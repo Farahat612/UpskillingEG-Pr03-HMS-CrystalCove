@@ -19,6 +19,7 @@ const useRegister = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const navigate = useNavigate()
 
   const [previewImage, setPreviewImage] = useState<File | null>(null)
+  const [secretKey, setSecretKey] = useState('')
 
   const {
     register,
@@ -55,6 +56,8 @@ const useRegister = ({ userType }: { userType: 'portal' | 'admin' }) => {
     onSubmit,
     previewImage,
     setPreviewImage,
+    secretKey,
+    setSecretKey,
   }
 }
 

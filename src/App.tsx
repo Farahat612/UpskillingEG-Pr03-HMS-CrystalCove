@@ -34,7 +34,7 @@ function App() {
         />
         <Route path='admin/login' element={<LoginPage userType='admin' />} />
         <Route
-          path='admin/register'
+          path='admin/create'
           element={<RegisterPage userType='admin' />}
         />
         <Route

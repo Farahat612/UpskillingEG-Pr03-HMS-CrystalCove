@@ -40,6 +40,7 @@ const ResetPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
               </Typography>
               <TextField
                 type='text'
+                placeholder='Enter Your Email'
                 variant='outlined'
                 fullWidth
                 size='small'
@@ -69,6 +70,7 @@ const ResetPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
               </Typography>
               <TextField
                 type='text'
+                placeholder='Enter OTP'
                 variant='outlined'
                 fullWidth
                 size='small'
@@ -100,6 +102,7 @@ const ResetPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
               </Typography>
               <TextField
                 type={passwordVisible ? 'text' : 'password'}
+                placeholder='Enter Your New Password'
                 variant='outlined'
                 fullWidth
                 size='small'
@@ -129,6 +132,7 @@ const ResetPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
               </Typography>
               <TextField
                 type={confirmPasswordVisible ? 'text' : 'password'}
+                placeholder='Confirm Your New Password'
                 variant='outlined'
                 fullWidth
                 size='small'

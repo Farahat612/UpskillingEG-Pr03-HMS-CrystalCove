@@ -41,7 +41,7 @@ const LoginPage = (
                 Email Address
               </Typography>
               <TextField
-                placeholder='Please Inter Your Email'
+                placeholder='Enter Your Email'
                 type='text'
                 variant='outlined'
                 fullWidth
@@ -71,7 +71,7 @@ const LoginPage = (
                 Password
               </Typography>
               <TextField
-                placeholder='Please Inter Your Password'
+                placeholder='Enter Your Password'
                 type={passwordVisible ? 'text' : 'password'}
                 variant='outlined'
                 fullWidth

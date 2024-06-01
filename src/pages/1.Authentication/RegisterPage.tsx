@@ -1,7 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { AuthLayout } from '../../layouts'
 import { AuthForm } from '../../components/forms'
-import { Box, Button, Stack, TextField, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  Divider,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
 
 import { styled } from '@mui/material/styles'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
@@ -41,6 +48,8 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
     onSubmit,
     previewImage,
     setPreviewImage,
+    secretKey,
+    setSecretKey,
   } = useRegister({ userType })
 
   return (
@@ -50,11 +59,36 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
       slogan='Place for every time.'
     >
       <AuthForm
-        heading='Sign Up'
-        subtitle={`If you already have an account, You can`}
-        linkText='Login here!'
-        linkDestination='/login'
+        heading={userType === 'portal' ? 'Sign Up' : 'Create Admin Account'}
+        {...(userType === 'portal' && {
+          subtitle: 'Already have an account?',
+          linkText: 'Login',
+          linkDestination: '/login',
+        })}
       >
+        {/* Create Admin Secret Key */}
+        {userType === 'admin' && (
+          <Stack spacing={0}>
+            <Typography variant='subtitle2' color={'error.main'}>
+              Secret Key
+            </Typography>
+            <TextField
+              placeholder='Enter Your Secret Key'
+              type='password'
+              variant='outlined'
+              fullWidth
+              size='small'
+              sx={{
+                bgcolor: 'rgba(245, 246, 248, 1)',
+              }}
+              value={secretKey}
+              onChange={(e) => setSecretKey(e.target.value)}
+            />
+            <Divider sx={{ mt: 3 }} />
+          </Stack>
+        )}
+
+        {/* User Name */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={3} sx={{ mt: 4 }}>
             {/* User Name */}
@@ -63,7 +97,7 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
                 UserName
               </Typography>
               <TextField
-                placeholder='Please Inter Your UserName'
+                placeholder='Enter Your UserName'
                 type='text'
                 variant='outlined'
                 fullWidth
@@ -99,7 +133,7 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
                   Phone Number
                 </Typography>
                 <TextField
-                  placeholder='Please Inter Your Phone nubmer'
+                  placeholder='Enter Your Phone nubmer'
                   type='text'
                   variant='outlined'
                   fullWidth
@@ -129,7 +163,7 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
                   Country
                 </Typography>
                 <TextField
-                  placeholder='Please Inter Your Phone Country'
+                  placeholder='Enter Your Country'
                   type='text'
                   variant='outlined'
                   fullWidth
@@ -162,7 +196,7 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
                 Email Address
               </Typography>
               <TextField
-                placeholder='Please Inter Your Email'
+                placeholder='Enter Your Email'
                 type='text'
                 variant='outlined'
                 fullWidth
@@ -192,7 +226,7 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
                 Password
               </Typography>
               <TextField
-                placeholder='Please Inter Your Password'
+                placeholder='Enter Your Password'
                 type={passwordVisible ? 'text' : 'password'}
                 variant='outlined'
                 fullWidth
@@ -222,7 +256,7 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
                 Confirm Password
               </Typography>
               <TextField
-                placeholder='Please Inter Your Confirm Password'
+                placeholder='Confirm Your Password'
                 type={confirmPasswordVisible ? 'text' : 'password'}
                 variant='outlined'
                 fullWidth
@@ -305,7 +339,10 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
                 type='submit'
                 className='btn btn-primary btn-block'
                 variant='contained'
-                disabled={isSubmitting}
+                disabled={
+                  isSubmitting ||
+                  (userType === 'admin' && secretKey !== 'se9!5@DM')
+                }
               >
                 {isSubmitting ? 'SignUp...' : 'Sign Up'}
               </Button>
