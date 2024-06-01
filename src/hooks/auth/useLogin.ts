@@ -28,7 +28,7 @@ const useLogin = ({ userType }: { userType: 'portal' | 'admin' }) => {
       toast.success(res.data.message)
       // storing token and usertype in local storage
       const signinData = res.data.data
-      login(signinData.token, userType, signinData.role)
+      login(signinData.token, userType, signinData.user.role)
       navigate('/')
     } catch (error: any) {
       toast.error('Invalid Credentials!')
