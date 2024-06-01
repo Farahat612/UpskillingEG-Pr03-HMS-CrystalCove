@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 type AuthFormProps = {
   children: React.ReactNode
   heading: string
-  subtitle: string
+  subtitle?: string
   linkText?: string
   linkDestination?: string
 }
