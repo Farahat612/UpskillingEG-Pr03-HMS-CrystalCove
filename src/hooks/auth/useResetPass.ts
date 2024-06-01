@@ -4,7 +4,7 @@ import { FormData } from '../../types'
 import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import { apiPublic } from '../../utils/api'
-const useResetPass = () => {
+const useResetPass = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const [passwordVisible, setPasswordVisible] = useState(false)
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible)
@@ -23,7 +23,10 @@ const useResetPass = () => {
   } = useForm<FormData>()
   const onSubmit = async (data: FormData) => {
     try {
-      const res = await apiPublic.post('/admin/users/reset-password', data)
+      const res = await apiPublic.post(
+        `/${userType}/users/reset-password`,
+        data
+      )
       toast.success(res.data.message)
       navigate('/login')
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

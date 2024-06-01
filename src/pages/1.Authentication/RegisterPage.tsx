@@ -13,7 +13,7 @@ import {useRegister} from '../../hooks/auth'
 
 import SignUpImage from '../../assets/forms/sign-up.png'
 
-const RegisterPage = () => {
+const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const {
     passwordVisible,
     confirmPasswordVisible,
@@ -23,7 +23,7 @@ const RegisterPage = () => {
     errors,
     isSubmitting,
     onSubmit,
-  } = useRegister()
+  } = useRegister({ userType })
 
   return (
     <AuthLayout

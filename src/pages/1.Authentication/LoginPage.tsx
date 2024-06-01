@@ -9,7 +9,9 @@ import {useLogin} from '../../hooks/auth'
 
 import SigninImage from '../../assets/forms/sign-in.png'
 
-const LoginPage = () => {
+const LoginPage = (
+  { userType }: { userType: 'portal' | 'admin' } 
+) => {
   const {
     passwordVisible,
     register,
@@ -17,7 +19,7 @@ const LoginPage = () => {
     errors,
     isSubmitting,
     onSubmit,
-  } = useLogin()
+  } = useLogin({userType})
 
   return (
     <AuthLayout

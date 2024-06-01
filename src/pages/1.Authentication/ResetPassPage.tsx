@@ -8,7 +8,7 @@ import {useResetPass} from '../../hooks/auth'
 
 import ResetPassImg from '../../assets/forms/reset-password.png'
 
-const ResetPassPage = () => {
+const ResetPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const {
     passwordVisible,
     confirmPasswordVisible,
@@ -18,7 +18,7 @@ const ResetPassPage = () => {
     errors,
     isSubmitting,
     onSubmit,
-  } = useResetPass()
+  } = useResetPass({ userType })
   return (
     <AuthLayout
       imageSrc={ResetPassImg}

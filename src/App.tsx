@@ -3,14 +3,10 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
-
-} from "react-router-dom";
-
-
+} from 'react-router-dom'
 
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-
 
 import {
   LoginPage,
@@ -20,17 +16,35 @@ import {
 } from './pages/1.Authentication'
 import { Home, Rooms, AddRoom, Ads, Users, Bookings, Components } from './pages'
 import { NotFound, RouteGuard } from './components/shared'
-import { Toaster } from "sonner";
+import { Toaster } from 'sonner'
 
 function App() {
   const route = createBrowserRouter(
     createRoutesFromElements([
-
       <Route path='/' element={<RouteGuard />} errorElement={<NotFound />}>
-        <Route path='login' element={<LoginPage />} />
-        <Route path='register' element={<RegisterPage />} />
-        <Route path='reset-password' element={<ResetPassPage />} />
-        <Route path='forgot-password' element={<ForgotPassPage />} />
+        <Route path='login' element={<LoginPage userType='portal' />} />
+        <Route path='register' element={<RegisterPage userType='portal' />} />
+        <Route
+          path='reset-password'
+          element={<ResetPassPage userType='portal' />}
+        />
+        <Route
+          path='forgot-password'
+          element={<ForgotPassPage userType='portal' />}
+        />
+        <Route path='admin/login' element={<LoginPage userType='admin' />} />
+        <Route
+          path='admin/register'
+          element={<RegisterPage userType='admin' />}
+        />
+        <Route
+          path='admin/reset-password'
+          element={<ResetPassPage userType='admin' />}
+        />
+        <Route
+          path='admin/forgot-password'
+          element={<ForgotPassPage userType='admin' />}
+        />
         <Route path='home' element={<Home />} />
         <Route path='users' element={<Users />} />
         <Route path='rooms' element={<Rooms />} />
@@ -43,7 +57,7 @@ function App() {
   )
   return (
     <>
-    <Toaster />
+      <Toaster />
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <RouterProvider router={route} />
       </LocalizationProvider>
