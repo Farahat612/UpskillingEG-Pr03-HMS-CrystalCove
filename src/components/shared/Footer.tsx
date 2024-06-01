@@ -30,6 +30,7 @@ const Footer = () => {
             </Typography>
           </Grid>
           <Grid
+          item
             md={2}
             sm={3}
           >
@@ -59,6 +60,7 @@ const Footer = () => {
             </Typography>
           </Grid>
           <Grid
+          item
             md={2}
             sm={3}
           >
@@ -88,6 +90,7 @@ const Footer = () => {
             </Typography>
           </Grid>
           <Grid
+          item
             md={2}
             sm={3}
           >

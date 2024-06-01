@@ -9,28 +9,18 @@ const Breadcrumb = () => {
   }
   const Location = useLocation()
   const pathnames = Location.pathname.split('/').filter((x) => x)
-  console.log(pathnames)
   return (
-    <Box
-      role='presentation'
-      onClick={handleClick}
-    >
+    <Box role='presentation' onClick={handleClick}>
       <Breadcrumbs
         aria-label='breadcrumb'
         sx={{ display: 'flex', alignContent: 'center' }}
       >
-        <Link
-          style={{ color: 'inherit' }}
-          to='/'
-        >
+        <Link style={{ color: 'inherit' }} to='/'>
           Home
         </Link>
         {pathnames.map((name) => {
           return (
-            <Link
-              style={{ color: '#0d47a1' }}
-              to={''}
-            >
+            <Link style={{ color: '#0d47a1' }} to={''}>
               {name}
             </Link>
           )
