@@ -1,36 +1,12 @@
-import { Container, Typography, Link, Breadcrumbs, Box } from '@mui/material'
+import { Container, Typography } from '@mui/material'
+import Breadcrumb from './Breadcrumb'
 
 const Header = () => {
-  function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    event.preventDefault()
-    console.info('You clicked a breadcrumb.')
-  }
+
   return (
     <>
-      <Box
-        role='presentation'
-        onClick={handleClick}
-      >
-        <Breadcrumbs
-          aria-label='breadcrumb'
-          sx={{ display: 'flex', alignContent: 'center'}}
-        >
-          <Link
-            underline='hover'
-            color='inherit'
-            href='/'
-          >
-            Home
-          </Link>
-          <Link
-            underline='hover'
-            color='#0d47a1'
-            href='/'
-          >
-            Room Details
-          </Link>
-        </Breadcrumbs>
-      </Box>
+      
+      <Breadcrumb />
       <Container>
         <Typography
           mt={0}
