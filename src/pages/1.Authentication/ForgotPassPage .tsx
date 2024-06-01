@@ -8,9 +8,9 @@ import {useForgotPass} from '../../hooks/auth'
 
 import ForgotPassImg from '../../assets/forms/forgot-password.png'
 
-const ForgotPassPage = () => {
+const ForgotPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const { register, handleSubmit, errors, isSubmitting, onSubmit } =
-    useForgotPass()
+    useForgotPass({ userType })
 
   return (
     <AuthLayout

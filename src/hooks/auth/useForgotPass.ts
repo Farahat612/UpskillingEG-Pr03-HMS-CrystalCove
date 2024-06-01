@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { apiPublic } from '../../utils/api'
 import { toast } from 'sonner'
 
-const useForgotPass = () => {
+const useForgotPass = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const navigate = useNavigate()
   const {
     register,
@@ -13,7 +13,10 @@ const useForgotPass = () => {
   } = useForm<FormData>()
   const onSubmit = async (data: FormData) => {
     try {
-      const res = await apiPublic.post('/admin/users/forgot-password', data)
+      const res = await apiPublic.post(
+        `/${userType}/users/forgot-password`,
+        data
+      )
       toast.success(res.data.message)
       navigate('/reset-password')
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

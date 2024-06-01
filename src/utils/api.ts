@@ -11,9 +11,9 @@ const apiProtected = axios.create({
 })
 
 apiProtected.interceptors.request.use((config) => {
-  const token = `Bearer ${localStorage.getItem('token')}`
+  const token = localStorage.getItem('token')
   config.headers.Authorization = token
   return config
 })
 
-export {baseURL, staticURL, apiPublic, apiProtected}
+export { baseURL, staticURL, apiPublic, apiProtected }
