@@ -32,7 +32,7 @@ const ForgotPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
                 Email Address
               </Typography>
               <TextField
-                placeholder='Please Inter Your Email'
+                placeholder='Enter Your Email'
                 type='text'
                 variant='outlined'
                 fullWidth
