@@ -139,7 +139,7 @@ const Components = () => {
           </Badge>
 
           <Box>
-            <ForgotPassPage />
+            <ForgotPassPage userType='portal' />
           </Box>
         </Paper>
 
@@ -165,7 +165,7 @@ const Components = () => {
               <Header />
               <DetailsHero />
             </Container>
-              <Footer />
+            <Footer />
           </Stack>
         </Paper>
       </Stack>
