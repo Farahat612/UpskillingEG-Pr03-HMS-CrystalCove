@@ -1,4 +1,4 @@
-import { Box, Breadcrumbs } from '@mui/material'
+import { Box, Breadcrumbs, Typography } from '@mui/material'
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -15,13 +15,29 @@ const Breadcrumb = () => {
         aria-label='breadcrumb'
         sx={{ display: 'flex', alignContent: 'center' }}
       >
-        <Link style={{ color: 'inherit' }} to='/'>
-          Home
+        <Link to='/'>
+          <Typography
+            variant='subtitle2'
+            color='black'
+            sx={{
+              display: 'inline',
+            }}
+          >
+            Home
+          </Typography>
         </Link>
         {pathnames.map((name) => {
           return (
-            <Link style={{ color: '#0d47a1' }} to={''}>
-              {name}
+            <Link to={''}>
+              <Typography
+                variant='subtitle2'
+                color='primary'
+                sx={{
+                  display: 'inline',
+                }}
+              >
+                {name}
+              </Typography>
             </Link>
           )
         })}

@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
+import Breadcrumb from '../shared/Breadcrumb'
 
 type AuthFormProps = {
   children: React.ReactNode
@@ -18,21 +19,51 @@ const AuthForm = ({
 }: AuthFormProps) => {
   return (
     <>
-      <Box sx={{ width: 'inherit' }}>
-        <Typography variant='h6' fontSize={25} gutterBottom>
-          {heading}
-        </Typography>
+      <Box
+        sx={{
+          width: 'inherit',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <Box marginBottom={'auto'}>
+          <Breadcrumb />
+        </Box>
 
-        <Typography variant='body1'>
-          {subtitle}{' '}
-          {linkText && linkDestination && (
-            <Link to={linkDestination} style={{ color: 'red' }}>
-              {linkText}
-            </Link>
-          )}
-        </Typography>
+        <Box
+          sx={{
+            width: 'inherit',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
+          <Typography variant='h6' fontSize={25} gutterBottom>
+            {heading}
+          </Typography>
 
-        {children}
+          <Typography variant='h6' fontSize={15}>
+            {subtitle}{' '}
+            {linkText && linkDestination && (
+              <Link to={linkDestination}>
+                <Typography
+                  variant='subtitle2'
+                  color='error'
+                  sx={{
+                    display: 'inline',
+                  }}
+                >
+                  {linkText}
+                </Typography>
+              </Link>
+            )}
+          </Typography>
+
+          {children}
+        </Box>
       </Box>
     </>
   )

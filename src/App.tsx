@@ -8,6 +8,8 @@ import {
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
+import { createTheme, ThemeProvider, colors, CssBaseline } from '@mui/material'
+
 import {
   LoginPage,
   RegisterPage,
@@ -17,6 +19,23 @@ import {
 import { Home, Rooms, AddRoom, Ads, Users, Bookings, Components } from './pages'
 import { NotFound, RouteGuard } from './components/shared'
 import { Toaster } from 'sonner'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: colors.indigo[800],
+    },
+    secondary: {
+      main: colors.orange[500],
+    },
+    textDark: {
+      main: colors.grey[900],
+    },
+    textLight: {
+      main: colors.grey[400],
+    },
+  },
+})
 
 function App() {
   const route = createBrowserRouter(
@@ -58,9 +77,12 @@ function App() {
   return (
     <>
       <Toaster />
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <RouterProvider router={route} />
-      </LocalizationProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <RouterProvider router={route} />
+        </LocalizationProvider>
+      </ThemeProvider>
     </>
   )
 }

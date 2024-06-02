@@ -123,9 +123,9 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
             </Stack>
             {/* Phone Number and Country */}
             <Stack
-              spacing={0}
+              spacing={1}
               direction='row'
-              divider={<div style={{ width: 10 }} />}
+              
             >
               {/* Phone Number */}
               <Stack spacing={0} sx={{ flex: 1 }}>
@@ -134,7 +134,7 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
                 </Typography>
                 <TextField
                   placeholder='Enter Your Phone nubmer'
-                  type='text'
+                  type='tel'
                   variant='outlined'
                   fullWidth
                   size='small'

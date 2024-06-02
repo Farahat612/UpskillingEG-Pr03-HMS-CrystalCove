@@ -5,13 +5,11 @@ import { Button, Stack, TextField, Typography } from '@mui/material'
 
 import { Link } from 'react-router-dom'
 import { emailValidation, passwordValidation } from '../../utils/validations'
-import {useLogin} from '../../hooks/auth'
+import { useLogin } from '../../hooks/auth'
 
 import SigninImage from '../../assets/forms/sign-in.png'
 
-const LoginPage = (
-  { userType }: { userType: 'portal' | 'admin' } 
-) => {
+const LoginPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const {
     passwordVisible,
     register,
@@ -19,7 +17,7 @@ const LoginPage = (
     errors,
     isSubmitting,
     onSubmit,
-  } = useLogin({userType})
+  } = useLogin({ userType })
 
   return (
     <AuthLayout
@@ -97,12 +95,11 @@ const LoginPage = (
               )}
 
               {/* Forgot Password Link */}
-              <Typography variant='subtitle2' sx={{ mt: 1, ml: 'auto' }}>
-                <Link
-                  to={'/forgot-password'}
-                  style={{ color: 'rgba(0, 0, 0, 0.54)' }}
-                >
-                  Forgot Password?
+              <Typography sx={{ mt: 1, ml: 'auto' }}>
+                <Link to={'/forgot-password'}>
+                  <Typography variant='subtitle2' color='textDark.main'>
+                    Forgot Password?
+                  </Typography>
                 </Link>
               </Typography>
             </Stack>

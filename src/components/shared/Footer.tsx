@@ -1,25 +1,13 @@
-import { Container, Grid, Typography } from '@mui/material'
+import { Box, Container, Divider, Grid, Typography } from '@mui/material'
 import Logo from '../../assets/logo/logo.png'
 
 const Footer = () => {
   return (
-    <Typography
-      component={'div'}
-      sx={{ borderTop: '1px solid #E5E5E5', mt: 10 }}
-    >
-      <Container
-        maxWidth={'xl'}
-        sx={{ my: 10 }}
-      >
-        <Grid
-          container
-          gap={6}
-        >
-          <Grid
-            item
-            md={4}
-            sm={12}
-          >
+    <Box>
+      <Divider sx={{ my: 5 }} />
+      <Container maxWidth={'xl'}>
+        <Grid container gap={6}>
+          <Grid item md={4} sm={12}>
             <img
               src={Logo}
               alt='logo'
@@ -29,105 +17,41 @@ const Footer = () => {
               We kaboom your beauty holiday instantly and memorable.
             </Typography>
           </Grid>
-          <Grid
-          item
-            md={2}
-            sm={3}
-          >
-            <Typography
-              color={'#0d47a1'}
-              sx={{ fontWeight: 'bold' }}
-            >
+          <Grid item md={2} sm={3} color={'GrayText'}>
+            <Typography color={'primary.main'} sx={{ fontWeight: 'bold' }}>
               For Beginners
             </Typography>
-            <Typography
-              color={'#B0B0B0'}
-              mt={3}
-            >
-              New Account
-            </Typography>
-            <Typography
-              color={'#B0B0B0'}
-              mt={1}
-            >
-              Start Booking a Room
-            </Typography>
-            <Typography
-              color={'#B0B0B0'}
-              mt={1}
-            >
-              Use Payments
-            </Typography>
+            <Typography mt={3}>New Account</Typography>
+            <Typography mt={1}>Start Booking a Room</Typography>
+            <Typography mt={1}>Use Payments</Typography>
           </Grid>
-          <Grid
-          item
-            md={2}
-            sm={3}
-          >
-            <Typography
-              color={'#0d47a1'}
-              sx={{ fontWeight: 'bold' }}
-            >
+          <Grid item md={2} sm={3} color={'GrayText'}>
+            <Typography color={'primary.main'} sx={{ fontWeight: 'bold' }}>
               Explore Us
             </Typography>
-            <Typography
-              color={'#B0B0B0'}
-              mt={3}
-            >
-              Our Careers
-            </Typography>
-            <Typography
-              color={'#B0B0B0'}
-              mt={1}
-            >
-              Privacy
-            </Typography>
-            <Typography
-              color={'#B0B0B0'}
-              mt={1}
-            >
-              Terms & Conditions
-            </Typography>
+            <Typography mt={3}>Our Careers</Typography>
+            <Typography mt={1}>Privacy</Typography>
+            <Typography mt={1}>Terms & Conditions</Typography>
           </Grid>
-          <Grid
-          item
-            md={2}
-            sm={3}
-          >
-            <Typography
-              color={'#0d47a1'}
-              sx={{ fontWeight: 'bold' }}
-            >
+          <Grid item md={2} sm={3} color={'GrayText'}>
+            <Typography color={'primary.main'} sx={{ fontWeight: 'bold' }}>
               Connect Us
             </Typography>
-            <Typography
-              color={'#B0B0B0'}
-              mt={3}
-            >
-              support@staycation.id
-            </Typography>
-            <Typography
-              color={'#B0B0B0'}
-              mt={1}
-            >
-              021 - 2208 - 1996
-            </Typography>
-            <Typography
-              color={'#B0B0B0'}
-              mt={1}
-            >
-              Staycation, Kemang, Jakarta
-            </Typography>
+            <Typography mt={3}>support@CrystalCove.id</Typography>
+            <Typography mt={1}>021 - 2208 - 1996</Typography>
+            <Typography mt={1}>CrystalCove, Kemang, Jakarta</Typography>
           </Grid>
         </Grid>
+
+        <Divider sx={{ my: 3 }} />
         <Typography
-          color={'#B0B0B0'}
-          sx={{ mx: 'auto', display: 'block', width: 'fit-content', mt: 10 }}
+          color={'GrayText'}
+          sx={{ mx: 'auto', display: 'block', width: 'fit-content', mt: 5 }}
         >
-          Copyright 2019 • All rights reserved • Staycation
+          All rights reserved &copy; 2024 CrystalCove
         </Typography>
       </Container>
-    </Typography>
+    </Box>
   )
 }
 
