@@ -6,6 +6,17 @@ import { useNavigate } from 'react-router-dom'
 import { apiPublic } from '../../utils/api'
 import { appendFormData } from '../../utils/appendFormData'
 
+type SignUpFormData = Pick<
+  FormData,
+  | 'userName'
+  | 'phoneNumber'
+  | 'country'
+  | 'email'
+  | 'password'
+  | 'confirmPassword'
+  | 'profileImage'
+>
+
 const useRegister = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const [passwordVisible, setPasswordVisible] = useState(false)
   const togglePasswordVisibility = () => {
@@ -41,8 +52,8 @@ const useRegister = ({ userType }: { userType: 'portal' | 'admin' }) => {
     handleSubmit,
     watch,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>()
-  const onSubmit = async (data: FormData) => {
+  } = useForm<SignUpFormData>()
+  const onSubmit = async (data: SignUpFormData) => {
     try {
       const signUpData = {
         ...data,

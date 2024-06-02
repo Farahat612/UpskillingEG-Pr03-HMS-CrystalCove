@@ -4,14 +4,16 @@ import { useNavigate } from 'react-router-dom'
 import { apiPublic } from '../../utils/api'
 import { toast } from 'sonner'
 
+type ForgotPasswordFormData = Pick<FormData, 'email'>
+
 const useForgotPass = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>()
-  const onSubmit = async (data: FormData) => {
+  } = useForm<ForgotPasswordFormData>()
+  const onSubmit = async (data: ForgotPasswordFormData) => {
     try {
       const res = await apiPublic.post(
         `/${userType}/users/forgot-password`,

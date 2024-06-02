@@ -6,6 +6,9 @@ import { apiPublic } from '../../utils/api'
 import { FormData } from '../../types'
 import { toast } from 'sonner'
 import { useAuthContext } from '../../contexts/global/AuthContext'
+
+type SignInFormData = Pick<FormData, 'email' | 'password'>
+
 const useLogin = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const { login } = useAuthContext()
 
@@ -20,8 +23,8 @@ const useLogin = ({ userType }: { userType: 'portal' | 'admin' }) => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>()
-  const onSubmit = async (data: FormData) => {
+  } = useForm<SignInFormData>()
+  const onSubmit = async (data: SignInFormData) => {
     try {
       const res = await apiPublic.post(`/${userType}/users/login`, data)
       localStorage.setItem('token', res.data.data.token)

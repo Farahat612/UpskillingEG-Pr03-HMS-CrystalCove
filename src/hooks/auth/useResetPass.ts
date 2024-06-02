@@ -4,6 +4,12 @@ import { FormData } from '../../types'
 import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import { apiPublic } from '../../utils/api'
+
+type ResetPasswordFormData = Pick<
+  FormData,
+  'email' | 'seed' | 'password' | 'confirmPassword'
+>
+
 const useResetPass = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const [passwordVisible, setPasswordVisible] = useState(false)
   const togglePasswordVisibility = () => {
@@ -20,8 +26,8 @@ const useResetPass = ({ userType }: { userType: 'portal' | 'admin' }) => {
     handleSubmit,
     watch,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>()
-  const onSubmit = async (data: FormData) => {
+  } = useForm<ResetPasswordFormData>()
+  const onSubmit = async (data: ResetPasswordFormData) => {
     try {
       const res = await apiPublic.post(
         `/${userType}/users/reset-password`,
