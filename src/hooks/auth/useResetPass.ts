@@ -10,7 +10,7 @@ type ResetPasswordFormData = Pick<
   'email' | 'seed' | 'password' | 'confirmPassword'
 >
 
-const useResetPass = ({ userType }: { userType: 'portal' | 'admin' }) => {
+const useResetPass = ({ mode }: { mode: 'portal' | 'admin' }) => {
   const [passwordVisible, setPasswordVisible] = useState(false)
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible)
@@ -30,7 +30,7 @@ const useResetPass = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const onSubmit = async (data: ResetPasswordFormData) => {
     try {
       const res = await apiPublic.post(
-        `/${userType}/users/reset-password`,
+        `/${mode}/users/reset-password`,
         data
       )
       toast.success(res.data.message)

@@ -9,7 +9,7 @@ import { useAuthContext } from '../../contexts/global/AuthContext'
 
 type SignInFormData = Pick<FormData, 'email' | 'password'>
 
-const useLogin = ({ userType }: { userType: 'portal' | 'admin' }) => {
+const useLogin = ({ mode }: { mode: 'portal' | 'admin' }) => {
   const { login } = useAuthContext()
 
   const [passwordVisible, setPasswordVisible] = useState(false)
@@ -26,12 +26,12 @@ const useLogin = ({ userType }: { userType: 'portal' | 'admin' }) => {
   } = useForm<SignInFormData>()
   const onSubmit = async (data: SignInFormData) => {
     try {
-      const res = await apiPublic.post(`/${userType}/users/login`, data)
+      const res = await apiPublic.post(`/${mode}/users/login`, data)
       localStorage.setItem('token', res.data.data.token)
       toast.success(res.data.message)
-      // storing token and usertype in local storage
+      // storing token and mode in local storage
       const signinData = res.data.data
-      login(signinData.token, userType, signinData.user.role)
+      login(signinData.token, mode, signinData.user.role)
       navigate('/')
     } catch (error: any) {
       toast.error('Invalid Credentials!')

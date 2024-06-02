@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AuthLayout } from '../../layouts'
+import { Button, Stack } from '@mui/material'
 import { AuthForm } from '../../components/forms'
-import { Button, Stack, TextField, Typography } from '@mui/material'
+import { AuthLayout } from '../../layouts'
 
-import { emailValidation } from '../../utils/validations'
 import { useForgotPass } from '../../hooks/auth'
+import { emailValidation } from '../../utils/validations'
 
 import ForgotPassImg from '../../assets/forms/forgot-password.png'
+import { AuthFormTextField } from '../../components/forms/AuthFormTextField'
 
-const ForgotPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
+const ForgotPassPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
   const { register, handleSubmit, errors, isSubmitting, onSubmit } =
-    useForgotPass({ userType })
+    useForgotPass({ mode })
 
   return (
     <AuthLayout
@@ -22,7 +23,7 @@ const ForgotPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
         heading='Forgot Password'
         subtitle={`If you came here by mistake, You can`}
         linkText='Login here!'
-        linkDestination='/login'
+        linkDestination={mode === 'portal' ? '/login' : '/admin/login'}
       >
         <Stack
           spacing={5}
@@ -31,25 +32,18 @@ const ForgotPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
           onSubmit={handleSubmit(onSubmit)}
         >
           {/* Email */}
-          <Stack spacing={0}>
-            <Typography variant='subtitle2' color={'primary.main'}>
-              Email Address
-            </Typography>
-            <TextField
-              placeholder='Enter Your Email'
-              type='text'
-              variant='outlined'
-              fullWidth
-              size='small'
-              sx={{
-                bgcolor: 'rgba(245, 246, 248, 1)',
-              }}
-              {...register('email', emailValidation)}
-              error={errors.email ? true : false}
-              helperText={errors.email ? errors.email.message : ''}
-            />
-            
-          </Stack>
+          <AuthFormTextField
+            placeholder='Enter Your Email'
+            type='text'
+            variant='filled'
+            fullWidth
+            size='small'
+            label='Email Address'
+            {...register('email', emailValidation)}
+            error={errors.email ? true : false}
+            helperText={errors.email ? errors.email.message : ''}
+          />
+
           {/* Submit Button */}
           <Stack spacing={0} sx={{ mt: 3 }}>
             <Button

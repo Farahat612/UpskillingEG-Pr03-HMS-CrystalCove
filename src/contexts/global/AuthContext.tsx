@@ -2,17 +2,17 @@
 import { createContext, useContext, useState } from 'react'
 
 // Types
-type UserType = 'portal' | 'admin'
+type Mode = 'portal' | 'admin'
 type UserRole = 'user' | 'admin'
 type Auth = {
   isAuthenticated: boolean
   token: string | null
-  userType: UserType | null
+  mode: Mode | null
   role: UserRole | null
 }
 type AuthContextType = {
   auth: Auth
-  login: (token: string, userType: UserType, role: UserRole) => void
+  login: (token: string, mode: Mode, role: UserRole) => void
   logout: () => void
 }
 
@@ -23,29 +23,29 @@ export const AuthContext = createContext<AuthContextType | null>(null)
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [auth, setAuth] = useState<Auth>(() => {
     const token = localStorage.getItem('token') as string
-    const userType = localStorage.getItem('userType') as UserType | null
+    const mode = localStorage.getItem('mode') as Mode | null
     const role = localStorage.getItem('role') as UserRole | null
 
     return {
       isAuthenticated: token !== null,
       token,
-      userType,
+      mode,
       role,
     }
   })
 
-  const login = (token: string, userType: UserType, role: UserRole) => {
+  const login = (token: string, mode: Mode, role: UserRole) => {
     localStorage.setItem('token', token)
-    localStorage.setItem('userType', userType)
+    localStorage.setItem('mode', mode)
     localStorage.setItem('role', role)
-    setAuth({ isAuthenticated: true, token, userType, role })
+    setAuth({ isAuthenticated: true, token, mode, role })
   }
 
   const logout = () => {
     localStorage.removeItem('token')
-    localStorage.removeItem('userType')
+    localStorage.removeItem('mode')
     localStorage.removeItem('role')
-    setAuth({ isAuthenticated: false, token: null, userType: null, role: null })
+    setAuth({ isAuthenticated: false, token: null, mode: null, role: null })
   }
 
   return (

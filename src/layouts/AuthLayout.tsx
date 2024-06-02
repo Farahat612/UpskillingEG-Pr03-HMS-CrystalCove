@@ -20,9 +20,14 @@ const AuthLayout = ({
       <Grid
         component={'section'}
         container
-        sx={{ minHeight: '100vh', height: { xs: 'auto', md: '100vh' }, p: 3 }}
+        sx={{
+          minHeight: '100vh',
+          height: 'auto',
+          p: 3,
+          border: '2px solid red',
+        }}
       >
-        <Grid item xs={12} md={6} sx={{ height: { xs: '50%', md: '100%' } }}>
+        <Grid item xs={12} md={6} sx={{ height: { xs: '50%', md: 'inherit' } }}>
           <Box
             height='100%'
             sx={{
@@ -51,7 +56,12 @@ const AuthLayout = ({
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={12} md={6} sx={{ height: { xs: '50%', md: '100%' } }}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{ height: { xs: '50%', md: 'inherit' } }}
+        >
           <Box
             sx={{
               width: '100%',

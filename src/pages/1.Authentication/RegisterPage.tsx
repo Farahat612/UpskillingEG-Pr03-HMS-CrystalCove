@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 
 import { styled } from '@mui/material/styles'
+import { AuthFormTextField } from '../../components/forms/AuthFormTextField'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 
 import {
@@ -36,7 +37,7 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 })
 
-const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
+const RegisterPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
   const {
     passwordVisible,
     confirmPasswordVisible,
@@ -50,7 +51,7 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
     secretKey,
     setSecretKey,
     objectUrl,
-  } = useRegister({ userType })
+  } = useRegister({ mode })
 
   return (
     <AuthLayout
@@ -59,15 +60,15 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
       slogan='Place for every time.'
     >
       <AuthForm
-        heading={userType === 'portal' ? 'Sign Up' : 'Create Admin Account'}
-        {...(userType === 'portal' && {
+        heading={mode === 'portal' ? 'Sign Up' : 'Create Admin Account'}
+        {...(mode === 'portal' && {
           subtitle: 'Already have an account?',
           linkText: 'Login',
           linkDestination: '/login',
         })}
       >
         {/* Create Admin Secret Key */}
-        {userType === 'admin' && (
+        {mode === 'admin' && (
           <Stack spacing={0}>
             <Typography variant='subtitle2' color={'error.main'}>
               Secret Key
@@ -90,143 +91,112 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
 
         {/* Form */}
         <Stack
-          spacing={3}
+          spacing={6}
           sx={{ mt: 4 }}
           component='form'
           onSubmit={handleSubmit(onSubmit)}
         >
           {/* User Name */}
-          <Stack spacing={0}>
-            <Typography variant='subtitle2' color={'primary.main'}>
-              UserName
-            </Typography>
-            <TextField
-              placeholder='Enter Your UserName'
-              type='text'
-              variant='outlined'
-              fullWidth
-              size='small'
-              sx={{
-                bgcolor: 'rgba(245, 246, 248, 1)',
-              }}
-              {...register('userName', userNameValidation)}
-              error={errors.userName ? true : false}
-              helperText={errors.userName ? errors.userName.message : null}
-            />
-          </Stack>
+          <AuthFormTextField
+            placeholder='Enter Your UserName'
+            label='User Name'
+            type='text'
+            variant='filled'
+            fullWidth
+            size='small'
+            {...register('userName', userNameValidation)}
+            error={errors.userName ? true : false}
+            helperText={errors.userName ? errors.userName.message : null}
+          />
+
           {/* Phone Number and Country */}
           <Stack spacing={1} direction='row'>
             {/* Phone Number */}
-            <Stack spacing={0} sx={{ flex: 1 }}>
-              <Typography variant='subtitle2' color={'primary.main'}>
-                Phone Number
-              </Typography>
-              <TextField
-                placeholder='Enter Your Phone nubmer'
-                type='tel'
-                variant='outlined'
-                fullWidth
-                size='small'
-                sx={{
-                  bgcolor: 'rgba(245, 246, 248, 1)',
-                }}
-                {...register('phoneNumber', phoneNumberValidation)}
-                error={errors.phoneNumber ? true : false}
-                helperText={
-                  errors.phoneNumber ? errors.phoneNumber.message : null
-                }
-              />
-            </Stack>
-            {/* Country */}
-            <Stack spacing={0} sx={{ flex: 1 }}>
-              <Typography variant='subtitle2' color={'primary.main'}>
-                Country
-              </Typography>
-              <TextField
-                placeholder='Enter Your Country'
-                type='text'
-                variant='outlined'
-                fullWidth
-                size='small'
-                sx={{
-                  bgcolor: 'rgba(245, 246, 248, 1)',
-                }}
-                {...register('country', {
-                  required: 'Country is required',
-                })}
-                error={errors.country ? true : false}
-                helperText={errors.country ? errors.country.message : null}
-              />
-            </Stack>
-          </Stack>
-          {/* Email */}
-          <Stack spacing={0}>
-            <Typography variant='subtitle2' color={'primary.main'}>
-              Email Address
-            </Typography>
-            <TextField
-              placeholder='Enter Your Email'
-              type='text'
-              variant='outlined'
+            <AuthFormTextField
+              placeholder='Enter Your Phone nubmer'
+              label='Phone Number'
+              type='tel'
+              variant='filled'
               fullWidth
               size='small'
-              sx={{
-                bgcolor: 'rgba(245, 246, 248, 1)',
-              }}
-              {...register('email', emailValidation)}
-              error={errors.email ? true : false}
-              helperText={errors.email ? errors.email.message : null}
-            />
-          </Stack>
-          {/* Password */}
-          <Stack spacing={0}>
-            <Typography variant='subtitle2' color={'primary.main'}>
-              Password
-            </Typography>
-            <TextField
-              placeholder='Enter Your Password'
-              type={passwordVisible ? 'text' : 'password'}
-              variant='outlined'
-              fullWidth
-              size='small'
-              sx={{
-                bgcolor: 'rgba(245, 246, 248, 1)',
-              }}
-              {...register('password', newPasswordValidation)}
-              error={errors.password ? true : false}
-              helperText={errors.password ? errors.password.message : null}
-            />
-          </Stack>
-          {/* Confirm Password */}
-          <Stack spacing={0}>
-            <Typography variant='subtitle2' color={'primary.main'}>
-              Confirm Password
-            </Typography>
-            <TextField
-              placeholder='Confirm Your Password'
-              type={confirmPasswordVisible ? 'text' : 'password'}
-              variant='outlined'
-              fullWidth
-              size='small'
-              sx={{
-                bgcolor: 'rgba(245, 246, 248, 1)',
-              }}
-              {...register('confirmPassword', {
-                required: 'Confirm Password is required',
-                validate: (value) =>
-                  value === watch('password') ||
-                  'The confirm password do not match password ',
-              })}
-              error={errors.confirmPassword ? true : false}
+              {...register('phoneNumber', phoneNumberValidation)}
+              error={errors.phoneNumber ? true : false}
               helperText={
-                errors.confirmPassword ? errors.confirmPassword.message : null
+                errors.phoneNumber ? errors.phoneNumber.message : null
               }
+            />
+            {/* Country */}
+            <AuthFormTextField
+              placeholder='Enter Your Country'
+              label='Country'
+              type='text'
+              variant='filled'
+              fullWidth
+              size='small'
+              {...register('country', {
+                required: 'Country is required',
+              })}
+              error={errors.country ? true : false}
+              helperText={errors.country ? errors.country.message : null}
             />
           </Stack>
 
+          {/* Email */}
+          <AuthFormTextField
+            placeholder='Enter Your Email'
+            label='Email Address'
+            type='text'
+            variant='filled'
+            fullWidth
+            size='small'
+            {...register('email', emailValidation)}
+            error={errors.email ? true : false}
+            helperText={errors.email ? errors.email.message : null}
+          />
+
+          {/* Password */}
+          <AuthFormTextField
+            placeholder='Enter Your Password'
+            label='Password'
+            type={passwordVisible ? 'text' : 'password'}
+            variant='filled'
+            fullWidth
+            size='small'
+            {...register('password', newPasswordValidation)}
+            error={errors.password ? true : false}
+            helperText={errors.password ? errors.password.message : null}
+          />
+
+          {/* Confirm Password */}
+          <AuthFormTextField
+            placeholder='Confirm Your Password'
+            label='Confirm Password'
+            type={confirmPasswordVisible ? 'text' : 'password'}
+            variant='filled'
+            fullWidth
+            size='small'
+            {...register('confirmPassword', {
+              required: 'Confirm Password is required',
+              validate: (value) =>
+                value === watch('password') ||
+                'The confirm password do not match password ',
+            })}
+            error={errors.confirmPassword ? true : false}
+            helperText={
+              errors.confirmPassword ? errors.confirmPassword.message : null
+            }
+          />
+
           {/* User Image */}
           <Stack spacing={0}>
-            <Typography variant='subtitle2' color={'primary.main'}>
+            <Typography
+              variant='h6'
+              fontSize={17}
+              fontWeight={700}
+              marginTop={0}
+              color={'primary.main'}
+              gutterBottom
+            >
               User Image
             </Typography>
             <Box
@@ -267,6 +237,7 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
               />
             </Box>
           </Stack>
+
           {/* Submit Button */}
           <Stack spacing={0} sx={{ mt: 3 }}>
             <Button
@@ -274,8 +245,7 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
               className='btn btn-primary btn-block'
               variant='contained'
               disabled={
-                isSubmitting ||
-                (userType === 'admin' && secretKey !== 'se9!5@DM')
+                isSubmitting || (mode === 'admin' && secretKey !== 'se9!5@DM')
               }
             >
               {isSubmitting ? 'SignUp...' : 'Sign Up'}

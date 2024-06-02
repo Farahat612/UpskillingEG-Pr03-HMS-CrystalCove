@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 
 type ForgotPasswordFormData = Pick<FormData, 'email'>
 
-const useForgotPass = ({ userType }: { userType: 'portal' | 'admin' }) => {
+const useForgotPass = ({ mode }: { mode: 'portal' | 'admin' }) => {
   const navigate = useNavigate()
   const {
     register,
@@ -16,7 +16,7 @@ const useForgotPass = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const onSubmit = async (data: ForgotPasswordFormData) => {
     try {
       const res = await apiPublic.post(
-        `/${userType}/users/forgot-password`,
+        `/${mode}/users/forgot-password`,
         data
       )
       toast.success(res.data.message)

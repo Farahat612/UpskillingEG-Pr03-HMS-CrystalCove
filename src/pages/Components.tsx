@@ -139,7 +139,7 @@ const Components = () => {
           </Badge>
 
           <Box>
-            <ForgotPassPage userType='portal' />
+            <ForgotPassPage mode='portal' />
           </Box>
         </Paper>
 

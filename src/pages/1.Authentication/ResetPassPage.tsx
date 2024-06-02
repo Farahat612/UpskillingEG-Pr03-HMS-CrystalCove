@@ -8,7 +8,7 @@ import { useResetPass } from '../../hooks/auth'
 
 import ResetPassImg from '../../assets/forms/reset-password.png'
 
-const ResetPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
+const ResetPassPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
   const {
     passwordVisible,
     confirmPasswordVisible,
@@ -18,7 +18,7 @@ const ResetPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
     errors,
     isSubmitting,
     onSubmit,
-  } = useResetPass({ userType })
+  } = useResetPass({ mode })
   return (
     <AuthLayout
       imageSrc={ResetPassImg}
@@ -29,7 +29,7 @@ const ResetPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
         heading='Reset Password'
         subtitle={`If you came here by mistake, You can`}
         linkText='Login here!'
-        linkDestination='/login'
+        linkDestination={mode === 'portal' ? '/login' : '/admin/login'}
       >
         <Stack
           spacing={3}

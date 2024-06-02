@@ -51,28 +51,28 @@ function App() {
   const route = createBrowserRouter(
     createRoutesFromElements([
       <Route path='/' element={<RouteGuard />} errorElement={<NotFound />}>
-        <Route path='login' element={<LoginPage userType='portal' />} />
-        <Route path='register' element={<RegisterPage userType='portal' />} />
+        <Route path='login' element={<LoginPage mode='portal' />} />
+        <Route path='register' element={<RegisterPage mode='portal' />} />
         <Route
           path='reset-password'
-          element={<ResetPassPage userType='portal' />}
+          element={<ResetPassPage mode='portal' />}
         />
         <Route
           path='forgot-password'
-          element={<ForgotPassPage userType='portal' />}
+          element={<ForgotPassPage mode='portal' />}
         />
-        <Route path='admin/login' element={<LoginPage userType='admin' />} />
+        <Route path='admin/login' element={<LoginPage mode='admin' />} />
         <Route
           path='admin/create'
-          element={<RegisterPage userType='admin' />}
+          element={<RegisterPage mode='admin' />}
         />
         <Route
           path='admin/reset-password'
-          element={<ResetPassPage userType='admin' />}
+          element={<ResetPassPage mode='admin' />}
         />
         <Route
           path='admin/forgot-password'
-          element={<ForgotPassPage userType='admin' />}
+          element={<ForgotPassPage mode='admin' />}
         />
         <Route path='home' element={<Home />} />
         <Route path='users' element={<Users />} />
@@ -86,7 +86,7 @@ function App() {
   )
   return (
     <>
-      <Toaster />
+      <Toaster richColors />
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <LocalizationProvider dateAdapter={AdapterDayjs}>

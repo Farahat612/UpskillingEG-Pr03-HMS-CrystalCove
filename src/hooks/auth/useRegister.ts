@@ -6,18 +6,9 @@ import { useNavigate } from 'react-router-dom'
 import { apiPublic } from '../../utils/api'
 import { appendFormData } from '../../utils/appendFormData'
 
-type SignUpFormData = Pick<
-  FormData,
-  | 'userName'
-  | 'phoneNumber'
-  | 'country'
-  | 'email'
-  | 'password'
-  | 'confirmPassword'
-  | 'profileImage'
->
+type SignUpFormData = Omit<FormData, 'seed'>
 
-const useRegister = ({ userType }: { userType: 'portal' | 'admin' }) => {
+const useRegister = ({ mode }: { mode: 'portal' | 'admin' }) => {
   const [passwordVisible, setPasswordVisible] = useState(false)
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible)
@@ -57,10 +48,10 @@ const useRegister = ({ userType }: { userType: 'portal' | 'admin' }) => {
     try {
       const signUpData = {
         ...data,
-        role: userType === 'portal' ? 'user' : 'admin',
+        role: mode === 'portal' ? 'user' : 'admin',
       }
       const formData = appendFormData(signUpData)
-      const res = await apiPublic.post(`/${userType}/users`, formData)
+      const res = await apiPublic.post(`/${mode}/users`, formData)
       toast.success(res.data.message)
       navigate('/login')
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
