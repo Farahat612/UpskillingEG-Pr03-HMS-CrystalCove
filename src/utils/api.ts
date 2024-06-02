@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const baseURL = 'https://upskilling-egypt.com:3000/api/v0'
-const staticURL = 'https://upskilling-egypt.com:3000'
+const baseURL = process.env.API_BASE_URL
+const staticURL = process.env.API_STATIC_URL
 
 const apiPublic = axios.create({
   baseURL,
