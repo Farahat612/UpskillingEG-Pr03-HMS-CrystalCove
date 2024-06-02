@@ -46,10 +46,10 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
     errors,
     isSubmitting,
     onSubmit,
-    previewImage,
     setPreviewImage,
     secretKey,
     setSecretKey,
+    objectUrl,
   } = useRegister({ userType })
 
   return (
@@ -122,11 +122,7 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
               )}
             </Stack>
             {/* Phone Number and Country */}
-            <Stack
-              spacing={1}
-              direction='row'
-              
-            >
+            <Stack spacing={1} direction='row'>
               {/* Phone Number */}
               <Stack spacing={0} sx={{ flex: 1 }}>
                 <Typography variant='subtitle2' color={'primary.main'}>
@@ -319,11 +315,7 @@ const RegisterPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
                   />
                 </Button>
                 <img
-                  src={
-                    previewImage
-                      ? URL.createObjectURL(previewImage)
-                      : userImgPlaceholder
-                  }
+                  src={objectUrl || userImgPlaceholder}
                   alt='User'
                   style={{
                     width: 50,

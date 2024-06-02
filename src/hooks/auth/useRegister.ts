@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { FormData } from '../../types'
@@ -19,6 +19,21 @@ const useRegister = ({ userType }: { userType: 'portal' | 'admin' }) => {
   const navigate = useNavigate()
 
   const [previewImage, setPreviewImage] = useState<File | null>(null)
+  const [objectUrl, setObjectUrl] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (previewImage) {
+      const url = URL.createObjectURL(previewImage)
+      setObjectUrl(url)
+    }
+    // Cleanup function
+    return () => {
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [previewImage])
   const [secretKey, setSecretKey] = useState('')
 
   const {
@@ -58,6 +73,7 @@ const useRegister = ({ userType }: { userType: 'portal' | 'admin' }) => {
     setPreviewImage,
     secretKey,
     setSecretKey,
+    objectUrl,
   }
 }
 
