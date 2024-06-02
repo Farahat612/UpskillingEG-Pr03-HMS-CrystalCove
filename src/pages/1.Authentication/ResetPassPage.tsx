@@ -4,7 +4,7 @@ import { AuthForm } from '../../components/forms'
 import { Button, Stack, TextField, Typography } from '@mui/material'
 
 import { emailValidation, newPasswordValidation } from '../../utils/validations'
-import {useResetPass} from '../../hooks/auth'
+import { useResetPass } from '../../hooks/auth'
 
 import ResetPassImg from '../../assets/forms/reset-password.png'
 
@@ -31,148 +31,109 @@ const ResetPassPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
         linkText='Login here!'
         linkDestination='/login'
       >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={3} sx={{ mt: 4 }}>
-            {/* Email */}
-            <Stack spacing={0}>
-              <Typography variant='subtitle2' color={'primary.main'}>
-                Email Address
-              </Typography>
-              <TextField
-                type='text'
-                placeholder='Enter Your Email'
-                variant='outlined'
-                fullWidth
-                size='small'
-                sx={{
-                  bgcolor: 'rgba(245, 246, 248, 1)',
-                }}
-                {...register('email', emailValidation)}
-              />
-              {errors.email && (
-                <Typography
-                  sx={{
-                    backgroundColor: '#ff5252',
-                    color: 'white',
-                    mt: 1,
-                    p: 1,
-                    borderRadius: '4px',
-                  }}
-                >
-                  {errors.email.message}
-                </Typography>
-              )}
-            </Stack>
-            {/* OTP */}
-            <Stack spacing={0}>
-              <Typography variant='subtitle2' color={'primary.main'}>
-                OTP
-              </Typography>
-              <TextField
-                type='text'
-                placeholder='Enter OTP'
-                variant='outlined'
-                fullWidth
-                size='small'
-                sx={{
-                  bgcolor: 'rgba(245, 246, 248, 1)',
-                }}
-                {...register('seed', {
-                  required: 'seed is required',
-                })}
-              />
-              {errors.seed && (
-                <Typography
-                  sx={{
-                    backgroundColor: '#ff5252',
-                    color: 'white',
-                    mt: 1,
-                    p: 1,
-                    borderRadius: '4px',
-                  }}
-                >
-                  {errors.seed.message}
-                </Typography>
-              )}
-            </Stack>
-            {/* Password */}
-            <Stack spacing={0}>
-              <Typography variant='subtitle2' color={'primary.main'}>
-                Password
-              </Typography>
-              <TextField
-                type={passwordVisible ? 'text' : 'password'}
-                placeholder='Enter Your New Password'
-                variant='outlined'
-                fullWidth
-                size='small'
-                sx={{
-                  bgcolor: 'rgba(245, 246, 248, 1)',
-                }}
-                {...register('password', newPasswordValidation)}
-              />
-              {errors.password && (
-                <Typography
-                  sx={{
-                    backgroundColor: '#ff5252',
-                    color: 'white',
-                    mt: 1,
-                    p: 1,
-                    borderRadius: '4px',
-                  }}
-                >
-                  {errors.password.message}
-                </Typography>
-              )}
-            </Stack>
-            {/* Confirm Password */}
-            <Stack spacing={0}>
-              <Typography variant='subtitle2' color={'primary.main'}>
-                Confirm Password
-              </Typography>
-              <TextField
-                type={confirmPasswordVisible ? 'text' : 'password'}
-                placeholder='Confirm Your New Password'
-                variant='outlined'
-                fullWidth
-                size='small'
-                sx={{
-                  bgcolor: 'rgba(245, 246, 248, 1)',
-                }}
-                {...register('confirmPassword', {
-                  required: 'Confirm Password is required',
-                  validate: (value) =>
-                    value == watch('password') ||
-                    'The confirm password do not match password ',
-                })}
-              />
-              {errors.confirmPassword && (
-                <Typography
-                  sx={{
-                    backgroundColor: '#ff5252',
-                    color: 'white',
-                    mt: 1,
-                    p: 1,
-                    borderRadius: '4px',
-                  }}
-                >
-                  {errors.confirmPassword.message}
-                </Typography>
-              )}
-            </Stack>
-            {/* Submit Button */}
-            <Stack spacing={0} sx={{ mt: 3 }}>
-              <Button
-                type='submit'
-                className='btn btn-primary btn-block'
-                variant='contained'
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Reset...' : 'Reset'}
-              </Button>
-            </Stack>
+        <Stack
+          spacing={3}
+          sx={{ mt: 4 }}
+          component={'form'}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          {/* Email */}
+          <Stack spacing={0}>
+            <Typography variant='subtitle2' color={'primary.main'}>
+              Email Address
+            </Typography>
+            <TextField
+              type='text'
+              placeholder='Enter Your Email'
+              variant='outlined'
+              fullWidth
+              size='small'
+              sx={{
+                bgcolor: 'rgba(245, 246, 248, 1)',
+              }}
+              {...register('email', emailValidation)}
+              error={errors.email ? true : false}
+              helperText={errors.email ? errors.email.message : ''}
+            />
           </Stack>
-        </form>
+          {/* OTP */}
+          <Stack spacing={0}>
+            <Typography variant='subtitle2' color={'primary.main'}>
+              OTP
+            </Typography>
+            <TextField
+              type='text'
+              placeholder='Enter OTP'
+              variant='outlined'
+              fullWidth
+              size='small'
+              sx={{
+                bgcolor: 'rgba(245, 246, 248, 1)',
+              }}
+              {...register('seed', {
+                required: 'seed is required',
+              })}
+              error={errors.seed ? true : false}
+              helperText={errors.seed ? errors.seed.message : ''}
+            />
+          </Stack>
+          {/* Password */}
+          <Stack spacing={0}>
+            <Typography variant='subtitle2' color={'primary.main'}>
+              Password
+            </Typography>
+            <TextField
+              type={passwordVisible ? 'text' : 'password'}
+              placeholder='Enter Your New Password'
+              variant='outlined'
+              fullWidth
+              size='small'
+              sx={{
+                bgcolor: 'rgba(245, 246, 248, 1)',
+              }}
+              {...register('password', newPasswordValidation)}
+              error={errors.password ? true : false}
+              helperText={errors.password ? errors.password.message : ''}
+            />
+          </Stack>
+          {/* Confirm Password */}
+          <Stack spacing={0}>
+            <Typography variant='subtitle2' color={'primary.main'}>
+              Confirm Password
+            </Typography>
+            <TextField
+              type={confirmPasswordVisible ? 'text' : 'password'}
+              placeholder='Confirm Your New Password'
+              variant='outlined'
+              fullWidth
+              size='small'
+              sx={{
+                bgcolor: 'rgba(245, 246, 248, 1)',
+              }}
+              {...register('confirmPassword', {
+                required: 'Confirm Password is required',
+                validate: (value) =>
+                  value == watch('password') ||
+                  'The confirm password do not match password ',
+              })}
+              error={errors.confirmPassword ? true : false}
+              helperText={
+                errors.confirmPassword ? errors.confirmPassword.message : ''
+              }
+            />
+          </Stack>
+          {/* Submit Button */}
+          <Stack spacing={0} sx={{ mt: 3 }}>
+            <Button
+              type='submit'
+              className='btn btn-primary btn-block'
+              variant='contained'
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Reset...' : 'Reset'}
+            </Button>
+          </Stack>
+        </Stack>
       </AuthForm>
     </AuthLayout>
   )

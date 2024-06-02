@@ -35,6 +35,16 @@ const theme = createTheme({
       main: colors.grey[400],
     },
   },
+  components: {
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          marginTop: 5,
+          fontSize: '0.9rem',
+        },
+      },
+    },
+  },
 })
 
 function App() {

@@ -31,92 +31,72 @@ const LoginPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
         linkText='Register here!'
         linkDestination='/register'
       >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={3} sx={{ mt: 4 }}>
-            {/* Email */}
-            <Stack spacing={0}>
-              <Typography variant='subtitle2' color={'primary.main'}>
-                Email Address
-              </Typography>
-              <TextField
-                placeholder='Enter Your Email'
-                type='text'
-                variant='outlined'
-                fullWidth
-                size='small'
-                sx={{
-                  bgcolor: 'rgba(245, 246, 248, 1)',
-                }}
-                {...register('email', emailValidation)}
-              />
-              {errors.email && (
-                <Typography
-                  sx={{
-                    backgroundColor: '#ff5252',
-                    color: 'white',
-                    mt: 1,
-                    p: 1,
-                    borderRadius: '4px',
-                  }}
-                >
-                  {errors.email.message}
-                </Typography>
-              )}
-            </Stack>
-            {/* Password */}
-            <Stack spacing={0}>
-              <Typography variant='subtitle2' color={'primary.main'}>
-                Password
-              </Typography>
-              <TextField
-                placeholder='Enter Your Password'
-                type={passwordVisible ? 'text' : 'password'}
-                variant='outlined'
-                fullWidth
-                size='small'
-                sx={{
-                  bgcolor: 'rgba(245, 246, 248, 1)',
-                }}
-                {...register('password', passwordValidation)}
-              />
-
-              {errors.password && (
-                <Typography
-                  sx={{
-                    backgroundColor: '#ff5252',
-                    color: 'white',
-                    mt: 1,
-                    p: 1,
-                    borderRadius: '4px',
-                  }}
-                >
-                  {errors.password.message}
-                </Typography>
-              )}
-
-              {/* Forgot Password Link */}
-              <Typography component={'div'} sx={{ mt: 1, ml: 'auto' }}>
-                <Link to={'/forgot-password'}>
-                  <Typography variant='subtitle2' color='textDark.main'>
-                    Forgot Password?
-                  </Typography>
-                </Link>
-              </Typography>
-            </Stack>
-
-            {/* Submit Button */}
-            <Stack spacing={0} sx={{ mt: 3 }}>
-              <Button
-                type='submit'
-                className='btn btn-primary btn-block'
-                variant='contained'
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'logging...' : 'Login'}
-              </Button>
-            </Stack>
+        <Stack
+          spacing={3}
+          sx={{ mt: 4 }}
+          component={'form'}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          {/* Email */}
+          <Stack spacing={0}>
+            <Typography variant='subtitle2' color={'primary.main'}>
+              Email Address
+            </Typography>
+            <TextField
+              placeholder='Enter Your Email'
+              type='text'
+              variant='outlined'
+              fullWidth
+              size='small'
+              sx={{
+                bgcolor: 'rgba(245, 246, 248, 1)',
+              }}
+              {...register('email', emailValidation)}
+              error={errors.email ? true : false}
+              helperText={errors.email ? errors.email.message : null}
+            />
           </Stack>
-        </form>
+          {/* Password */}
+          <Stack spacing={0}>
+            <Typography variant='subtitle2' color={'primary.main'}>
+              Password
+            </Typography>
+            <TextField
+              placeholder='Enter Your Password'
+              type={passwordVisible ? 'text' : 'password'}
+              variant='outlined'
+              fullWidth
+              size='small'
+              sx={{
+                bgcolor: 'rgba(245, 246, 248, 1)',
+              }}
+              {...register('password', passwordValidation)}
+              error={errors.password ? true : false}
+              helperText={errors.password ? errors.password.message : null}
+            />
+
+            {/* Forgot Password Link */}
+            <Typography component={'div'} sx={{ mt: 1, ml: 'auto' }}>
+              <Link to={'/forgot-password'}>
+                <Typography variant='subtitle2' color='textDark.main'>
+                  Forgot Password?
+                </Typography>
+              </Link>
+            </Typography>
+          </Stack>
+
+          {/* Submit Button */}
+          <Stack spacing={0} sx={{ mt: 3 }}>
+            <Button
+              type='submit'
+              className='btn btn-primary btn-block'
+              variant='contained'
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'logging...' : 'Login'}
+            </Button>
+          </Stack>
+        </Stack>
       </AuthForm>
     </AuthLayout>
   )
