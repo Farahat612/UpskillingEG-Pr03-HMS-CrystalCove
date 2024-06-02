@@ -28,7 +28,7 @@ const Breadcrumb = () => {
         </Link>
         {pathnames.map((name) => {
           return (
-            <Link to={''}>
+            <Link to={''} key={name}>
               <Typography
                 variant='subtitle2'
                 color='primary'

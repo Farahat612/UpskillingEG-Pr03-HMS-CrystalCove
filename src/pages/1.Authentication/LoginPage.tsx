@@ -95,7 +95,7 @@ const LoginPage = ({ userType }: { userType: 'portal' | 'admin' }) => {
               )}
 
               {/* Forgot Password Link */}
-              <Typography sx={{ mt: 1, ml: 'auto' }}>
+              <Typography component={'div'} sx={{ mt: 1, ml: 'auto' }}>
                 <Link to={'/forgot-password'}>
                   <Typography variant='subtitle2' color='textDark.main'>
                     Forgot Password?
