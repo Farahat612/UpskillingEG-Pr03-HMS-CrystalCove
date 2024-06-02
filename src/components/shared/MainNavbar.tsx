@@ -8,33 +8,23 @@ import {
   Divider,
   Drawer,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
   Toolbar,
   Typography,
-  Button,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo/logo.png'
-import { useAuthContext } from '../../contexts/global/AuthContext'
+import RightNavbar, { Draw } from './RightNavbar'
 
 const drawerWidth = 240
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const MainNavbar = ({ navbarItem }: any) => {
-
-  // get state of login person 
-  const { auth } = useAuthContext()
-  const isLogin = auth.isAuthenticated
-
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState)
   }
-// Navbar in mobile media
+  // Navbar in mobile media
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
@@ -54,56 +44,8 @@ const MainNavbar = ({ navbarItem }: any) => {
         </Link>
       </Typography>
       <Divider />
-      <List sx={{ color: 'rgba(21, 44, 91, 1)' }}>
-        {/* condition if login or not in mobile media and loop of callback props*/}
-        {isLogin ? (
-          <>
-            {navbarItem.map((item: string) => (
-              <ListItem
-                key={item}
-                disablePadding
-              >
-                <ListItemButton sx={{ textAlign: 'center' }}>
-                  <ListItemText primary={item} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </>
-        ) : (
-          <ListItemText
-            sx={{
-              width: 130,
-              justifyContent: 'center',
-              alignItems: 'center',
-              display: 'flex',
-              m: 'auto',
-            }}
-          >
-            <Link to={'/'}>
-              <Button>Home</Button>
-            </Link>
-            <Link to={'/Explore'}>
-              <Button sx={{ color: '#152C5B' }}>Explore</Button>
-            </Link>
-            <Link to={'/register'}>
-              <Button
-                variant='contained'
-                sx={{ backgroundColor: '#3252DF', color: 'white', mt: 2 }}
-              >
-                Register
-              </Button>
-            </Link>
-            <Link to={'/login'}>
-              <Button
-                variant='contained'
-                sx={{ backgroundColor: '#3252DF', color: 'white', mt: 2 }}
-              >
-                Login Now
-              </Button>
-            </Link>
-          </ListItemText>
-        )}
-      </List>
+      {/*Pass links in mobile media */}
+      <Draw navbarItem={navbarItem} />
     </Box>
   )
 
@@ -143,50 +85,8 @@ const MainNavbar = ({ navbarItem }: any) => {
               />
             </Link>
           </Typography>
-          <Box
-            sx={{
-              display: { xs: 'none', md: 'block' },
-            }}
-          >
-        {/* condition if login or not in and loop of callback props*/}
-            {isLogin ? (
-              <>
-                {navbarItem.map((item: string) => (
-                  <Button
-                    key={item}
-                    sx={{ color: 'rgba(21, 44, 91, 1)' }}
-                  >
-                    {item}
-                  </Button>
-                ))}
-              </>
-            ) : (
-              <>
-                <Link to={'/'}>
-                  <Button>Home</Button>
-                </Link>
-                <Link to={'/Explore'}>
-                  <Button sx={{ color: '#152C5B' }}>Explore</Button>
-                </Link>
-                <Link to={'/register'}>
-                  <Button
-                    variant='contained'
-                    sx={{ backgroundColor: '#3252DF', color: 'white', ml: 2 }}
-                  >
-                    Register
-                  </Button>
-                </Link>
-                <Link to={'/login'}>
-                  <Button
-                    variant='contained'
-                    sx={{ backgroundColor: '#3252DF', color: 'white', ml: 2 }}
-                  >
-                    Login Now
-                  </Button>
-                </Link>
-              </>
-            )}
-          </Box>
+          {/* call  component links and pass props */}
+          <RightNavbar navbarItem={navbarItem} />
         </Toolbar>
       </AppBar>
       <nav>
