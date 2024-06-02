@@ -1,9 +1,10 @@
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 const CurvedImage = styled.img`
   max-width: 100%;
   border-radius: 0.65rem;
 `
+
 const SQCurvedImage = styled(CurvedImage)`
   aspect-ratio: 1/1;
 `
