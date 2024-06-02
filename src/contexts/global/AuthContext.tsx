@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 // Types
 type UserType = 'portal' | 'admin'
@@ -21,22 +21,18 @@ export const AuthContext = createContext<AuthContextType | null>(null)
 
 // Create context provider
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [auth, setAuth] = useState<Auth>({
-    isAuthenticated: false,
-    token: null,
-    role: null,
-    userType: null,
-  })
-
-  useEffect(() => {
-    // Check if there's a token in local storage
+  const [auth, setAuth] = useState<Auth>(() => {
     const token = localStorage.getItem('token') as string
     const userType = localStorage.getItem('userType') as UserType | null
     const role = localStorage.getItem('role') as UserRole | null
-    if (token) {
-      setAuth({ isAuthenticated: true, token, userType, role })
+
+    return {
+      isAuthenticated: token !== null,
+      token,
+      userType,
+      role,
     }
-  }, [])
+  })
 
   const login = (token: string, userType: UserType, role: UserRole) => {
     localStorage.setItem('token', token)
