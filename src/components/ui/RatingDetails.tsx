@@ -10,7 +10,7 @@ import {
   useTheme,
 } from '@mui/material'
 import React from 'react'
-
+import { RateComponent } from '../styled/Rate.styled'
 
 const RatingDetails = () => {
   // For star rating
@@ -28,28 +28,14 @@ const RatingDetails = () => {
         <Grid
           container
           spacing={2}
-          direction={inMobile ? 'column' : 'row'}
+          direction={inMobile ? 'row' : 'row'}
           p={4}
         >
-          <Grid
+          <RateComponent
             item
             xs={12}
             md={6}
-            // border between rate in pc media or border bottom in mobile media 
-            sx={
-              inMobile
-                ? {
-                    borderBottom: '1px solid',
-                    borderColor: 'primary.main',
-                    pb: 4,
-                    mb: 2,
-                  }
-                : {
-                    borderRight: '1px solid',
-                    borderColor: 'primary.main',
-                    pr: 5,
-                  }
-            }
+            // border between rate in pc media or border bottom in mobile media
           >
             <Typography
               variant='h6'
@@ -87,13 +73,13 @@ const RatingDetails = () => {
             >
               Rate
             </Button>
-          </Grid>
+          </RateComponent>
           <Grid
             item
             xs={12}
             md={6}
           >
-            <Box sx={inMobile ? { pl: 0 } : { pl: 2 }}>
+            <Box sx={inMobile ? { pl: 0 } : { pl: 5 }}>
               <Typography
                 variant='h6'
                 color='primary.dark'
