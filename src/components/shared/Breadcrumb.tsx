@@ -31,12 +31,13 @@ const Breadcrumb = () => {
             <Link to={''} key={name}>
               <Typography
                 variant='subtitle2'
-                color='primary'
+                color={'primary.main'}
                 sx={{
                   display: 'inline',
+                  
                 }}
               >
-                {name}
+                {name[0].toUpperCase() + name.slice(1)}
               </Typography>
             </Link>
           )
