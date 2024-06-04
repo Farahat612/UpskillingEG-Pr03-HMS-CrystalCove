@@ -1,23 +1,31 @@
+// Users.tsx
 import { AdminLayout } from '../../layouts'
 import { HeaderDashboard } from '../../components/shared'
 import { CustomTable } from '../../components/ui'
-
 import { apiProtected } from '../../utils/api'
 import { useEffect, useState } from 'react'
 import { User } from '../../types'
+import { useSearchParams } from 'react-router-dom'
+import { Box, TablePagination } from '@mui/material'
 
 const Users = () => {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
+  const [totalCount, setTotalCount] = useState(0)
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const page = parseInt(searchParams.get('page') || '0', 10)
+  const size = parseInt(searchParams.get('size') || '10', 10)
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await apiProtected.get('/admin/users', {
-          params: { page: 1, size: 10 },
+          params: { page: page + 1, size }, // API is 1-indexed, adjust if needed
         })
 
         setUsers(response.data.data.users)
+        setTotalCount(response.data.data.totalCount)
         setLoading(false)
       } catch (error) {
         console.error(error)
@@ -26,7 +34,7 @@ const Users = () => {
     }
 
     fetchUsers()
-  }, [])
+  }, [page, size])
 
   const columns = [
     { id: 'userName', label: 'UserName' },
@@ -35,6 +43,20 @@ const Users = () => {
     { id: 'country', label: 'Country' },
     { id: 'role', label: 'Role' },
   ]
+
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
+    setSearchParams({ page: newPage.toString(), size: size.toString() })
+  }
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const newSize = parseInt(event.target.value, 10)
+    setSearchParams({ page: '0', size: newSize.toString() })
+  }
 
   let rows: User[] = []
   if (!loading && users) {
@@ -62,7 +84,19 @@ const Users = () => {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <CustomTable columns={columns} rows={rows} />
+        <>
+          <CustomTable columns={columns} rows={rows} />
+          <Box display='flex' justifyContent='center' mt={2}>
+            <TablePagination
+              component='div'
+              count={totalCount}
+              page={page}
+              onPageChange={handleChangePage}
+              rowsPerPage={size}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </Box>
+        </>
       )}
     </AdminLayout>
   )
