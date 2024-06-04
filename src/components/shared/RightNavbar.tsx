@@ -1,12 +1,6 @@
-import {
-  Box,
-  Button,
-  List,
-  ListItemText,
-} from '@mui/material'
+import { Box, Button, List, ListItemText } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../../contexts/global/AuthContext'
-import React from 'react'
 
 export const Draw = () => {
   const { auth } = useAuthContext()
@@ -17,17 +11,16 @@ export const Draw = () => {
       {/* condition if login or not in mobile media and loop of callback props*/}
       {isLogin ? (
         <Box display={'flex'} flexDirection={'column'}>
-        <Link to={'/'}>
-          <Button>Home</Button>
-        </Link>
-        <Link to={'/Explore'}>
-          <Button sx={{ color: '#152C5B' }}>Explore</Button>
-        </Link>
-        <Button sx={{ color: '#152C5B' }}>Reviews</Button>
-        <Link to={'/user/favorites'}>
-          <Button sx={{ color: '#152C5B' }}>Favorites</Button>
-        </Link>
-      </Box>
+          <Link to={'/'}>
+            <Button>Home</Button>
+          </Link>
+          <Link to={'/Explore'}>
+            <Button sx={{ color: '#152C5B' }}>Explore</Button>
+          </Link>
+          <Link to={'/user/favorites'}>
+            <Button sx={{ color: '#152C5B' }}>Favorites</Button>
+          </Link>
+        </Box>
       ) : (
         <ListItemText
           sx={{
@@ -85,8 +78,6 @@ const RightNavbar = () => {
           <Link to={'/Explore'}>
             <Button sx={{ color: '#152C5B' }}>Explore</Button>
           </Link>
-
-          <Button sx={{ color: '#152C5B' }}>Reviews</Button>
 
           <Link to={'/user/favorites'}>
             <Button sx={{ color: '#152C5B' }}>Favorites</Button>

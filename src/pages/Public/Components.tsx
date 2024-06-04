@@ -164,7 +164,7 @@ const Components = () => {
 
           <Stack direction='column' spacing={0} sx={{ pt: 2 }}>
             <Container maxWidth='xl' sx={{ margin: 'auto' }}>
-              <Navbar navbarItem={['Home', 'BrowseBy', 'Stories', 'Agents']} />
+              <Navbar />
 
               <Header />
               <DetailsHero />
