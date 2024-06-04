@@ -5,7 +5,7 @@ import { AboutDetails, DetailsHero, RatingDetails } from '../../components/ui'
 const RoomDetails = () => {
   return (
     <>
-      <Navbar navbarItem={['Home', 'BrowseBy', 'Stories', 'Agents']} />
+      <Navbar  />
       <Container maxWidth='xl' sx={{ margin: 'auto' }}>
         <Header />
         <DetailsHero />
