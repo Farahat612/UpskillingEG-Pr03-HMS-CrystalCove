@@ -154,9 +154,13 @@ const Components = () => {
               Details Page Elements
             </Typography>
           </Badge>
-          <Stack direction="column" spacing={0} sx={{ pt: 2 }}>
-            <Container maxWidth="xl" sx={{ margin: "auto" }}>
-              <Navbar />
+
+          <Stack direction='column' spacing={0} sx={{ pt: 2 }}>
+            <Container maxWidth='xl' sx={{ margin: 'auto' }}>
+            <Navbar
+                navbarItem={['Home', 'BrowseBy', 'Stories', 'Agents']}
+              />
+
               <Header />
               <DetailsHero />
             </Container>

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import MenuIcon from '@mui/icons-material/Menu'
 import {
@@ -8,39 +8,27 @@ import {
   Divider,
   Drawer,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
   Toolbar,
   Typography,
-  Button,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo/logo.png'
-
-interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window?: () => Window
-}
+import RightNavbar, { Draw } from './RightNavbar'
 
 const drawerWidth = 240
-const navItems = ['Home', 'Browse by', 'Stories', 'Agents']
 
-export default function Navbar(props: Props) {
-  const { window } = props
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Navbar = ({ navbarItem }: any) => {
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState)
   }
-
+  // Navbar in mobile media
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
+      right={'right'}
       sx={{ textAlign: 'center' }}
     >
       <Typography
@@ -56,23 +44,10 @@ export default function Navbar(props: Props) {
         </Link>
       </Typography>
       <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem
-            key={item}
-            disablePadding
-          >
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      {/*Pass links in mobile media */}
+      <Draw navbarItem={navbarItem} />
     </Box>
   )
-
-  const container =
-    window !== undefined ? () => window().document.body : undefined
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -87,20 +62,20 @@ export default function Navbar(props: Props) {
           mb: 2,
         }}
       >
-        <Toolbar sx={{p: '0 !important' }}>
+        <Toolbar sx={{ p: '0 !important' }}>
           <IconButton
             color={'primary'}
             aria-label='open drawer'
-            edge='start'
+            edge='end'
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { md: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
           <Typography
             color={'black'}
             component='div'
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}
           >
             <Link to='/'>
               <img
@@ -110,21 +85,12 @@ export default function Navbar(props: Props) {
               />
             </Link>
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item}
-                sx={{ color: 'black' }}
-              >
-                {item}
-              </Button>
-            ))}
-          </Box>
+          {/* call  component links and pass props */}
+          <RightNavbar navbarItem={navbarItem} />
         </Toolbar>
       </AppBar>
       <nav>
         <Drawer
-          container={container}
           variant='temporary'
           open={mobileOpen}
           onClose={handleDrawerToggle}
@@ -132,7 +98,7 @@ export default function Navbar(props: Props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
+            display: { xs: 'block', md: 'none' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
@@ -142,10 +108,7 @@ export default function Navbar(props: Props) {
           {drawer}
         </Drawer>
       </nav>
-      <Box
-        component='main'
-        sx={{ p: 4 }}
-      ></Box>
     </Box>
   )
 }
+export default Navbar
