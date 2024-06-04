@@ -15,18 +15,12 @@ import {
   RegisterPage,
   ResetPassPage,
   ForgotPassPage,
-} from "./pages/1.Authentication";
-import {
-  Home,
-  Rooms,
-  AddRoom,
-  Ads,
-  Users,
-  Bookings,
-  Components,
-} from "./pages";
-import { NotFound, RouteGuard } from "./components/shared";
-import { Toaster } from "sonner";
+
+} from './pages/1.Authentication'
+import { Home, Rooms, AddRoom, Ads, Users, Bookings, Components, Details } from './pages'
+import { NotFound, RouteGuard } from './components/shared'
+import { Toaster } from 'sonner'
+
 
 const theme = createTheme({
   palette: {
@@ -41,6 +35,12 @@ const theme = createTheme({
     },
     textLight: {
       main: colors.grey[400],
+    },
+    pink: {
+      main: colors.pink[500],
+    },
+    teal: {
+      main: colors.teal[500],
     },
   },
   components: {
@@ -79,12 +79,15 @@ function App() {
           path="admin/forgot-password"
           element={<ForgotPassPage mode="admin" />}
         />
-        <Route path="home" element={<Home />} />
-        <Route path="users" element={<Users />} />
-        <Route path="rooms" element={<Rooms />} />
-        <Route path="add-room" element={<AddRoom />} />
-        <Route path="ads" element={<Ads />} />
-        <Route path="bookings" element={<Bookings />} />
+
+        <Route path='home' element={<Home />} />
+        <Route path='users' element={<Users />} />
+        <Route path='rooms' element={<Rooms />} />
+        <Route path='add-room' element={<AddRoom />} />
+        <Route path='ads' element={<Ads />} />
+        <Route path='bookings' element={<Bookings />} />
+        <Route path='details' element={<Details />} />
+
         <Route index element={<Components />} />
       </Route>,
     ])

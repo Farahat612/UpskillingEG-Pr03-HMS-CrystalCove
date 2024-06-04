@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import {
   AppBar,
   Box,
+  Container,
   CssBaseline,
   Divider,
   Drawer,
@@ -52,6 +53,7 @@ const Navbar = ({ navbarItem }: any) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
+
       <AppBar
         component='nav'
         color='inherit'
@@ -62,32 +64,37 @@ const Navbar = ({ navbarItem }: any) => {
           mb: 2,
         }}
       >
-        <Toolbar sx={{ p: '0 !important' }}>
-          <IconButton
-            color={'primary'}
-            aria-label='open drawer'
-            edge='end'
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            color={'black'}
-            component='div'
-            sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}
-          >
-            <Link to='/'>
-              <img
-                src={Logo}
-                alt='logo'
-                width='150'
-              />
-            </Link>
-          </Typography>
-          {/* call  component links and pass props */}
-          <RightNavbar navbarItem={navbarItem} />
-        </Toolbar>
+        <Container
+          maxWidth='xl'
+          sx={{ margin: 'auto' }}
+        >
+          <Toolbar sx={{ p: '0 !important' }}>
+            <IconButton
+              color={'primary'}
+              aria-label='open drawer'
+              edge='end'
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { md: 'none' } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              color={'black'}
+              component='div'
+              sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}
+            >
+              <Link to='/'>
+                <img
+                  src={Logo}
+                  alt='logo'
+                  width='150'
+                />
+              </Link>
+            </Typography>
+            {/* call  component links and pass props */}
+            <RightNavbar navbarItem={navbarItem} />
+          </Toolbar>
+        </Container>
       </AppBar>
       <nav>
         <Drawer
