@@ -85,7 +85,7 @@ const RegisterPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
               value={secretKey}
               onChange={(e) => setSecretKey(e.target.value)}
             />
-            <Divider sx={{ mt: 3 }} />
+            <Divider sx={{ my: 3 }} />
           </Stack>
         )}
 

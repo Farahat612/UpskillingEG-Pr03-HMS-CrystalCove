@@ -27,9 +27,9 @@ const AuthForm = ({
           {heading}
         </Typography>
 
-        <Typography variant='h6' fontSize={15} marginBottom={8}>
-          {subtitle}{' '}
-          {linkText && linkDestination && (
+        {linkText && linkDestination &&  (
+          <Typography variant='h6' fontSize={15} marginBottom={8}>
+            {subtitle}{' '}
             <Link to={linkDestination}>
               <Typography
                 variant='subtitle2'
@@ -41,8 +41,8 @@ const AuthForm = ({
                 {linkText}
               </Typography>
             </Link>
-          )}
-        </Typography>
+          </Typography>
+        )}
 
         {children}
       </Box>
