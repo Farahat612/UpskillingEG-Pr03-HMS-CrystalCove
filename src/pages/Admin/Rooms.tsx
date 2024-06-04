@@ -1,8 +1,10 @@
+import { AdminLayout } from '../../layouts'
+
 const Rooms = () => {
   return (
-    <div>
+    <AdminLayout>
       <h3>Rooms</h3>
-    </div>
+    </AdminLayout>
   )
 }
 

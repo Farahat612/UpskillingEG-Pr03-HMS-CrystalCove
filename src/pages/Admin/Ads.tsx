@@ -1,9 +1,11 @@
+import { AdminLayout } from '../../layouts'
+
 const Ads = () => {
   return (
-    <div>
+    <AdminLayout>
       <h3>Ads</h3>
-    </div>
+    </AdminLayout>
   )
-};
+}
 
-export default Ads;
+export default Ads

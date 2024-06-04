@@ -13,14 +13,14 @@ import {
   TestmonialsData,
   TestmonialsImage,
   DetailsHero,
-} from '../components/ui'
-import { StartBookingForm } from '../components/forms'
-import { DeleteModal, AddItemsModal } from '../components/modals'
-import { Footer, Header, Navbar } from '../components/shared'
-import { Testmonial, LandingHero } from '../components/combined'
-import { ForgotPassPage } from './Authentication'
-import SideBar from './../components/shared/SideBar'
-import HeaderDashbord from './../components/shared/HeaderDashbord'
+} from '../../components/ui'
+import { StartBookingForm } from '../../components/forms'
+import { DeleteModal, AddItemsModal } from '../../components/modals'
+import { Footer, Header, Navbar } from '../../components/shared'
+import { Testmonial, LandingHero } from '../../components/combined'
+import { ForgotPassPage } from './../Authentication'
+import SideBar from './../../components/shared/SideBar'
+import HeaderDashbord from './../../components/shared/HeaderDashbord'
 
 const Components = () => {
   return (

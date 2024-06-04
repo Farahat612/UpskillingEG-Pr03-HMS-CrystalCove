@@ -1,8 +1,7 @@
 import { Stack } from '@mui/material'
 import { SideBar } from '../components/shared'
-import { Outlet } from 'react-router-dom'
 
-const AdminLayout = () => {
+const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Stack spacing={0} direction='row' minHeight={'100vh'} height={'auto'}>
       {/* SideBar on left */}
@@ -23,7 +22,7 @@ const AdminLayout = () => {
 
         {/* Main Content */}
         <Stack spacing={0} direction='row'>
-          <Outlet />
+          {children}
         </Stack>
       </Stack>
     </Stack>
