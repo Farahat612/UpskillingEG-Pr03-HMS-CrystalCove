@@ -9,10 +9,12 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
 
       {/* Main Content on right */}
       <Stack
-        spacing={2}
+        spacing={3}
         direction='column'
+        width={'100%'}
         sx={{
           overflow: 'auto',
+          px: 2,
         }}
       >
         {/* Navbar */}
@@ -21,7 +23,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         </Stack>
 
         {/* Main Content */}
-        <Stack spacing={0} direction='row'>
+        <Stack spacing={4} direction='column' width={'inherit'}>
           {children}
         </Stack>
       </Stack>

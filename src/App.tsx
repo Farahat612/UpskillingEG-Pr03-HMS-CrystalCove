@@ -33,7 +33,7 @@ import { RouteGuard, NotFound, UnAuthorized } from './components/routing'
 const theme = createTheme({
   palette: {
     primary: {
-      main: colors.indigo[800],
+      main: '#203FC7',
     },
     secondary: {
       main: colors.orange[500],

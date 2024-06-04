@@ -24,7 +24,7 @@ const SideBar = () => {
   }
 
   return (
-    <Box sx={{ height: '100vh' }}>
+    <Box sx={{ minheight: '100vh' }}>
       <Sidebar className='sidebar-container' collapsed={isCollapsed}>
         <Menu>
           <MenuItem onClick={toggleCollapsed} className='toggler-icon'>
