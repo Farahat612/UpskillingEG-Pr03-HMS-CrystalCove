@@ -19,7 +19,7 @@ import RightNavbar, { Draw } from './RightNavbar'
 const drawerWidth = 240
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Navbar = ({ navbarItem }: any) => {
+const Navbar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
@@ -46,7 +46,7 @@ const Navbar = ({ navbarItem }: any) => {
       </Typography>
       <Divider />
       {/*Pass links in mobile media */}
-      <Draw navbarItem={navbarItem} />
+      <Draw  />
     </Box>
   )
 
@@ -92,7 +92,7 @@ const Navbar = ({ navbarItem }: any) => {
               </Link>
             </Typography>
             {/* call  component links and pass props */}
-            <RightNavbar navbarItem={navbarItem} />
+            <RightNavbar />
           </Toolbar>
         </Container>
       </AppBar>

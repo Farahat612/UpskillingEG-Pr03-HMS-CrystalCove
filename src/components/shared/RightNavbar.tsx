@@ -2,49 +2,32 @@ import {
   Box,
   Button,
   List,
-  ListItem,
-  ListItemButton,
   ListItemText,
 } from '@mui/material'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAuthContext } from '../../contexts/global/AuthContext'
 import React from 'react'
 
-type NavbarItem = string
-
-interface LinksType {
-  navbarItem: NavbarItem[]
-}
-
-export const Draw: React.FC<LinksType> = ({ navbarItem }) => {
-  const navigate = useNavigate()
+export const Draw = () => {
   const { auth } = useAuthContext()
   const isLogin = auth.isAuthenticated
-
-  // Navigate to path when on click on button item
-  const handleNavItemClick = (path: string) => {
-    navigate(`/${path}`)
-  }
 
   return (
     <List sx={{ color: 'rgba(21, 44, 91, 1)' }}>
       {/* condition if login or not in mobile media and loop of callback props*/}
       {isLogin ? (
-        <>
-          {navbarItem.map((item: string) => (
-            <ListItem
-              key={item}
-              disablePadding
-            >
-              <ListItemButton
-                sx={{ textAlign: 'center' }}
-                onClick={() => handleNavItemClick(item)}
-              >
-                <ListItemText primary={item} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </>
+        <Box display={'flex'} flexDirection={'column'}>
+        <Link to={'/'}>
+          <Button>Home</Button>
+        </Link>
+        <Link to={'/Explore'}>
+          <Button sx={{ color: '#152C5B' }}>Explore</Button>
+        </Link>
+        <Button sx={{ color: '#152C5B' }}>Reviews</Button>
+        <Link to={'/user/favorites'}>
+          <Button sx={{ color: '#152C5B' }}>Favorites</Button>
+        </Link>
+      </Box>
       ) : (
         <ListItemText
           sx={{
@@ -83,16 +66,9 @@ export const Draw: React.FC<LinksType> = ({ navbarItem }) => {
   )
 }
 
-const RightNavbar: React.FC<LinksType> = ({ navbarItem }) => {
-  const navigate = useNavigate()
+const RightNavbar = () => {
   const { auth } = useAuthContext()
   const isLogin = auth.isAuthenticated
-
-  // Navigate to path when on click on button item
-
-  const handleNavItemClick = (path: string) => {
-    navigate(`/${path}`)
-  }
 
   return (
     <Box
@@ -103,15 +79,18 @@ const RightNavbar: React.FC<LinksType> = ({ navbarItem }) => {
       {/* condition if login or not in and loop of callback props*/}
       {isLogin ? (
         <>
-          {navbarItem.map((item: string) => (
-            <Button
-              onClick={() => handleNavItemClick(item)}
-              key={item}
-              sx={{ color: 'rgba(21, 44, 91, 1)' }}
-            >
-              {item}
-            </Button>
-          ))}
+          <Link to={'/'}>
+            <Button>Home</Button>
+          </Link>
+          <Link to={'/Explore'}>
+            <Button sx={{ color: '#152C5B' }}>Explore</Button>
+          </Link>
+
+          <Button sx={{ color: '#152C5B' }}>Reviews</Button>
+
+          <Link to={'/user/favorites'}>
+            <Button sx={{ color: '#152C5B' }}>Favorites</Button>
+          </Link>
         </>
       ) : (
         <>
