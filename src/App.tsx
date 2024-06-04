@@ -9,6 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 import { createTheme, ThemeProvider, colors, CssBaseline } from '@mui/material'
+import { Toaster } from 'sonner'
 
 import {
   LoginPage,
@@ -25,10 +26,9 @@ import {
   Bookings,
   Facilities,
 } from './pages/Admin'
-import { Home, Components, RoomDetails } from './pages/Public'
-import { Toaster } from 'sonner'
-
-import { RouteGuard } from './components/routing'
+import { Favorites } from './pages/User'
+import { Home, Explore, Components, RoomDetails } from './pages/Public'
+import { RouteGuard, NotFound, UnAuthorized } from './components/routing'
 
 const theme = createTheme({
   palette: {
@@ -70,6 +70,7 @@ function App() {
         {/* Public Routes */}
         <Route index element={<Home />} />
         <Route path='home' element={<Home />} />
+        <Route path='explore' element={<Explore />} />
         <Route path='room-details/:id' element={<RoomDetails />} />
         <Route path='components' element={<Components />} />
 
@@ -85,6 +86,9 @@ function App() {
         </Route>
 
         {/* User's Routes */}
+        <Route path='user' element={<RouteGuard allowedRoles={['user']} />}>
+          <Route path='favorites' element={<Favorites />} />
+        </Route>
 
         {/* Authentication Routes */}
         <Route path='login' element={<LoginPage mode='portal' />} />
@@ -107,6 +111,10 @@ function App() {
           path='admin/forgot-password'
           element={<ForgotPassPage mode='admin' />}
         />
+
+        {/* Errors */}
+        <Route path='unauthorized' element={<UnAuthorized />} />
+        <Route path='*' element={<NotFound />} />
       </Route>,
     ])
   )
