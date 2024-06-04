@@ -14,7 +14,7 @@ const Users = () => {
   const [totalCount, setTotalCount] = useState(0)
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const page = parseInt(searchParams.get('page') || '0', 10)
+  const page = parseInt(searchParams.get('page') || '1', 10) - 1
   const size = parseInt(searchParams.get('size') || '10', 10)
 
   useEffect(() => {
@@ -48,14 +48,14 @@ const Users = () => {
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
-    setSearchParams({ page: newPage.toString(), size: size.toString() })
+    setSearchParams({ page: (newPage + 1).toString(), size: size.toString() })
   }
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const newSize = parseInt(event.target.value, 10)
-    setSearchParams({ page: '0', size: newSize.toString() })
+    setSearchParams({ page: '1', size: newSize.toString() })
   }
 
   let rows: User[] = []
