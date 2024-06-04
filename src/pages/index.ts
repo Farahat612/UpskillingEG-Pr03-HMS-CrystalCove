@@ -5,6 +5,7 @@ import Ads from "./Ads";
 import Users from "./Users";
 import Bookings from "./Bookings";
 import Components from "./Components";
+import Details from "./Details";
 
-export { Home,Rooms, AddRoom, Ads, Users, Bookings, Components };
+export { Home,Rooms, AddRoom, Ads, Users, Bookings, Components, Details };
 
