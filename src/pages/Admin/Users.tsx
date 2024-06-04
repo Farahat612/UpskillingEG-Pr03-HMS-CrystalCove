@@ -79,6 +79,7 @@ const Users = () => {
         headerTitle='Users'
         headerSubtitle='Check Details of All users in the system.'
         buttonText='Add New User'
+        buttonDestination='/admin/create'
       />
 
       {loading ? (

@@ -1,16 +1,20 @@
 import { Button, Typography, Stack } from '@mui/material'
 import { Box } from '@mui/system'
+import { useNavigate } from 'react-router-dom'
 
 type HeaderDashboardProps = {
   headerTitle?: string
   headerSubtitle?: string
   buttonText?: string
+  buttonDestination?: string
 }
 const HeaderDashboard = ({
   headerTitle,
   headerSubtitle,
   buttonText,
+  buttonDestination,
 }: HeaderDashboardProps) => {
+  const navigate = useNavigate()
   return (
     <Box
       sx={{
@@ -28,13 +32,16 @@ const HeaderDashboard = ({
           {headerSubtitle}
         </Typography>
       </Stack>
-      <Button
-        sx={{ py: 1.2, px: 5, borderRadius: 3,}}
-        variant='contained'
-        color='primary'
-      >
-        {buttonText}
-      </Button>
+      {buttonText && buttonDestination && (
+        <Button
+          sx={{ py: 1.2, px: 5, borderRadius: 3 }}
+          variant='contained'
+          color='primary'
+          onClick={() => navigate(buttonDestination)}
+        >
+          {buttonText}
+        </Button>
+      )}
     </Box>
   )
 }
