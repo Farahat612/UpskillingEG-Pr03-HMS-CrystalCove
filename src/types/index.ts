@@ -80,6 +80,7 @@ export interface Booking {
   endDate: string
   totalPrice: number
   user: CreatedBy
+  roomNumber : string
   room: BookingRoom
   status: string
   createdAt: string
