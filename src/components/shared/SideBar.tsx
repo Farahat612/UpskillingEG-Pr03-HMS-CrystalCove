@@ -1,78 +1,102 @@
-import { useState } from 'react'
-import { Menu, MenuItem, Sidebar } from 'react-pro-sidebar'
-import { useAuthContext } from '../../contexts/global/AuthContext'
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import IconButton from "@mui/material/IconButton";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import { useState } from "react";
+import HomeIcon from "@mui/icons-material/Home";
+import PeopleIcon from "@mui/icons-material/People";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import BookOnlineIcon from "@mui/icons-material/BookOnline";
+import LockIcon from "@mui/icons-material/Lock";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { Link } from "react-router-dom";
+import { useAuthContext } from "../../contexts/global/AuthContext";
 
-import { Box } from '@mui/material'
-import { Link } from 'react-router-dom'
-import HomeIcon from '@mui/icons-material/Home'
-import PeopleIcon from '@mui/icons-material/People'
-import DashboardIcon from '@mui/icons-material/Dashboard'
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
-import LockIcon from '@mui/icons-material/Lock'
-import LogoutIcon from '@mui/icons-material/Logout'
-import BookOnlineIcon from '@mui/icons-material/BookOnline'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import './../styled/Sidebar.css'
+import {
+  listItemStyles,
+  listItemButtonStyles,
+  listItemIconStyles,
+  DrawerHeader,
+  Drawer,
+} from "../styled/Sidebarstyled";
+
 
 const SideBar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false)
-  const { logout } = useAuthContext()
+  const [open, setOpen] = useState(false);
 
-  const toggleCollapsed = () => {
-    setIsCollapsed(!isCollapsed)
-  }
-
+  const handleDrawerToggle = () => {
+    setOpen(!open);
+  };
+  const {
+      logout
+  } = useAuthContext()
   return (
-    <Box sx={{ minheight: '100vh' }}>
-      <Sidebar className='sidebar-container' collapsed={isCollapsed}>
-        <Menu>
-          <MenuItem onClick={toggleCollapsed} className='toggler-icon'>
-            {isCollapsed ? (
-              <ChevronLeftIcon className='arrow' />
-            ) : (
-              <ChevronRightIcon className='arrow' />
-            )}
-          </MenuItem>
-          <MenuItem
-            icon={<HomeIcon />}
-            component={<Link to='/admin' />}
-            className='mt-5'
-          >
-            Home
-          </MenuItem>
-          <MenuItem
-            icon={<PeopleIcon />}
-            component={<Link to='/admin/users' />}
-          >
-            Users
-          </MenuItem>
-          <MenuItem
-            icon={<DashboardIcon />}
-            component={<Link to='/admin/rooms' />}
-          >
-            Rooms
-          </MenuItem>
-          <MenuItem
-            icon={<CalendarMonthIcon />}
-            component={<Link to='/admin/ads' />}
-          >
-            Ads
-          </MenuItem>
-          <MenuItem
-            icon={<BookOnlineIcon />}
-            component={<Link to='/admin/bookings' />}
-          >
-            Bookings
-          </MenuItem>
-          <MenuItem icon={<LockIcon />}>Change Password</MenuItem>
-          <MenuItem onClick={logout} icon={<LogoutIcon />}>
-            Logout
-          </MenuItem>
-        </Menu>
-      </Sidebar>
-    </Box>
-  )
-}
+    <Box sx={{ display: "flex", bgcolor: "#203FC7" }}>
+      <Drawer
+        PaperProps={{ sx: { bgcolor: "#203FC7", height: "100vh" } }}
+        variant="permanent"
+        open={open}>
+        <DrawerHeader>
+          <IconButton
+            sx={{
+              color: "#fff",
+              bgcolor: "#f484ad",
+              "&:hover": {
+                bgcolor: "#d4698f",
+              },
+            }}
+            onClick={handleDrawerToggle}>
+            {open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+        </DrawerHeader>
+        <List>
+          {[
+            { text: "Home", icon: <HomeIcon /> },
+            { text: "Users", icon: <PeopleIcon /> },
+            { text: "Rooms", icon: <DashboardIcon /> },
+            { text: "Ads", icon: <CalendarMonthIcon /> },
+            { text: "Bookings", icon: <BookOnlineIcon /> },
+          ].map(({ text, icon }) => (
+            <Link to={text} key={text}>
+              <ListItem key={text} disablePadding sx={listItemButtonStyles}>
+                <ListItemButton sx={listItemStyles}>
+                  <ListItemIcon sx={listItemIconStyles}>{icon}</ListItemIcon>
+                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          ))}
 
-export default SideBar
+          <ListItem disablePadding sx={listItemButtonStyles}>
+            <ListItemButton sx={listItemStyles}>
+              <ListItemIcon sx={listItemIconStyles}>
+                <LockIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="Change Password"
+                sx={{ opacity: open ? 1 : 0 }}
+              />
+            </ListItemButton>
+          </ListItem>
+          <ListItem onClick={logout} disablePadding sx={listItemButtonStyles}>
+            <ListItemButton sx={listItemStyles}>
+              <ListItemIcon sx={listItemIconStyles}>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary="Logout" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+        <List></List>
+      </Drawer>
+    </Box>
+  );
+};
+
+export default SideBar;
