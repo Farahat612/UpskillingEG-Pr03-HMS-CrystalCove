@@ -19,8 +19,8 @@ import { DeleteModal, AddItemsModal } from "../components/modals";
 import { Footer, Header, Navbar } from "../components/shared";
 import { Testmonial, LandingHero } from "../components/combined";
 import { ForgotPassPage } from "./1.Authentication";
-import SideBar from "./../components/shared/SideBar";
-import HeaderDashbord from "./../components/shared/HeaderDashbord";
+
+import Rooms from "./Rooms";
 
 const Components = () => {
   return (
@@ -167,17 +167,8 @@ const Components = () => {
         {/* sidebar */}
         <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
           <Stack direction="column" spacing={0} sx={{ pt: 2 }}>
-            <Container maxWidth="xl" sx={{ margin: "auto", display: "flex" }}>
-              <Box sx={{ height: "100vh" }}>
-                <SideBar/>
-              </Box>
-              <Box sx={{ width: "100%" }}>
-                <HeaderDashbord
-                  headerTitle="Rooms Table Details"
-                  headerSubtitle="You can check all details"
-                  buttonText="Add New Room"
-                />
-              </Box>
+            <Container>
+              <Rooms />
             </Container>
           </Stack>
         </Paper>

@@ -2,6 +2,7 @@ import MuiDrawer from "@mui/material/Drawer";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 
 export const drawerWidth = 240;
+
 export const listItemStyles = {
   minHeight: 48,
   justifyContent: "center",

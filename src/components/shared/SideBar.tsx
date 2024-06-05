@@ -24,6 +24,7 @@ import {
   DrawerHeader,
   Drawer,
 } from "../styled/Sidebarstyled";
+
 const SideBar = () => {
   const [open, setOpen] = useState(false);
 
@@ -34,7 +35,7 @@ const SideBar = () => {
   return (
     <Box sx={{ display: "flex", bgcolor: "#203FC7" }}>
       <Drawer
-        PaperProps={{ sx: { bgcolor: "#203FC7" } }}
+        PaperProps={{ sx: { bgcolor: "#203FC7", height: "100vh" } }}
         variant="permanent"
         open={open}>
         <DrawerHeader>
