@@ -1,7 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
+import { jwtDecode, JwtPayload } from 'jwt-decode'
+import { apiProtected } from '../../utils/api'
+import { User } from '../../types'
 
 // Types
+interface ExtendedJwtPayload extends JwtPayload {
+  _id?: string
+}
 type Mode = 'portal' | 'admin'
 type UserRole = 'user' | 'admin'
 type Auth = {
@@ -12,6 +18,8 @@ type Auth = {
 }
 type AuthContextType = {
   auth: Auth
+  currentUser: User | object
+  loading: boolean
   login: (token: string, mode: Mode, role: UserRole) => void
   logout: () => void
 }
@@ -21,6 +29,8 @@ export const AuthContext = createContext<AuthContextType | null>(null)
 
 // Create context provider
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [currentUser, setCurrentUser] = useState<User | object>({})
+  const [loading, setLoading] = useState<boolean>(false)
   const [auth, setAuth] = useState<Auth>(() => {
     const token = localStorage.getItem('token') as string
     const mode = localStorage.getItem('mode') as Mode | null
@@ -33,6 +43,30 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       role,
     }
   })
+
+  // fetch the current user data when the user is signed in using the user Id extracted from the token and at this endpoint: `/${mode}/users/${userId}`
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      const fetchUser = async () => {
+        try {
+          setLoading(true)
+          const decodedToken = jwtDecode(
+            auth.token as string
+          ) as ExtendedJwtPayload
+          const userId = decodedToken['_id']
+          const response = await apiProtected.get(
+            `/${auth.mode}/users/${userId}`
+          )
+          setCurrentUser(response.data.data.user)
+        } catch (error) {
+          console.error(error)
+        } finally {
+          setLoading(false)
+        }
+      }
+      fetchUser()
+    }
+  }, [auth])
 
   const login = (token: string, mode: Mode, role: UserRole) => {
     localStorage.setItem('token', token)
@@ -49,7 +83,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ auth, login, logout }}>
+    <AuthContext.Provider value={{ auth, login, logout, currentUser, loading }}>
       {children}
     </AuthContext.Provider>
   )
