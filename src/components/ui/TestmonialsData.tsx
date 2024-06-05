@@ -5,14 +5,14 @@ import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft'
 
 const TestmonialsData = () => {
   return (
-    <Stack spacing={2} width={'300px'}>
-      <Typography variant='h6' gutterBottom>
+    <Stack spacing={2} ml={10} maxWidth={'100%'}>
+      <Typography variant='h6' gutterBottom color={'primary.dark'} fontWeight={700}>
         Happy Family
       </Typography>
 
       <Rating value={5} readOnly />
 
-      <Typography variant='body2' gutterBottom>
+      <Typography variant='h6' gutterBottom color={'primary.dark'} fontWeight={700} >
         "We had the best week ever here. Our kids loved the pool and the beach.
         We can't wait to come back!"
       </Typography>
