@@ -29,6 +29,7 @@ import {
 import { Favorites } from './pages/User'
 import { Home, Explore, Components, RoomDetails } from './pages/Public'
 import { RouteGuard, NotFound, UnAuthorized } from './components/routing'
+import { LoadingPage } from './components/shared'
 import { useAuthContext } from './contexts/global/AuthContext'
 
 const theme = createTheme({
@@ -184,7 +185,7 @@ function App() {
   )
 
   const { loading } = useAuthContext()
-  if (loading) return <h1>Loading...</h1>
+  if (loading) return <LoadingPage />
   return (
     <>
       <Toaster richColors />

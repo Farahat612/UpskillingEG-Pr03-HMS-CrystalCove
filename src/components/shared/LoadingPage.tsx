@@ -5,17 +5,14 @@ import { Box } from '@mui/material'
 const LoadingPage = () => {
   return (
     <Box
-      height={400}
+      height={'100vh'}
       width={400}
       margin={'auto'}
-      // display={'flex'}
-      // justifyContent={'center'}
-      // alignItems={'center'}
+      display={'flex'}
+      justifyContent={'center'}
+      alignItems={'center'}
     >
-      <Lottie
-        animationData={Loadingpage}
-        loop={true}
-      />
+      <Lottie animationData={Loadingpage} loop={true} />
     </Box>
   )
 }
