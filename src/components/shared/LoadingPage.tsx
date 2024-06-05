@@ -1,11 +1,21 @@
-import { Box, Skeleton } from '@mui/material'
+import Lottie from 'lottie-react'
+import Loadingpage from '../../lotties/Loadingpage.json'
+import { Box } from '@mui/material'
 
 const LoadingPage = () => {
   return (
-    <Box width={'100'}>
-      <Skeleton />
-      <Skeleton animation="wave" />
-      <Skeleton animation={false} />
+    <Box
+      height={400}
+      width={400}
+      margin={'auto'}
+      // display={'flex'}
+      // justifyContent={'center'}
+      // alignItems={'center'}
+    >
+      <Lottie
+        animationData={Loadingpage}
+        loop={true}
+      />
     </Box>
   )
 }
