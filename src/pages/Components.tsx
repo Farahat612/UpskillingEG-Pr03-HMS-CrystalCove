@@ -169,7 +169,7 @@ const Components = () => {
           <Stack direction="column" spacing={0} sx={{ pt: 2 }}>
             <Container maxWidth="xl" sx={{ margin: "auto", display: "flex" }}>
               <Box sx={{ height: "100vh" }}>
-                <SideBar />
+                <SideBar/>
               </Box>
               <Box sx={{ width: "100%" }}>
                 <HeaderDashbord
