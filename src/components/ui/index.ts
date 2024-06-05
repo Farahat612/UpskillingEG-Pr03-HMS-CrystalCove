@@ -7,5 +7,7 @@ import AboutDetails from './AboutDetails'
 import BookingDetails from './BookingDetails'
 import RatingDetails from './RatingDetails'
 import CustomTable from './CustomTable'
+import ADSRoom from './ADSRoomCard'
+import LargeRoom from './LargeRoom'
 
-export { HeroImage, TestmonialsImage, TestmonialsData, DetailsHero, LandingHeroForm, AboutDetails, BookingDetails, RatingDetails, CustomTable }
+export { HeroImage, TestmonialsImage, TestmonialsData, DetailsHero, LandingHeroForm, AboutDetails, BookingDetails, RatingDetails, CustomTable, ADSRoom, LargeRoom }

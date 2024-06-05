@@ -102,7 +102,7 @@ const Components = () => {
                 }}
               >
                 <Paper elevation={3} sx={{ p: 5 }}>
-                  <Testmonial />
+                  {/* <Testmonial /> */}
                 </Paper>
               </Badge>
             </Stack>
