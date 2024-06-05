@@ -21,7 +21,7 @@ const Users = () => {
     const fetchUsers = async () => {
       try {
         const response = await apiProtected.get('/admin/users', {
-          params: { page: page + 1, size }, // API is 1-indexed, adjust if needed
+          params: { page: page + 1, size }, // API is 1-indexed, Mui Table Pagation is 0-indexed
         })
 
         setUsers(response.data.data.users)
@@ -43,9 +43,16 @@ const Users = () => {
     { id: 'country', label: 'Country' },
     { id: 'role', label: 'Role' },
   ]
+  
+  let rows: User[] = []
+  if (!loading && users) {
+    rows = users.map((user: User) => ({
+      ...user
+    }))
+  }
 
   const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
+    _event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
     setSearchParams({ page: (newPage + 1).toString(), size: size.toString() })
@@ -56,21 +63,6 @@ const Users = () => {
   ) => {
     const newSize = parseInt(event.target.value, 10)
     setSearchParams({ page: '1', size: newSize.toString() })
-  }
-
-  let rows: User[] = []
-  if (!loading && users) {
-    rows = users.map((user: User) => ({
-      _id: user._id,
-      userName: user.userName,
-      email: user.email,
-      phoneNumber: user.phoneNumber,
-      country: user.country,
-      role: user.role,
-      verified: user.verified,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-    }))
   }
 
   return (

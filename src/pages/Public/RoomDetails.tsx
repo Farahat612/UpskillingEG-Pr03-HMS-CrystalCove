@@ -7,7 +7,7 @@ const RoomDetails = () => {
     <>
       <Navbar  />
       <Container maxWidth='xl' sx={{ margin: 'auto' }}>
-        <Header />
+        <Header headerName='Village Angga' subtitleHeader='Bogor, Indonesia' />
         <DetailsHero />
         <AboutDetails />
         <RatingDetails />

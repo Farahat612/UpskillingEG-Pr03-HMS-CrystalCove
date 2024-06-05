@@ -21,6 +21,8 @@ import { Testmonial, LandingHero } from '../../components/combined'
 import { ForgotPassPage } from './../Authentication'
 import SideBar from './../../components/shared/SideBar'
 import HeaderDashbord from './../../components/shared/HeaderDashbord'
+import ADSRoom from '../../components/ui/ADSRoomCard'
+import LargeRoom from '../../components/ui/LargeRoom'
 
 const Components = () => {
   return (
@@ -100,7 +102,7 @@ const Components = () => {
                 }}
               >
                 <Paper elevation={3} sx={{ p: 5 }}>
-                  <Testmonial />
+                  {/* <Testmonial /> */}
                 </Paper>
               </Badge>
             </Stack>
@@ -166,7 +168,7 @@ const Components = () => {
             <Container maxWidth='xl' sx={{ margin: 'auto' }}>
               <Navbar />
 
-              <Header />
+              <Header headerName={'Village Angga'} subtitleHeader={'Bogor, Indonesia'} />
               <DetailsHero />
             </Container>
             <Footer />
@@ -192,24 +194,15 @@ const Components = () => {
         </Paper>
 
 
-        {/* loading page */}
-        <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
-          <Badge
-            badgeContent={'abdalrahman'}
-            color='success'
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right',
-            }}
-          >
-            <Typography variant='h4' gutterBottom>
-              Loading page
-            </Typography>
-          </Badge>
+            {/* ADS Room Card and Large Room */}
+        <Paper elevation={3}>
+              <Container maxWidth='xl'>
+            <Stack direction='column' spacing={2} sx={{ p: 2 }}>
+                <ADSRoom/>
+                <LargeRoom/>
+            </Stack>
+              </Container>
 
-          <Stack direction='column' spacing={0} sx={{ pt: 2 }}>
-            <LoadingPage />
-          </Stack>
         </Paper>
       </Stack>
     </>

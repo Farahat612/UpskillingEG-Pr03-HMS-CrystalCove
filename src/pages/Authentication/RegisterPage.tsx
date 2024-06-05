@@ -52,6 +52,7 @@ const RegisterPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
     secretKey,
     setSecretKey,
     objectUrl,
+    role,
   } = useRegister({ mode })
 
   return (
@@ -69,7 +70,7 @@ const RegisterPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
         })}
       >
         {/* Create Admin Secret Key */}
-        {mode === 'admin' && (
+        {mode === 'admin' && role !== 'admin' && (
           <Stack spacing={0}>
             <Typography variant='subtitle2' color={'error.main'}>
               Secret Key
@@ -249,7 +250,11 @@ const RegisterPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
                 isSubmitting || (mode === 'admin' && secretKey !== 'se9!5@DM')
               }
             >
-              {isSubmitting ? <LoadindButton LoadingText='SignUp...'/> : 'Sign Up'}
+              {isSubmitting ? (
+                <LoadindButton LoadingText='SignUp...' />
+              ) : (
+                'Sign Up'
+              )}
             </Button>
           </Stack>
         </Stack>

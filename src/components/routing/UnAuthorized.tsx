@@ -1,12 +1,30 @@
-const UnAuthorized = () => {
-  return (
-    <div>
-      <h3>
-        You are not authorized to view this page. Please contact the
-        administrator
-      </h3>
-    </div>
-  )
-}
+import unAuthImg from "../../assets/images/Unauthorized.svg";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 
-export default UnAuthorized
+const UnAuthorized = () => {
+  const reloadPage = () => {
+    window.location.reload();
+  };
+
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+        backgroundImage: `url(${unAuthImg})`,
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
+      }}>
+     
+      
+    </Box>
+  );
+};
+
+export default UnAuthorized;

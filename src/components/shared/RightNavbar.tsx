@@ -1,6 +1,7 @@
 import { Box, Button, List, ListItemText } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../../contexts/global/AuthContext'
+import UserAvatar from './UserAvatar'
 
 export const Draw = () => {
   const { auth } = useAuthContext()
@@ -66,7 +67,9 @@ const RightNavbar = () => {
   return (
     <Box
       sx={{
-        display: { xs: 'none', md: 'block' },
+        display: { xs: 'none', md: 'flex', },
+        alignItems: 'center',
+        gap: 2,
       }}
     >
       {/* condition if login or not in and loop of callback props*/}
@@ -82,6 +85,8 @@ const RightNavbar = () => {
           <Link to={'/user/favorites'}>
             <Button sx={{ color: '#152C5B' }}>Favorites</Button>
           </Link>
+
+          <UserAvatar />
         </>
       ) : (
         <>
