@@ -2,6 +2,7 @@ import Breadcrumb from './Breadcrumb'
 import Footer from './Footer'
 import Header from './Header'
 import HeaderDashboard from './HeaderDashbord'
+import LoadindButton from './LoadingButton'
 import Navbar from './Navbar'
 import RightNavbar from './RightNavbar'
 import SideBar from './SideBar'
@@ -14,4 +15,5 @@ export {
   SideBar,
   RightNavbar,
   Breadcrumb,
+  LoadindButton
 }

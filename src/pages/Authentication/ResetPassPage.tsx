@@ -7,6 +7,7 @@ import { emailValidation, newPasswordValidation } from '../../utils/validations'
 import { useResetPass } from '../../hooks/auth'
 
 import ResetPassImg from '../../assets/forms/reset-password.png'
+import { LoadindButton } from '../../components/shared'
 
 const ResetPassPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
   const {
@@ -130,7 +131,7 @@ const ResetPassPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
               variant='contained'
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Reset...' : 'Reset'}
+              {isSubmitting ? <LoadindButton LoadingText='Reset...'/>: 'Reset'}
             </Button>
           </Stack>
         </Stack>

@@ -8,6 +8,7 @@ import { emailValidation } from '../../utils/validations'
 
 import ForgotPassImg from '../../assets/forms/forgot-password.png'
 import { AuthFormTextField } from '../../components/forms/AuthFormTextField'
+import { LoadindButton } from '../../components/shared'
 
 const ForgotPassPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
   const { register, handleSubmit, errors, isSubmitting, onSubmit } =
@@ -52,7 +53,7 @@ const ForgotPassPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
               variant='contained'
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Sending...' : 'Send Mail'}
+              {isSubmitting ? <LoadindButton LoadingText='Sending...'/> : 'Send Mail'}
             </Button>
           </Stack>
         </Stack>
