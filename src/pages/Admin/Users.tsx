@@ -21,7 +21,7 @@ const Users = () => {
     const fetchUsers = async () => {
       try {
         const response = await apiProtected.get('/admin/users', {
-          params: { page: page + 1, size }, // API is 1-indexed, adjust if needed
+          params: { page: page + 1, size }, // API is 1-indexed, Mui Table Pagation is 0-indexed
         })
 
         setUsers(response.data.data.users)
@@ -45,7 +45,7 @@ const Users = () => {
   ]
 
   const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
+    _event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
     setSearchParams({ page: (newPage + 1).toString(), size: size.toString() })

@@ -56,9 +56,10 @@ export interface RoomFacility {
 export interface Ad {
   [Key: string]: any
   _id: string
-  isActive: boolean
+  isActive: boolean | string
   room: Room
-  createdBy: CreatedBy
+  roomNumber: string
+  createdBy: string
   createdAt: string
   updatedAt: string
 }
