@@ -69,6 +69,7 @@ export interface Facility {
   _id: string
   name: string
   createdBy: CreatedBy
+  owner: string
   createdAt: string
   updatedAt: string
 }
@@ -80,7 +81,7 @@ export interface Booking {
   endDate: string
   totalPrice: number
   user: CreatedBy
-  roomNumber : string
+  roomNumber: string
   room: BookingRoom
   status: string
   createdAt: string

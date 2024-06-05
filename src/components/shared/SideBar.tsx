@@ -13,6 +13,7 @@ import PeopleIcon from '@mui/icons-material/People'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import BookOnlineIcon from '@mui/icons-material/BookOnline'
+import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
 import LockIcon from '@mui/icons-material/Lock'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
@@ -51,7 +52,7 @@ const SideBar = () => {
             }}
             onClick={handleDrawerToggle}
           >
-            {open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
         <List>
@@ -61,6 +62,7 @@ const SideBar = () => {
             { text: 'Rooms', icon: <DashboardIcon /> },
             { text: 'Ads', icon: <CalendarMonthIcon /> },
             { text: 'Bookings', icon: <BookOnlineIcon /> },
+            { text: 'Facilities', icon: <RoomPreferencesIcon /> },
           ].map(({ text, icon }) => (
             <Link to={`/admin/${text}`} key={text}>
               <ListItem key={text} disablePadding sx={listItemButtonStyles}>
