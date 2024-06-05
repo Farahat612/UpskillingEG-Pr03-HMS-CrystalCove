@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { styled } from '@mui/material/styles'
-import { Column, User } from '../../types'
+import { Ad, Booking, Column, Facility, Room, User } from '../../types'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,7 +30,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 interface CustomTableProps {
   columns: Column[]
-  rows: User[]
+  rows: User[] | Room[] | Facility[] | Ad[] | Booking[]
 }
 
 export default function CustomTable({ columns, rows }: CustomTableProps) {
