@@ -21,6 +21,7 @@ import { Testmonial, LandingHero } from "../components/combined";
 import { ForgotPassPage } from "./1.Authentication";
 
 import Rooms from "./Rooms";
+import UnAuthorized from './../components/shared/UnAuthorized';
 
 const Components = () => {
   return (
@@ -168,7 +169,8 @@ const Components = () => {
         <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
           <Stack direction="column" spacing={0} sx={{ pt: 2 }}>
             <Container>
-              <Rooms />
+              {/* <Rooms /> */}
+              <UnAuthorized/>
             </Container>
           </Stack>
         </Paper>
