@@ -16,7 +16,7 @@ import {
 } from '../../components/ui'
 import { StartBookingForm } from '../../components/forms'
 import { DeleteModal, AddItemsModal } from '../../components/modals'
-import { Footer, Header, Navbar } from '../../components/shared'
+import { Footer, Header, LoadingPage, Navbar } from '../../components/shared'
 import { Testmonial, LandingHero } from '../../components/combined'
 import { ForgotPassPage } from './../Authentication'
 import SideBar from './../../components/shared/SideBar'
@@ -188,6 +188,27 @@ const Components = () => {
                 />
               </Box>
             </Container>
+          </Stack>
+        </Paper>
+
+
+        {/* loading page */}
+        <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
+          <Badge
+            badgeContent={'abdalrahman'}
+            color='success'
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+          >
+            <Typography variant='h4' gutterBottom>
+              Loading page
+            </Typography>
+          </Badge>
+
+          <Stack direction='column' spacing={0} sx={{ pt: 2 }}>
+            <LoadingPage />
           </Stack>
         </Paper>
       </Stack>
