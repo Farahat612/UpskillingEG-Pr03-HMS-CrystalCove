@@ -60,16 +60,12 @@ const Ads = () => {
   let rows: Ad[] = []
   if (!loading && ads) {
     rows = ads.map((ad: Ad) => ({
-      _id: ad._id,
+      ...ad,
       isActive: ad.isActive ? 'Active' : 'Inactive',
       price: ad.room.price,
       discount: ad.room.discount,
       capacity: ad.room.capacity,
-      room: ad.room,
       roomNumber: ad.room.roomNumber,
-      createdBy: ad.createdBy,
-      createdAt: ad.createdAt,
-      updatedAt: ad.updatedAt,
     }))
   }
   return (

@@ -43,6 +43,13 @@ const Users = () => {
     { id: 'country', label: 'Country' },
     { id: 'role', label: 'Role' },
   ]
+  
+  let rows: User[] = []
+  if (!loading && users) {
+    rows = users.map((user: User) => ({
+      ...user
+    }))
+  }
 
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
@@ -56,21 +63,6 @@ const Users = () => {
   ) => {
     const newSize = parseInt(event.target.value, 10)
     setSearchParams({ page: '1', size: newSize.toString() })
-  }
-
-  let rows: User[] = []
-  if (!loading && users) {
-    rows = users.map((user: User) => ({
-      _id: user._id,
-      userName: user.userName,
-      email: user.email,
-      phoneNumber: user.phoneNumber,
-      country: user.country,
-      role: user.role,
-      verified: user.verified,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-    }))
   }
 
   return (

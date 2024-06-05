@@ -60,16 +60,10 @@ const Bookings = () => {
   let rows: Booking[] = []
   if (!loading && bookings) {
     rows = bookings.map((booking: Booking) => ({
-      _id: booking._id,
-      status: booking.status,
-      totalPrice: booking.totalPrice,
-      room: booking.room,
+      ...booking,
       roomNumber: booking.room.roomNumber,
       startDate: new Date(booking.startDate).toLocaleDateString(),
       endDate: new Date(booking.endDate).toLocaleDateString(),
-      createdAt: booking.createdAt,
-      updatedAt: booking.updatedAt,
-      user: booking.user,
     }))
   }
   return (
