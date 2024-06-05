@@ -21,6 +21,8 @@ import { Testmonial, LandingHero } from '../../components/combined'
 import { ForgotPassPage } from './../Authentication'
 import SideBar from './../../components/shared/SideBar'
 import HeaderDashbord from './../../components/shared/HeaderDashbord'
+import ADSRoom from '../../components/ui/ADSRoomCard'
+import LargeRoom from '../../components/ui/LargeRoom'
 
 const Components = () => {
   return (
@@ -166,7 +168,7 @@ const Components = () => {
             <Container maxWidth='xl' sx={{ margin: 'auto' }}>
               <Navbar />
 
-              <Header />
+              <Header headerName={'Village Angga'} subtitleHeader={'Bogor, Indonesia'} />
               <DetailsHero />
             </Container>
             <Footer />
@@ -189,6 +191,16 @@ const Components = () => {
               </Box>
             </Container>
           </Stack>
+        </Paper>
+
+            {/* ADS Room Card and Large Room */}
+        <Paper elevation={3}>
+              <Container maxWidth='xl'>
+            <Stack direction='column' spacing={2} sx={{ p: 2 }}>
+                <ADSRoom/>
+                <LargeRoom/>
+            </Stack>
+              </Container>
         </Paper>
       </Stack>
     </>

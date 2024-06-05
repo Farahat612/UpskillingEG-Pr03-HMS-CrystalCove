@@ -1,28 +1,43 @@
 import { Container, Typography } from '@mui/material'
 import Breadcrumb from './Breadcrumb'
+import { styled } from '@mui/system';
 
-const Header = () => {
+const TypographyHeaderName = styled(Typography)({
+  ' @media (max-width: 767px)' : {
+    fontSize: '2.3rem'
+  },
+  ' @media (max-width: 400px)' : {
+    fontSize: '1.7rem'
+  }
+})
+
+interface HeaderProps {
+  headerName: string; 
+  subtitleHeader: string; 
+}
+
+const Header: React.FC<HeaderProps> = ({headerName, subtitleHeader}) => {
 
   return (
     <>
       
       <Breadcrumb />
       <Container>
-        <Typography
-          mt={0}
+      <TypographyHeaderName
+          mt={2}
           variant='h3'
           align='center'
-          color={'#0d47a1'}
+          color={'#152C5B'}
         >
-          Village Angga
-        </Typography>
+          {headerName}
+        </TypographyHeaderName>
 
         <Typography
           variant='h6'
           align='center'
-          color={'#bdbdbd'}
+          color={'#B0B0B0'}
         >
-          Bogor, Indonesia
+          {subtitleHeader}
         </Typography>
       </Container>
     </>
