@@ -16,7 +16,7 @@ import {
 } from '../../components/ui'
 import { StartBookingForm } from '../../components/forms'
 import { DeleteModal, AddItemsModal } from '../../components/modals'
-import { Footer, Header, Navbar } from '../../components/shared'
+import { Footer, Header, LoadingPage, Navbar } from '../../components/shared'
 import { Testmonial, LandingHero } from '../../components/combined'
 import { ForgotPassPage } from './../Authentication'
 import SideBar from './../../components/shared/SideBar'
@@ -193,6 +193,7 @@ const Components = () => {
           </Stack>
         </Paper>
 
+
             {/* ADS Room Card and Large Room */}
         <Paper elevation={3}>
               <Container maxWidth='xl'>
@@ -201,6 +202,7 @@ const Components = () => {
                 <LargeRoom/>
             </Stack>
               </Container>
+
         </Paper>
       </Stack>
     </>
