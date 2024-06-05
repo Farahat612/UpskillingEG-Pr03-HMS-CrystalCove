@@ -10,12 +10,9 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <Container
-        maxWidth='xl'
-        sx={{ margin: 'auto' }}
-      >
+      <Container maxWidth='xl' sx={{ m: 'auto' }}>
         <LandingHero />
-        {/* adc grid */}
+        {/* ads grid */}
         <Box mt={10}>
           <Typography
             mb={2}
@@ -23,59 +20,36 @@ const Home = () => {
             fontWeight={700}
             color={'primary.dark'}
           >
-            Ads
+            Most Popular Adds
           </Typography>
-          <Grid
-            container
-            spacing={2}
-          >
-            <Grid
-              item
-              md={3}
-            >
+          <Grid container spacing={2} margin={'auto'} justifyContent={'center'}>
+            <Grid item md={3}>
               <LargeRoom />
             </Grid>
-            <Grid
-              item
-              md={3}
-            >
+            <Grid item md={3}>
               <LargeRoom />
             </Grid>
-            <Grid
-              item
-              md={3}
-            >
+            <Grid item md={3}>
               <LargeRoom />
             </Grid>
-            <Grid
-              item
-              md={3}
-            >
+            <Grid item md={3}>
               <LargeRoom />
             </Grid>
           </Grid>
         </Box>
-        {/* adc grid */}
+
         {/* Testmonials grid */}
         <Grid
+          mx={'auto'}
           mt={10}
           container
           spacing={0}
           justifyContent={'center'}
         >
-          <Grid
-            md={2}
-            sm={4}
-            xs={5}
-            item
-          >
+          <Grid md={4} sm={5} xs={5} item>
             <TestmonialsImage />
           </Grid>
-          <Grid
-            md={10}
-            sm={8}
-            item
-          >
+          <Grid md={7} sm={7} item>
             <TestmonialsData />
           </Grid>
         </Grid>

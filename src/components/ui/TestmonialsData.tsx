@@ -12,7 +12,7 @@ const TestmonialsData = () => {
 
       <Rating value={5} readOnly />
 
-      <Typography variant='h6' gutterBottom color={'primary.dark'} fontWeight={700} >
+      <Typography variant='h6' gutterBottom color={'primary.dark'}  >
         "We had the best week ever here. Our kids loved the pool and the beach.
         We can't wait to come back!"
       </Typography>

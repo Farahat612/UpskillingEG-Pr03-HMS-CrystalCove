@@ -7,7 +7,7 @@ const HeroImage = () => {
   const theme = useTheme()
   const isMedia = useMediaQuery(theme.breakpoints.up('md'))
   return (
-    <Box  maxWidth={'65%'} ml={isMedia ? 'auto' : '0'}>
+    <Box  maxWidth={'85%'} ml={isMedia ? 'auto' : '0'}>
       <HeroCurvedImage src={HeroImg} alt='Hero Image' />
     </Box>
   )

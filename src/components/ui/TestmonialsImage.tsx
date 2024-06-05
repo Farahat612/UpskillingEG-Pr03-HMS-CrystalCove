@@ -5,7 +5,7 @@ import TestmonialImg from '../../assets/images/testmonial.png'
 
 const TestmonialsImage = () => {
   return (
-    <Box width={'100%'}>
+    <Box width={'100%'} maxWidth={'400px'}>
       <TestmonialCurvedImage src={TestmonialImg} alt='Testmonial Image' />
     </Box>
   )

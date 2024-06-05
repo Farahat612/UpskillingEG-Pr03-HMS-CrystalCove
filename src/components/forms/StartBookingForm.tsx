@@ -12,6 +12,7 @@ const StartBookingForm = () => {
       >
         <Typography
           variant='h6'
+          component={'div'}
           color={'primary.dark'}
           fontWeight={700}
         >
