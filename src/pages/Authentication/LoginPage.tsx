@@ -9,6 +9,7 @@ import { useLogin } from '../../hooks/auth'
 
 import SigninImage from '../../assets/forms/sign-in.png'
 import { AuthFormTextField } from '../../components/forms/AuthFormTextField'
+import { LoadindButton } from '../../components/shared'
 
 const LoginPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
   const {
@@ -82,7 +83,7 @@ const LoginPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
               variant='contained'
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'logging...' : 'Login'}
+              {isSubmitting ? <LoadindButton LoadingText='logging'/> : 'Login'}
             </Button>
           </Stack>
         </Stack>

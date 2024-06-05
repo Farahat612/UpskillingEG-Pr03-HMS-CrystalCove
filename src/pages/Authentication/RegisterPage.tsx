@@ -24,6 +24,7 @@ import { useRegister } from '../../hooks/auth'
 
 import SignUpImage from '../../assets/forms/sign-up.png'
 import userImgPlaceholder from '../../assets/images/userImgPlaceholder.png'
+import { LoadindButton } from '../../components/shared'
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -248,7 +249,7 @@ const RegisterPage = ({ mode }: { mode: 'portal' | 'admin' }) => {
                 isSubmitting || (mode === 'admin' && secretKey !== 'se9!5@DM')
               }
             >
-              {isSubmitting ? 'SignUp...' : 'Sign Up'}
+              {isSubmitting ? <LoadindButton LoadingText='SignUp...'/> : 'Sign Up'}
             </Button>
           </Stack>
         </Stack>
