@@ -2,11 +2,24 @@ import { FormData } from '../../types'
 import { useForm } from 'react-hook-form'
 import { apiProtected } from '../../utils/api'
 import { toast } from 'sonner'
+import { useState } from 'react'
 type ChangePassFormData = Pick<
   FormData,
   'oldPassword' | 'newPassword' | 'confirmPassword'
 >
 export const useChangepassword = (closeModule: () => void) => {
+  const [oldPasswordVisible, setOldPasswordVisible] = useState(false)
+  const toggleOldPasswordVisibility = () => {
+    setOldPasswordVisible(!oldPasswordVisible)
+  }
+  const [newPasswordVisible, setNewPasswordVisible] = useState(false)
+  const togglePasswordVisibility = () => {
+    setNewPasswordVisible(!newPasswordVisible)
+  }
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false)
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmPasswordVisible(!confirmPasswordVisible)
+  }
   const {
     register,
     handleSubmit,
@@ -28,6 +41,12 @@ export const useChangepassword = (closeModule: () => void) => {
     }
   }
   return {
+    oldPasswordVisible,
+    toggleOldPasswordVisibility,
+    newPasswordVisible,
+    togglePasswordVisibility,
+    confirmPasswordVisible,
+    toggleConfirmPasswordVisibility,
     register,
     handleSubmit,
     onSubmit,

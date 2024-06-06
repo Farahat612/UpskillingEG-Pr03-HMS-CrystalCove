@@ -5,14 +5,24 @@ import { ChangePassIamge } from '../../components/styled/img'
 import ChangePassImage from '../../assets/forms/sign-in.png'
 import CloseIcon from '@mui/icons-material/Close'
 import { useChangepassword } from '../../hooks/auth/useChangePass'
-import { newPasswordValidation, passwordValidation } from '../../utils/validations'
+import {
+  newPasswordValidation,
+  passwordValidation,
+} from '../../utils/validations'
 import { LoadindButton } from '../../components/shared'
 
 const ChangePass = ({ closeModule }: { closeModule: () => void }) => {
-
-
-const {register, handleSubmit, onSubmit, watch, errors, isSubmitting} = useChangepassword(closeModule)
-
+  const {
+    register,
+    handleSubmit,
+    onSubmit,
+    watch,
+    errors,
+    isSubmitting,
+    oldPasswordVisible,
+    newPasswordVisible,
+    confirmPasswordVisible,
+  } = useChangepassword(closeModule)
 
   return (
     <Box sx={BoxModuleChangePassStyle}>
@@ -35,7 +45,7 @@ const {register, handleSubmit, onSubmit, watch, errors, isSubmitting} = useChang
         {/* old Password */}
         <AuthFormTextField
           placeholder='Enter Your Email'
-          type='text'
+          type={oldPasswordVisible ? 'text' : 'password'}
           variant='filled'
           fullWidth
           size='small'
@@ -48,6 +58,7 @@ const {register, handleSubmit, onSubmit, watch, errors, isSubmitting} = useChang
         <Stack spacing={0}>
           <AuthFormTextField
             placeholder='Enter Your Password'
+            type={newPasswordVisible ? 'text' : 'password'}
             variant='filled'
             fullWidth
             size='small'
@@ -57,20 +68,25 @@ const {register, handleSubmit, onSubmit, watch, errors, isSubmitting} = useChang
             helperText={errors.newPassword ? errors.newPassword.message : null}
           />
         </Stack>
-                {/* Confirm New Password */}
+        {/* Confirm New Password */}
         <Stack spacing={0}>
           <AuthFormTextField
             placeholder='Enter Your Confirm Password'
+            type={confirmPasswordVisible ? 'text' : 'password'}
             variant='filled'
             fullWidth
             size='small'
             label='Confirm New Password'
-            {...register(('confirmPassword'), {
+            {...register('confirmPassword', {
               required: 'Confirm Password is required',
-              validate: (value) => value == watch('newPassword') || 'The confirm password do not match password'
+              validate: (value) =>
+                value == watch('newPassword') ||
+                'The confirm password do not match password',
             })}
             error={errors.confirmPassword ? true : false}
-            helperText={errors.confirmPassword ? errors.confirmPassword.message : null}
+            helperText={
+              errors.confirmPassword ? errors.confirmPassword.message : null
+            }
           />
         </Stack>
 
@@ -85,7 +101,7 @@ const {register, handleSubmit, onSubmit, watch, errors, isSubmitting} = useChang
             variant='contained'
             disabled={isSubmitting}
           >
-            {isSubmitting ? <LoadindButton LoadingText='changing'/> : 'change'}
+            {isSubmitting ? <LoadindButton LoadingText='changing' /> : 'change'}
           </Button>
         </Stack>
       </Stack>
