@@ -1,34 +1,42 @@
-import Box from '@mui/material/Box'
-import List from '@mui/material/List'
-import IconButton from '@mui/material/IconButton'
+import BookOnlineIcon from '@mui/icons-material/BookOnline'
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import DashboardIcon from '@mui/icons-material/Dashboard'
+import HomeIcon from '@mui/icons-material/Home'
+import LockIcon from '@mui/icons-material/Lock'
+import LogoutIcon from '@mui/icons-material/Logout'
+import PeopleIcon from '@mui/icons-material/People'
+import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
+import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
+import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import { useState } from 'react'
-import HomeIcon from '@mui/icons-material/Home'
-import PeopleIcon from '@mui/icons-material/People'
-import DashboardIcon from '@mui/icons-material/Dashboard'
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
-import BookOnlineIcon from '@mui/icons-material/BookOnline'
-import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
-import LockIcon from '@mui/icons-material/Lock'
-import LogoutIcon from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../../contexts/global/AuthContext'
 
+import { Modal } from '@mui/material'
+import React from 'react'
+import { ChangePass } from '../../pages/Authentication'
 import {
-  listItemStyles,
+  Drawer,
+  DrawerHeader,
+  ModuleChangePassStyle,
   listItemButtonStyles,
   listItemIconStyles,
-  DrawerHeader,
-  Drawer,
+  listItemStyles,
 } from '../styled/Sidebarstyled'
 
 const SideBar = () => {
   const [open, setOpen] = useState(false)
+  // module open
+  const [openModule, setOpenModule] = React.useState(false)
+  const handleOpen = () => setOpenModule(true)
+  const handleClose = () => setOpenModule(false)
 
   const handleDrawerToggle = () => {
     setOpen(!open)
@@ -64,17 +72,31 @@ const SideBar = () => {
             { text: 'Bookings', icon: <BookOnlineIcon /> },
             { text: 'Facilities', icon: <RoomPreferencesIcon /> },
           ].map(({ text, icon }) => (
-            <Link to={`/admin/${text}`} key={text}>
-              <ListItem key={text} disablePadding sx={listItemButtonStyles}>
+            <Link
+              to={`/admin/${text}`}
+              key={text}
+            >
+              <ListItem
+                key={text}
+                disablePadding
+                sx={listItemButtonStyles}
+              >
                 <ListItemButton sx={listItemStyles}>
                   <ListItemIcon sx={listItemIconStyles}>{icon}</ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                  <ListItemText
+                    primary={text}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
                 </ListItemButton>
               </ListItem>
             </Link>
           ))}
 
-          <ListItem disablePadding sx={listItemButtonStyles}>
+          <ListItem
+            disablePadding
+            sx={listItemButtonStyles}
+            onClick={handleOpen}
+          >
             <ListItemButton sx={listItemStyles}>
               <ListItemIcon sx={listItemIconStyles}>
                 <LockIcon />
@@ -85,16 +107,36 @@ const SideBar = () => {
               />
             </ListItemButton>
           </ListItem>
-          <ListItem onClick={logout} disablePadding sx={listItemButtonStyles}>
+          <ListItem
+            onClick={logout}
+            disablePadding
+            sx={listItemButtonStyles}
+          >
             <ListItemButton sx={listItemStyles}>
               <ListItemIcon sx={listItemIconStyles}>
                 <LogoutIcon />
               </ListItemIcon>
-              <ListItemText primary='Logout' sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText
+                primary='Logout'
+                sx={{ opacity: open ? 1 : 0 }}
+              />
             </ListItemButton>
           </ListItem>
         </List>
-        <List></List>
+
+        {/* module change pass */}
+
+        <Modal
+          sx={ModuleChangePassStyle}
+          open={openModule}
+          onClose={handleClose}
+          aria-labelledby='modal-modal-title'
+          aria-describedby='modal-modal-description'
+        >
+          <ChangePass closeModule={handleClose} />
+        </Modal>
+
+        {/* module change pass */}
       </Drawer>
     </Box>
   )
