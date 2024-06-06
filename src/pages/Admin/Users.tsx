@@ -1,41 +1,24 @@
 // Users.tsx
-import { AdminLayout } from '../../layouts'
+import { Box, Button, TablePagination } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 import { HeaderDashboard } from '../../components/shared'
 import { CustomTable } from '../../components/ui'
-import { apiProtected } from '../../utils/api'
-import { useEffect, useState } from 'react'
+import { AdminLayout } from '../../layouts'
 import { User } from '../../types'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import { Box, Button, TablePagination } from '@mui/material'
+
+import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
 
 const Users = () => {
-  const [users, setUsers] = useState<User[]>([])
-  const [loading, setLoading] = useState(true)
-  const [totalCount, setTotalCount] = useState(0)
-  const [searchParams, setSearchParams] = useSearchParams()
-
-  const page = parseInt(searchParams.get('page') || '1', 10) - 1
-  const size = parseInt(searchParams.get('size') || '10', 10)
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await apiProtected.get('/admin/users', {
-          params: { page: page + 1, size }, // API is 1-indexed, Mui Table Pagation is 0-indexed
-        })
-
-        setUsers(response.data.data.users)
-        setTotalCount(response.data.data.totalCount)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-        setLoading(false)
-      }
-    }
-
-    fetchUsers()
-  }, [page, size])
-
+  const {
+    data,
+    loading,
+    totalCount,
+    page,
+    size,
+    handleChangePage,
+    handleChangeRowsPerPage,
+  } = useFetchPaginatedData('/admin/users', 'users')
+  
   const columns = [
     { id: 'userName', label: 'UserName' },
     { id: 'email', label: 'Email' },
@@ -45,25 +28,13 @@ const Users = () => {
   ]
 
   let rows: User[] = []
-  if (!loading && users) {
-    rows = users.map((user: User) => ({
+  if (!loading && data) {
+    rows = data.map((user: User) => ({
       ...user,
     }))
   }
 
-  const handleChangePage = (
-    _event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    setSearchParams({ page: (newPage + 1).toString(), size: size.toString() })
-  }
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const newSize = parseInt(event.target.value, 10)
-    setSearchParams({ page: '1', size: newSize.toString() })
-  }
+  
   const navigate = useNavigate()
 
   return (
