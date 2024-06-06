@@ -5,7 +5,7 @@ import { apiProtected } from '../../utils/api'
 import { useEffect, useState } from 'react'
 import { Facility } from '../../types'
 import { useSearchParams } from 'react-router-dom'
-import { Box, TablePagination } from '@mui/material'
+import { Box, Button, TablePagination } from '@mui/material'
 
 const Facilities = () => {
   const [facilities, setFacilities] = useState<Facility[]>([])
@@ -69,9 +69,15 @@ const Facilities = () => {
       <HeaderDashboard
         headerTitle='Facilities Table Details'
         headerSubtitle='Check Details of All Facilities in the system.'
-        buttonText='Add New Facility'
-        buttonDestination='/admin/create'
-      />
+      >
+        <Button
+          sx={{ py: 1.2, px: 5, borderRadius: 3 }}
+          variant='contained'
+          color='primary'
+        >
+          Add New Facility
+        </Button>
+      </HeaderDashboard>
 
       {loading ? (
         <div>Loading...</div>

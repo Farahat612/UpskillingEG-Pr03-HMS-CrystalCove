@@ -5,8 +5,8 @@ import { CustomTable } from '../../components/ui'
 import { apiProtected } from '../../utils/api'
 import { useEffect, useState } from 'react'
 import { User } from '../../types'
-import { useSearchParams } from 'react-router-dom'
-import { Box, TablePagination } from '@mui/material'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { Box, Button, TablePagination } from '@mui/material'
 
 const Users = () => {
   const [users, setUsers] = useState<User[]>([])
@@ -43,11 +43,11 @@ const Users = () => {
     { id: 'country', label: 'Country' },
     { id: 'role', label: 'Role' },
   ]
-  
+
   let rows: User[] = []
   if (!loading && users) {
     rows = users.map((user: User) => ({
-      ...user
+      ...user,
     }))
   }
 
@@ -64,15 +64,23 @@ const Users = () => {
     const newSize = parseInt(event.target.value, 10)
     setSearchParams({ page: '1', size: newSize.toString() })
   }
+  const navigate = useNavigate()
 
   return (
     <AdminLayout>
       <HeaderDashboard
         headerTitle='Users'
         headerSubtitle='Check Details of All users in the system.'
-        buttonText='Add New User'
-        buttonDestination='/admin/create'
-      />
+      >
+        <Button
+          sx={{ py: 1.2, px: 5, borderRadius: 3 }}
+          variant='contained'
+          color='primary'
+          onClick={() => navigate('/admin/create')}
+        >
+          Add New User
+        </Button>
+      </HeaderDashboard>
 
       {loading ? (
         <div>Loading...</div>

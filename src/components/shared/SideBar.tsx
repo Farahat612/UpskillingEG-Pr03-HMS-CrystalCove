@@ -12,7 +12,7 @@ import HomeIcon from '@mui/icons-material/Home'
 import PeopleIcon from '@mui/icons-material/People'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
-import BookOnlineIcon from '@mui/icons-material/BookOnline'
+import FactCheckIcon from '@mui/icons-material/FactCheck'
 import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
 import LockIcon from '@mui/icons-material/Lock'
 import LogoutIcon from '@mui/icons-material/Logout'
@@ -28,7 +28,7 @@ import {
 } from '../styled/Sidebarstyled'
 
 const SideBar = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
 
   const handleDrawerToggle = () => {
     setOpen(!open)
@@ -57,11 +57,11 @@ const SideBar = () => {
         </DrawerHeader>
         <List>
           {[
-            { text: 'Home', icon: <HomeIcon /> },
+            { text: 'Dashboard', icon: <HomeIcon /> },
             { text: 'Users', icon: <PeopleIcon /> },
             { text: 'Rooms', icon: <DashboardIcon /> },
             { text: 'Ads', icon: <CalendarMonthIcon /> },
-            { text: 'Bookings', icon: <BookOnlineIcon /> },
+            { text: 'Bookings', icon: <FactCheckIcon /> },
             { text: 'Facilities', icon: <RoomPreferencesIcon /> },
           ].map(({ text, icon }) => (
             <Link to={`/admin/${text}`} key={text}>

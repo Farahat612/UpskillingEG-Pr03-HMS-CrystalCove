@@ -5,7 +5,7 @@ import { apiProtected } from '../../utils/api'
 import { useEffect, useState } from 'react'
 import { Booking } from '../../types'
 import { useSearchParams } from 'react-router-dom'
-import { Box, TablePagination } from '@mui/material'
+import { Box, Button, TablePagination } from '@mui/material'
 
 const Bookings = () => {
   const [bookings, setBookings] = useState<Booking[]>([])
@@ -71,9 +71,15 @@ const Bookings = () => {
       <HeaderDashboard
         headerTitle='Bookings Table Details'
         headerSubtitle='Check Details of All Bookings in the system.'
-        buttonText='Add New Booking'
-        buttonDestination='/admin/create'
-      />
+      >
+        <Button
+          sx={{ py: 1.2, px: 5, borderRadius: 3 }}
+          variant='contained'
+          color='primary'
+        >
+          Add New Booking
+        </Button>
+      </HeaderDashboard>
 
       {loading ? (
         <div>Loading...</div>

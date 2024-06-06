@@ -5,7 +5,7 @@ import { apiProtected } from '../../utils/api'
 import { useEffect, useState } from 'react'
 import { Ad } from '../../types'
 import { useSearchParams } from 'react-router-dom'
-import { Box, TablePagination } from '@mui/material'
+import { Box, Button, TablePagination } from '@mui/material'
 
 const Ads = () => {
   const [ads, setAds] = useState<Ad[]>([])
@@ -73,9 +73,15 @@ const Ads = () => {
       <HeaderDashboard
         headerTitle='Ads Table Details'
         headerSubtitle='Check Details of All Ads in the system.'
-        buttonText='Add New Ad'
-        buttonDestination='/admin/create'
-      />
+      >
+        <Button
+          sx={{ py: 1.2, px: 5, borderRadius: 3 }}
+          variant='contained'
+          color='primary'
+        >
+          Add New Ad
+        </Button>
+      </HeaderDashboard>
 
       {loading ? (
         <div>Loading...</div>

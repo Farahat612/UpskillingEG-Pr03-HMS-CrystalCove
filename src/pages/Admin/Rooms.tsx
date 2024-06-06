@@ -6,7 +6,7 @@ import { apiProtected } from '../../utils/api'
 import { useEffect, useState } from 'react'
 import { Room } from '../../types'
 import { useSearchParams } from 'react-router-dom'
-import { Box, TablePagination } from '@mui/material'
+import { Box, Button, TablePagination } from '@mui/material'
 
 const Rooms = () => {
   const [rooms, setRooms] = useState<Room[]>([])
@@ -70,9 +70,15 @@ const Rooms = () => {
       <HeaderDashboard
         headerTitle='Rooms Table Details'
         headerSubtitle='You can check all details'
-        buttonText='Add New Room'
-        buttonDestination='/admin/create'
-      />
+      >
+        <Button
+          sx={{ py: 1.2, px: 5, borderRadius: 3 }}
+          variant='contained'
+          color='primary'
+        >
+          Add New Room
+        </Button>
+      </HeaderDashboard>
 
       {loading ? (
         <div>Loading...</div>
