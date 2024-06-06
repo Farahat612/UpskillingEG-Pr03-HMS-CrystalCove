@@ -3,6 +3,8 @@ export interface FormData {
   email: string
   userName: string
   password: string
+  oldPassword: string
+  newPassword: string
   confirmPassword: string
   phoneNumber: number
   country: string

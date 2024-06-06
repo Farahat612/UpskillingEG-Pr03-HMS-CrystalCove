@@ -7,7 +7,7 @@ import { apiPublic } from '../../utils/api'
 import { appendFormData } from '../../utils/appendFormData'
 import { useAuthContext } from '../../contexts/global/AuthContext'
 
-type SignUpFormData = Omit<FormData, 'seed'>
+type SignUpFormData = Omit<FormData, 'seed' | 'oldPassword' | 'newPassword' >
 
 const useRegister = ({ mode }: { mode: 'portal' | 'admin' }) => {
   const [passwordVisible, setPasswordVisible] = useState(false)
