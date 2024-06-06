@@ -3,7 +3,10 @@ import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { apiProtected } from '../../utils/api'
 
-export const useFetchPaginatedData = (endpoint: string, responseListName: string) => {
+export const useFetchPaginatedData = (
+  endpoint: string,
+  responseListName: string
+) => {
   const [data, setData] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [totalCount, setTotalCount] = useState(0)
@@ -16,9 +19,9 @@ export const useFetchPaginatedData = (endpoint: string, responseListName: string
     const fetchData = async () => {
       try {
         const response = await apiProtected.get(endpoint, {
-          params: { page: page + 1, size },
+          params: { page: page + 1, size }, // API is 1 indexed and MUI Table Pagination is 0 indexed
         })
-        setData(response.data.data[responseListName]) // Assuming response has data.items
+        setData(response.data.data[responseListName])
         setTotalCount(response.data.data.totalCount)
         setLoading(false)
       } catch (error) {
