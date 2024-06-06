@@ -1,13 +1,5 @@
-import BookOnlineIcon from '@mui/icons-material/BookOnline'
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import DashboardIcon from '@mui/icons-material/Dashboard'
-import HomeIcon from '@mui/icons-material/Home'
-import LockIcon from '@mui/icons-material/Lock'
-import LogoutIcon from '@mui/icons-material/Logout'
-import PeopleIcon from '@mui/icons-material/People'
-import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import List from '@mui/material/List'
@@ -16,6 +8,16 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import { useState } from 'react'
+
+import HomeIcon from '@mui/icons-material/Home'
+import PeopleIcon from '@mui/icons-material/People'
+import DashboardIcon from '@mui/icons-material/Dashboard'
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
+import FactCheckIcon from '@mui/icons-material/FactCheck'
+import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
+import LockIcon from '@mui/icons-material/Lock'
+import LogoutIcon from '@mui/icons-material/Logout'
+
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../../contexts/global/AuthContext'
 
@@ -32,11 +34,13 @@ import {
 } from '../styled/Sidebarstyled'
 
 const SideBar = () => {
-  const [open, setOpen] = useState(false)
+
+  const [open, setOpen] = useState(true)
   // module open
   const [openModule, setOpenModule] = React.useState(false)
   const handleOpen = () => setOpenModule(true)
   const handleClose = () => setOpenModule(false)
+
 
   const handleDrawerToggle = () => {
     setOpen(!open)
@@ -65,11 +69,11 @@ const SideBar = () => {
         </DrawerHeader>
         <List>
           {[
-            { text: 'Home', icon: <HomeIcon /> },
+            { text: 'Dashboard', icon: <HomeIcon /> },
             { text: 'Users', icon: <PeopleIcon /> },
             { text: 'Rooms', icon: <DashboardIcon /> },
             { text: 'Ads', icon: <CalendarMonthIcon /> },
-            { text: 'Bookings', icon: <BookOnlineIcon /> },
+            { text: 'Bookings', icon: <FactCheckIcon /> },
             { text: 'Facilities', icon: <RoomPreferencesIcon /> },
           ].map(({ text, icon }) => (
             <Link

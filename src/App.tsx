@@ -101,6 +101,10 @@ function App() {
             element={<Dashboard />}
           />
           <Route
+            path='dashboard'
+            element={<Dashboard />}
+          />
+          <Route
             path='users'
             element={<Users />}
           />
