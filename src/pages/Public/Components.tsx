@@ -18,7 +18,7 @@ import { StartBookingForm } from '../../components/forms'
 import { DeleteModal, AddItemsModal } from '../../components/modals'
 import { Footer, Header, LoadingPage, Navbar } from '../../components/shared'
 import { Testmonial, LandingHero } from '../../components/combined'
-import { ForgotPassPage } from './../Authentication'
+import { ChangePass, ForgotPassPage } from './../Authentication'
 import SideBar from './../../components/shared/SideBar'
 import HeaderDashbord from './../../components/shared/HeaderDashbord'
 import ADSRoom from '../../components/ui/ADSRoomCard'
@@ -189,6 +189,7 @@ const Components = () => {
                   buttonText='Add New Room'
                 />
               </Box>
+              <ChangePass />
             </Container>
           </Stack>
         </Paper>
