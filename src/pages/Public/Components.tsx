@@ -102,23 +102,7 @@ const Components = () => {
                 }}
               >
                 <Paper elevation={3} sx={{ p: 5 }}>
-                  {/* <Testmonial /> */}
-                </Paper>
-              </Badge>
-            </Stack>
-
-            {/* Landing Hero */}
-            <Stack direction='row' spacing={8} sx={{ p: 2, mt: 5 }}>
-              <Badge
-                badgeContent='Landing Hero'
-                color='secondary'
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                <Paper elevation={3} sx={{ p: 5 }}>
-                  <LandingHero />
+                  <Testmonial />
                 </Paper>
               </Badge>
             </Stack>
@@ -168,42 +152,24 @@ const Components = () => {
             <Container maxWidth='xl' sx={{ margin: 'auto' }}>
               <Navbar />
 
-              <Header headerName={'Village Angga'} subtitleHeader={'Bogor, Indonesia'} />
+              <Header
+                headerName={'Village Angga'}
+                subtitleHeader={'Bogor, Indonesia'}
+              />
               <DetailsHero />
             </Container>
             <Footer />
           </Stack>
         </Paper>
 
-        {/* sidebar */}
-        <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
-          <Stack direction='column' spacing={0} sx={{ pt: 2 }}>
-            <Container maxWidth='xl' sx={{ margin: 'auto', display: 'flex' }}>
-              <Box sx={{ height: '100vh' }}>
-                <SideBar />
-              </Box>
-              <Box sx={{ width: '100%' }}>
-                <HeaderDashbord
-                  headerTitle='Rooms Table Details'
-                  headerSubtitle='You can check all details'
-                  buttonText='Add New Room'
-                />
-              </Box>
-              <ChangePass />
-            </Container>
-          </Stack>
-        </Paper>
-
-
-            {/* ADS Room Card and Large Room */}
+        {/* ADS Room Card and Large Room */}
         <Paper elevation={3}>
-              <Container maxWidth='xl'>
+          <Container maxWidth='xl'>
             <Stack direction='column' spacing={2} sx={{ p: 2 }}>
-                <ADSRoom/>
-                <LargeRoom/>
+              <ADSRoom />
+              <LargeRoom />
             </Stack>
-              </Container>
-
+          </Container>
         </Paper>
       </Stack>
     </>
