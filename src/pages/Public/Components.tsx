@@ -1,28 +1,26 @@
 import {
-  Stack,
-  Divider,
-  Typography,
-  Paper,
-  Container,
   Badge,
   Box,
+  Container,
+  Divider,
+  Paper,
+  Stack,
+  Typography,
 } from '@mui/material'
 
+import { Testmonial } from '../../components/combined'
+import { StartBookingForm } from '../../components/forms'
+import { AddItemsModal } from '../../components/modals'
+import { Footer, Header, Navbar } from '../../components/shared'
 import {
+  DetailsHero,
   HeroImage,
   TestmonialsData,
   TestmonialsImage,
-  DetailsHero,
 } from '../../components/ui'
-import { StartBookingForm } from '../../components/forms'
-import { DeleteModal, AddItemsModal } from '../../components/modals'
-import { Footer, Header, LoadingPage, Navbar } from '../../components/shared'
-import { Testmonial, LandingHero } from '../../components/combined'
-import { ChangePass, ForgotPassPage } from './../Authentication'
-import SideBar from './../../components/shared/SideBar'
-import HeaderDashbord from './../../components/shared/HeaderDashbord'
 import ADSRoom from '../../components/ui/ADSRoomCard'
 import LargeRoom from '../../components/ui/LargeRoom'
+import { ForgotPassPage } from './../Authentication'
 
 const Components = () => {
   return (
@@ -64,7 +62,6 @@ const Components = () => {
             </Typography>
           </Badge>
           <Stack direction='row' spacing={8} sx={{ mt: 5 }}>
-            <DeleteModal />
             <AddItemsModal title='Add Items'>
               <Typography variant='body1' gutterBottom>
                 Add your items here
