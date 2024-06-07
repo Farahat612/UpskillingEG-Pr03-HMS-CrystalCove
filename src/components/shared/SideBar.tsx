@@ -21,26 +21,23 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../../contexts/global/AuthContext'
 
-import { Modal } from '@mui/material'
+import { Dialog } from '@mui/material'
 import React from 'react'
 import { ChangePass } from '../../pages/Authentication'
 import {
   Drawer,
   DrawerHeader,
-  ModuleChangePassStyle,
   listItemButtonStyles,
   listItemIconStyles,
   listItemStyles,
 } from '../styled/Sidebarstyled'
 
 const SideBar = () => {
-
   const [open, setOpen] = useState(true)
   // module open
   const [openModule, setOpenModule] = React.useState(false)
   const handleOpen = () => setOpenModule(true)
   const handleClose = () => setOpenModule(false)
-
 
   const handleDrawerToggle = () => {
     setOpen(!open)
@@ -129,17 +126,17 @@ const SideBar = () => {
         </List>
 
         {/* module change pass */}
-
-        <Modal
-          sx={ModuleChangePassStyle}
-          open={openModule}
-          onClose={handleClose}
-          aria-labelledby='modal-modal-title'
-          aria-describedby='modal-modal-description'
-        >
-          <ChangePass closeModule={handleClose} />
-        </Modal>
-
+        <React.Fragment>
+          <Dialog
+          fullWidth
+            open={openModule}
+            onClose={handleClose}
+            aria-labelledby='modal-modal-title'
+            aria-describedby='modal-modal-description'
+          >
+            <ChangePass closeModule={handleClose} />
+          </Dialog>
+        </React.Fragment>
         {/* module change pass */}
       </Drawer>
     </Box>

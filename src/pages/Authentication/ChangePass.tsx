@@ -1,4 +1,4 @@
-import { Box, Button, Stack } from '@mui/material'
+import { Box, Button, DialogActions, Stack } from '@mui/material'
 import { AuthFormTextField } from '../../components/forms/AuthFormTextField'
 import { BoxModuleChangePassStyle } from '../../components/styled/Sidebarstyled'
 import { ChangePassIamge } from '../../components/styled/img'
@@ -26,22 +26,24 @@ const ChangePass = ({ closeModule }: { closeModule: () => void }) => {
 
   return (
     <Box sx={BoxModuleChangePassStyle}>
+      <DialogActions>
       <Button
         onClick={closeModule}
         sx={{ ml: 'auto', display: 'block' }}
-      >
+        >
         <CloseIcon />
       </Button>
+      </DialogActions>
       <ChangePassIamge
         src={ChangePassImage}
         alt='Img change password'
-      />
+        />
       <Stack
         spacing={5}
         sx={{ mt: 7 }}
         component={'form'}
         onSubmit={handleSubmit(onSubmit)}
-      >
+        >
         {/* old Password */}
         <AuthFormTextField
           placeholder='Enter Your Email'
