@@ -31,7 +31,7 @@ const Bookings = () => {
   if (!loading && data) {
     rows = data.map((booking: Booking) => ({
       ...booking,
-      roomNumber: booking.room.roomNumber,
+      roomNumber: booking.room?.roomNumber ? booking.room.roomNumber : 'N/A',
       startDate: new Date(booking.startDate).toLocaleDateString(),
       endDate: new Date(booking.endDate).toLocaleDateString(),
     }))

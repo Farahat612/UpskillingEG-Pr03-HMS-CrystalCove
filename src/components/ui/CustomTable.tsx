@@ -8,6 +8,11 @@ import TableRow from '@mui/material/TableRow'
 import { styled } from '@mui/material/styles'
 import { Ad, Booking, Column, Facility, Room, User } from '../../types'
 
+import { Delete } from '@mui/icons-material'
+import { useModalsContext } from '../../contexts/global/ModalsContext'
+import { DeleteModal } from '../modals'
+import { useState } from 'react'
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.textLight?.main,
@@ -34,30 +39,53 @@ interface CustomTableProps {
 }
 
 export default function CustomTable({ columns, rows }: CustomTableProps) {
+  const { deleteModalOpened, setDeleteModalOpened } = useModalsContext()
+  const [itemIdToDelete, setItemIdToDelete] = useState('')
+
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label='customized table'>
-        <TableHead>
-          <TableRow>
-            {columns.map((column) => (
-              <StyledTableCell key={column.id} align='center'>
-                {column.label}
-              </StyledTableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row, index) => (
-            <StyledTableRow key={index}>
+    <>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+          <TableHead>
+            <TableRow>
               {columns.map((column) => (
                 <StyledTableCell key={column.id} align='center'>
-                  {row[column.id]}
+                  {column.label}
                 </StyledTableCell>
               ))}
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+              <StyledTableCell key='actions' align='center'>
+                Actions
+              </StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row, index) => (
+              <StyledTableRow key={index}>
+                {columns.map((column) => (
+                  <StyledTableCell key={column.id} align='center'>
+                    {row[column.id]}
+                  </StyledTableCell>
+                ))}
+                <StyledTableCell key='actions' align='center'>
+                  <Delete
+                    onClick={() => {
+                      setDeleteModalOpened(true)
+                      setItemIdToDelete(row._id)
+                    }}
+                    color='error'
+                    sx={{ cursor: 'pointer' }}
+                  />
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <DeleteModal
+        open={deleteModalOpened}
+        setOpen={setDeleteModalOpened}
+        itemId={itemIdToDelete}
+      />
+    </>
   )
 }
