@@ -8,7 +8,13 @@ import {
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
-import { createTheme, ThemeProvider, colors, CssBaseline } from '@mui/material'
+import {
+  createTheme,
+  ThemeProvider,
+  colors,
+  CssBaseline,
+  Box,
+} from '@mui/material'
 import { Toaster } from 'sonner'
 
 import {
@@ -70,86 +76,32 @@ function App() {
     createRoutesFromElements([
       <Route>
         {/* Public Routes */}
-        <Route
-          index
-          element={<Home />}
-        />
-        <Route
-          path='home'
-          element={<Home />}
-        />
-        <Route
-          path='explore'
-          element={<Explore />}
-        />
-        <Route
-          path='room-details/:id'
-          element={<RoomDetails />}
-        />
-        <Route
-          path='components'
-          element={<Components />}
-        />
+        <Route index element={<Home />} />
+        <Route path='home' element={<Home />} />
+        <Route path='explore' element={<Explore />} />
+        <Route path='room-details/:id' element={<RoomDetails />} />
+        <Route path='components' element={<Components />} />
 
         {/* Admin's Routes */}
-        <Route
-          path='admin'
-          element={<RouteGuard allowedRoles={['admin']} />}
-        >
-          <Route
-            index
-            element={<Dashboard />}
-          />
-          <Route
-            path='dashboard'
-            element={<Dashboard />}
-          />
-          <Route
-            path='users'
-            element={<Users />}
-          />
-          <Route
-            path='rooms'
-            element={<Rooms />}
-          />
-          <Route
-            path='ads'
-            element={<Ads />}
-          />
-          <Route
-            path='bookings'
-            element={<Bookings />}
-          />
-          <Route
-            path='facilities'
-            element={<Facilities />}
-          />
-          <Route
-            path='add-room'
-            element={<AddRoom />}
-          />
+        <Route path='admin' element={<RouteGuard allowedRoles={['admin']} />}>
+          <Route index element={<Dashboard />} />
+          <Route path='dashboard' element={<Dashboard />} />
+          <Route path='users' element={<Users />} />
+          <Route path='rooms' element={<Rooms />} />
+          <Route path='ads' element={<Ads />} />
+          <Route path='bookings' element={<Bookings />} />
+          <Route path='facilities' element={<Facilities />} />
+          <Route path='add-room' element={<AddRoom />} />
         </Route>
 
         {/* User's Routes */}
-        <Route
-          path='user'
-          element={<RouteGuard allowedRoles={['user']} />}
-        >
-          <Route
-            path='favorites'
-            element={<Favorites />}
-          />
+        <Route path='user' element={<RouteGuard allowedRoles={['user']} />}>
+          <Route path='favorites' element={<Favorites />} />
         </Route>
 
         {/* Authentication Routes */}
-        <Route
-          path='login'
-          element={<LoginPage mode='portal' />}
-        />
-        <Route
-          path='register'
-          element={<RegisterPage mode='portal' />}
-        />
+        <Route path='login' element={<LoginPage mode='portal' />} />
+        <Route path='register' element={<RegisterPage mode='portal' />} />
         <Route
           path='reset-password'
           element={<ResetPassPage mode='portal' />}
@@ -158,14 +110,8 @@ function App() {
           path='forgot-password'
           element={<ForgotPassPage mode='portal' />}
         />
-        <Route
-          path='admin/login'
-          element={<LoginPage mode='admin' />}
-        />
-        <Route
-          path='admin/create'
-          element={<RegisterPage mode='admin' />}
-        />
+        <Route path='admin/login' element={<LoginPage mode='admin' />} />
+        <Route path='admin/create' element={<RegisterPage mode='admin' />} />
         <Route
           path='admin/reset-password'
           element={<ResetPassPage mode='admin' />}
@@ -176,20 +122,21 @@ function App() {
         />
 
         {/* Errors */}
-        <Route
-          path='unauthorized'
-          element={<UnAuthorized />}
-        />
-        <Route
-          path='*'
-          element={<NotFound />}
-        />
+        <Route path='unauthorized' element={<UnAuthorized />} />
+        <Route path='*' element={<NotFound />} />
       </Route>,
     ])
   )
 
   const { loading } = useAuthContext()
-  if (loading) return <LoadingPage />
+  if (loading)
+    return (
+      <>
+        <Box height={'100vh'} >
+          <LoadingPage />
+        </Box>
+      </>
+    )
   return (
     <>
       <Toaster richColors />

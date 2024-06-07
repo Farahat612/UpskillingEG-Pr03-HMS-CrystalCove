@@ -8,6 +8,7 @@ import {
 } from '@mui/material'
 import deleteDataImg from '../../assets/images/delete-data.png'
 import { useDeleteItem } from '../../hooks/admin'
+import { LoadindButton } from '../shared'
 
 interface DeleteModalProps {
   open: boolean
@@ -17,12 +18,13 @@ interface DeleteModalProps {
 }
 
 const DeleteModal = ({ open, setOpen, itemId, endpoint }: DeleteModalProps) => {
-  const { deleteItem } = useDeleteItem({ itemId, endpoint })
+  const { deleteItem, loading } = useDeleteItem({ itemId, endpoint })
 
   const handleDeleteClick = async () => {
     await deleteItem()
     setOpen(false)
   }
+
   return (
     <>
       <Dialog
@@ -68,8 +70,9 @@ const DeleteModal = ({ open, setOpen, itemId, endpoint }: DeleteModalProps) => {
             onClick={handleDeleteClick}
             color='error'
             variant='contained'
+            disabled={loading}
           >
-            Delete
+            {loading ? <LoadindButton LoadingText='deleting' /> : 'Delete'}
           </Button>
         </DialogActions>
       </Dialog>
