@@ -37,7 +37,7 @@ const AddItemsModal = ({
             alignItems: 'center',
           }}
         >
-          <Typography id='dialog-title' variant='h6'>
+          <Typography id='dialog-title' variant='h6' component={'div'}>
             {title}
           </Typography>
           <DialogActions>
