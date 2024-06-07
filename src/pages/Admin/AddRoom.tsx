@@ -1,4 +1,4 @@
-import { Close } from '@mui/icons-material'
+import { Close, ChevronLeft } from '@mui/icons-material'
 import {
   Box,
   Button,
@@ -38,9 +38,24 @@ const AddRoom = () => {
   } = useAddRoom()
   return (
     <AdminLayout>
+      {/* Back to Rooms Page Button */}
+      <Button
+        variant='contained'
+        sx={{ width: 'fit-content', mb: 2, pr: 4 }}
+        onClick={() => {
+          reset()
+          setImages([])
+          navigate('/admin/rooms')
+        }}
+      >
+        <ChevronLeft />
+        Back to Rooms
+      </Button>
+      {/* Form */}
       <Box
         width={'100%'}
-        height={'100%'}
+        minHeight={'60vh'}
+        px={5}
         display='flex'
         justifyContent='center'
         alignItems='center'
