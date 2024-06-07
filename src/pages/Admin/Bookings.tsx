@@ -1,11 +1,10 @@
-import { Box, Button, TablePagination } from '@mui/material'
+import { Box, TablePagination } from '@mui/material'
 import { HeaderDashboard } from '../../components/shared'
 import { CustomTable } from '../../components/ui'
 import { AdminLayout } from '../../layouts'
 import { Booking } from '../../types'
 
 import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
-
 
 const Bookings = () => {
   const {
@@ -17,7 +16,6 @@ const Bookings = () => {
     handleChangePage,
     handleChangeRowsPerPage,
   } = useFetchPaginatedData('/admin/booking', 'booking')
-  
 
   const columns = [
     { id: 'roomNumber', label: 'Room Number' },
@@ -42,13 +40,7 @@ const Bookings = () => {
         headerTitle='Bookings Table Details'
         headerSubtitle='Check Details of All Bookings in the system.'
       >
-        <Button
-          sx={{ py: 1.2, px: 5, borderRadius: 3 }}
-          variant='contained'
-          color='primary'
-        >
-          Add New Booking
-        </Button>
+        <></>
       </HeaderDashboard>
 
       {loading ? (

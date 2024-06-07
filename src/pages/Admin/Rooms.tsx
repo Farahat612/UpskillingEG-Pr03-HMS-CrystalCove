@@ -6,6 +6,7 @@ import { AdminLayout } from '../../layouts'
 import { Room } from '../../types'
 
 import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
+import { useNavigate } from 'react-router-dom'
 
 const Rooms = () => {
   const {
@@ -33,6 +34,8 @@ const Rooms = () => {
     }))
   }
 
+  const navigate = useNavigate()
+
   return (
     <AdminLayout>
       <HeaderDashboard
@@ -43,6 +46,7 @@ const Rooms = () => {
           sx={{ py: 1.2, px: 5, borderRadius: 3 }}
           variant='contained'
           color='primary'
+          onClick={() => navigate('/admin/add-room')}
         >
           Add New Room
         </Button>

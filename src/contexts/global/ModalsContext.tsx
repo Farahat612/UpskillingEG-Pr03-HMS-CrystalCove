@@ -5,6 +5,9 @@ import { createContext, useContext, useState } from 'react'
 type ModalContextType = {
   deleteModalOpened: boolean
   setDeleteModalOpened: (open: boolean) => void
+
+  addModalOpened: boolean
+  setAddModalOpened: (open: boolean) => void
 }
 
 // create a context
@@ -13,9 +16,17 @@ export const ModalsContext = createContext<ModalContextType | null>(null)
 // create a context provider
 export const ModalsProvider = ({ children }: { children: React.ReactNode }) => {
   const [deleteModalOpened, setDeleteModalOpened] = useState(false)
+  const [addModalOpened, setAddModalOpened] = useState(false)
 
   return (
-    <ModalsContext.Provider value={{ deleteModalOpened, setDeleteModalOpened }}>
+    <ModalsContext.Provider
+      value={{
+        deleteModalOpened,
+        setDeleteModalOpened,
+        addModalOpened,
+        setAddModalOpened,
+      }}
+    >
       {children}
     </ModalsContext.Provider>
   )

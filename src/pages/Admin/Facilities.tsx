@@ -6,6 +6,10 @@ import { Facility } from '../../types'
 
 import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
 
+import { useModalsContext } from '../../contexts/global/ModalsContext'
+import { AddItemsModal } from '../../components/modals'
+import { AddFacilityForm } from '../../components/forms'
+
 const Facilities = () => {
   const {
     data,
@@ -16,6 +20,8 @@ const Facilities = () => {
     handleChangePage,
     handleChangeRowsPerPage,
   } = useFetchPaginatedData('/admin/room-facilities', 'facilities')
+
+  const { setAddModalOpened } = useModalsContext()
 
   const columns = [
     { id: 'name', label: 'Name' },
@@ -42,6 +48,7 @@ const Facilities = () => {
           sx={{ py: 1.2, px: 5, borderRadius: 3 }}
           variant='contained'
           color='primary'
+          onClick={() => setAddModalOpened(true)}
         >
           Add New Facility
         </Button>
@@ -64,6 +71,10 @@ const Facilities = () => {
           </Box>
         </>
       )}
+
+      <AddItemsModal title='Add New Facility'>
+        <AddFacilityForm />
+      </AddItemsModal>
     </AdminLayout>
   )
 }

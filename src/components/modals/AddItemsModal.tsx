@@ -1,30 +1,30 @@
-import { useState } from 'react'
+import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import {
-  Button,
   Dialog,
-  DialogTitle,
-  DialogContent,
   DialogActions,
+  DialogContent,
+  DialogTitle,
   Typography,
 } from '@mui/material'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff'
+import { useModalsContext } from '../../contexts/global/ModalsContext'
+
+interface AddItemsModalProps {
+  children: React.ReactNode
+  title: string
+  
+}
 
 const AddItemsModal = ({
   children,
   title,
-}: {
-  children: React.ReactNode
-  title: string
-}) => {
-  const [open, setOpen] = useState(false)
+}: AddItemsModalProps) => {
+
+  const {addModalOpened, setAddModalOpened} = useModalsContext()
   return (
     <>
-      <Button variant='contained' color='primary' onClick={() => setOpen(true)}>
-        {title}
-      </Button>
       <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
+        open={addModalOpened}
+        onClose={() => setAddModalOpened(false)}
         fullWidth
         maxWidth='sm'
         aria-labelledby='dialog-title'
@@ -42,7 +42,7 @@ const AddItemsModal = ({
           </Typography>
           <DialogActions>
             <HighlightOffIcon
-              onClick={() => setOpen(false)}
+              onClick={() => setAddModalOpened(false)}
               color='error'
               sx={{ cursor: 'pointer' }}
             />
@@ -50,16 +50,6 @@ const AddItemsModal = ({
         </DialogTitle>
 
         <DialogContent id='dialog-description'> {children} </DialogContent>
-
-        <DialogActions sx={{ px: 4, pt: 4, mb: 2 }}>
-          <Button
-            onClick={() => setOpen(false)}
-            color='primary'
-            variant='contained'
-          >
-            Save
-          </Button>
-        </DialogActions>
       </Dialog>
     </>
   )

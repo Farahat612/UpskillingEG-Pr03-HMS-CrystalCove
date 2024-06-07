@@ -10,7 +10,6 @@ import {
 
 import { Testmonial } from '../../components/combined'
 import { StartBookingForm } from '../../components/forms'
-import { AddItemsModal } from '../../components/modals'
 import { Footer, Header, Navbar } from '../../components/shared'
 import {
   DetailsHero,
@@ -48,26 +47,6 @@ const Components = () => {
           </Stack>
 
           <Divider sx={{ my: 4 }} />
-
-          <Badge
-            badgeContent={'sherif'}
-            color='success'
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right',
-            }}
-          >
-            <Typography variant='h4' gutterBottom>
-              Modals
-            </Typography>
-          </Badge>
-          <Stack direction='row' spacing={8} sx={{ mt: 5 }}>
-            <AddItemsModal title='Add Items'>
-              <Typography variant='body1' gutterBottom>
-                Add your items here
-              </Typography>
-            </AddItemsModal>
-          </Stack>
         </Paper>
 
         <Divider sx={{ my: 4 }} />
