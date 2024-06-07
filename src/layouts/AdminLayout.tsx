@@ -1,5 +1,5 @@
 import { Stack } from '@mui/material'
-import { SideBar } from '../components/shared'
+import { AdminNavbar, SideBar } from '../components/shared'
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -19,7 +19,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
       >
         {/* Navbar */}
         <Stack spacing={0} direction='row'>
-          Admin Navbar
+          <AdminNavbar />
         </Stack>
 
         {/* Main Content */}

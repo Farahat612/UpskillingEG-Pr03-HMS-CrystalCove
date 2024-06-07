@@ -7,7 +7,7 @@ import LoadingPage from './LoadingPage'
 import Navbar from './Navbar'
 import RightNavbar from './RightNavbar'
 import SideBar from './SideBar'
-
+import AdminNavbar from './AdminNavbar'
 
 export {
   Header,
@@ -18,5 +18,6 @@ export {
   RightNavbar,
   Breadcrumb,
   LoadindButton,
-  LoadingPage
+  LoadingPage,
+  AdminNavbar,
 }
