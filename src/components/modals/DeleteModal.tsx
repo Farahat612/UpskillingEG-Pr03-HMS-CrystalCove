@@ -22,7 +22,6 @@ const DeleteModal = ({ open, setOpen, itemId, endpoint }: DeleteModalProps) => {
 
   const handleDeleteClick = async () => {
     await deleteItem()
-    setOpen(false)
   }
 
   return (
