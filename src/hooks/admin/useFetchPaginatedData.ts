@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { apiProtected } from '../../utils/api'
+import { useRefetchContext } from '../../contexts/global/RefetchContext'
 
 export const useFetchPaginatedData = (
   endpoint: string,
@@ -14,6 +15,8 @@ export const useFetchPaginatedData = (
 
   const page = parseInt(searchParams.get('page') || '1', 10) - 1
   const size = parseInt(searchParams.get('size') || '10', 10)
+
+  const {refetchCount} = useRefetchContext()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +34,7 @@ export const useFetchPaginatedData = (
     }
 
     fetchData()
-  }, [endpoint, page, responseListName, size])
+  }, [endpoint, page, responseListName, size, refetchCount])
 
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
