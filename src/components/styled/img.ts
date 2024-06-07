@@ -9,6 +9,7 @@ export const DetailsPageImage = styled.img`
 
 // style img in module change password
 export const ChangePassIamge = styled.img`
+  border-radius: 10px;
   width: 100%;
   max-height: 40vh;
   position: relative;
