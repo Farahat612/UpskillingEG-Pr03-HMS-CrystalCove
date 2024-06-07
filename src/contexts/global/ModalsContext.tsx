@@ -8,6 +8,12 @@ type ModalContextType = {
 
   addModalOpened: boolean
   setAddModalOpened: (open: boolean) => void
+
+  editModalOpened: boolean
+  setEditModalOpened: (open: boolean) => void
+
+  itemIdToEdit: string
+  setItemIdToEdit: (id: string) => void
 }
 
 // create a context
@@ -17,6 +23,8 @@ export const ModalsContext = createContext<ModalContextType | null>(null)
 export const ModalsProvider = ({ children }: { children: React.ReactNode }) => {
   const [deleteModalOpened, setDeleteModalOpened] = useState(false)
   const [addModalOpened, setAddModalOpened] = useState(false)
+  const [editModalOpened, setEditModalOpened] = useState(false)
+  const [itemIdToEdit, setItemIdToEdit] = useState('')
 
   return (
     <ModalsContext.Provider
@@ -25,6 +33,10 @@ export const ModalsProvider = ({ children }: { children: React.ReactNode }) => {
         setDeleteModalOpened,
         addModalOpened,
         setAddModalOpened,
+        editModalOpened,
+        setEditModalOpened,
+        itemIdToEdit,
+        setItemIdToEdit,
       }}
     >
       {children}

@@ -7,7 +7,7 @@ import { Facility } from '../../types'
 import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
 
 import { useModalsContext } from '../../contexts/global/ModalsContext'
-import { AddItemsModal } from '../../components/modals'
+import { AddItemsModal, EditItemsModal } from '../../components/modals'
 import { AddFacilityForm } from '../../components/forms'
 
 const Facilities = () => {
@@ -75,6 +75,10 @@ const Facilities = () => {
       <AddItemsModal title='Add New Facility'>
         <AddFacilityForm />
       </AddItemsModal>
+
+      <EditItemsModal title='Edit Facility'>
+        <AddFacilityForm />
+      </EditItemsModal>
     </AdminLayout>
   )
 }

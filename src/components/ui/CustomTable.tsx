@@ -8,10 +8,11 @@ import TableRow from '@mui/material/TableRow'
 import { styled } from '@mui/material/styles'
 import { Ad, Booking, Column, Facility, Room, User } from '../../types'
 
-import { Delete } from '@mui/icons-material'
+import { Delete, EditNote } from '@mui/icons-material'
 import { useModalsContext } from '../../contexts/global/ModalsContext'
 import { DeleteModal } from '../modals'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,8 +41,24 @@ interface CustomTableProps {
 }
 
 export default function CustomTable({ columns, rows, page }: CustomTableProps) {
-  const { deleteModalOpened, setDeleteModalOpened } = useModalsContext()
+  const {
+    deleteModalOpened,
+    setDeleteModalOpened,
+    setEditModalOpened,
+    setItemIdToEdit,
+  } = useModalsContext()
   const [itemIdToDelete, setItemIdToDelete] = useState('')
+
+  const navigate = useNavigate()
+
+  const handleEditClick = (item: Room | Facility | Ad) => {
+    if (page === 'rooms') {
+      navigate(`/admin/rooms/${item['_id']}`)
+    } else {
+      setEditModalOpened(true)
+      setItemIdToEdit(item['_id'])
+    }
+  }
 
   return (
     <>
@@ -70,6 +87,7 @@ export default function CustomTable({ columns, rows, page }: CustomTableProps) {
                   </StyledTableCell>
                 ))}
                 {page !== 'users' && (
+                  //  Delete Icon
                   <StyledTableCell key='actions' align='center'>
                     <Delete
                       onClick={() => {
@@ -79,6 +97,17 @@ export default function CustomTable({ columns, rows, page }: CustomTableProps) {
                       color='error'
                       sx={{ cursor: 'pointer' }}
                     />
+
+                    {/* Edit Icon */}
+                    {page !== 'booking' && (
+                      <EditNote
+                        color='primary'
+                        sx={{ cursor: 'pointer' }}
+                        onClick={() =>
+                          handleEditClick(row as Room | Facility | Ad)
+                        }
+                      />
+                    )}
                   </StyledTableCell>
                 )}
               </StyledTableRow>

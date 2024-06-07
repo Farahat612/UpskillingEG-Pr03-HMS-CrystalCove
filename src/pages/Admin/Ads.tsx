@@ -7,7 +7,7 @@ import { Ad } from '../../types'
 import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
 
 import { useModalsContext } from '../../contexts/global/ModalsContext'
-import { AddItemsModal } from '../../components/modals'
+import { AddItemsModal, EditItemsModal } from '../../components/modals'
 import { AddAdForm } from '../../components/forms'
 
 const Ads = () => {
@@ -79,6 +79,10 @@ const Ads = () => {
       <AddItemsModal title='Add New Ad'>
         <AddAdForm />
       </AddItemsModal>
+
+      <EditItemsModal title='Edit Ad'>
+        <AddAdForm />
+      </EditItemsModal>
     </AdminLayout>
   )
 }
