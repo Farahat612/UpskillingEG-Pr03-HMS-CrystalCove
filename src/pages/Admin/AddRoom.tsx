@@ -1,97 +1,41 @@
+import { Close } from '@mui/icons-material'
 import {
   Box,
   Button,
-  Divider,
-  MenuItem,
-  Stack,
-  TextField,
-  Select,
-  FormControl,
-  InputLabel,
   Chip,
+  Divider,
+  FormControl,
   FormHelperText,
   Grid,
   IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
 } from '@mui/material'
-import { Close } from '@mui/icons-material'
 import { AdminLayout } from '../../layouts'
-import { useForm } from 'react-hook-form'
-import { useAddData, useFetchAllData } from '../../hooks/admin'
-import { Controller } from 'react-hook-form'
-import { useState, useEffect } from 'react'
 
-type AddRoomFormData = {
-  roomNumber: string
-  price: number
-  capacity: number
-  discount: number
-  imgs: File[]
-  facilities: string[]
-}
+import { useAddRoom } from '../../hooks/admin'
+import { Controller } from 'react-hook-form'
 
 const AddRoom = () => {
-  const { data: facilities } = useFetchAllData(
-    '/admin/room-facilities',
-    'facilities'
-  )
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    errors,
+    isSubmitting,
     control,
-    setValue,
     reset,
-  } = useForm<AddRoomFormData>()
-
-  const facilityNamesById = facilities.reduce((obj, facility) => {
-    obj[facility._id] = facility.name
-    return obj
-  }, {})
-
-  // State to store the image previews
-  const [images, setImages] = useState<File[]>([])
-
-  // Function to handle file input change
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const filesArray = Array.from(e.target.files)
-
-      // Store the previous images and append the new ones
-      setImages((prevImages) => prevImages.concat(filesArray))
-
-      // Reset the value of the input element
-      e.target.value = ''
-    }
-  }
-
-  const removeImagePreview = (index: number) => {
-    setImages((prevImages) => prevImages.filter((_image, i) => i !== index))
-  }
-
-  useEffect(() => {
-    setValue('imgs', images)
-  }, [images, setValue])
-
-  const { addData } = useAddData({ endpoint: 'rooms' })
-
-  const onSubmit = async (data: Omit<AddRoomFormData, 'imgs'>) => {
-    const formData = new FormData()
-
-    // Append all other fields to formData
-    for (const key in data) {
-      if (Array.isArray(data[key])) {
-        data[key].forEach((item) => {
-          formData.append(key, item)
-        })
-      } else {
-        formData.append(key, data[key])
-      }
-    }
-    await addData(formData)
-    reset()
-    setImages([])
-  }
-
+    facilityNamesById,
+    handleFileChange,
+    removeImagePreview,
+    onSubmit,
+    navigate,
+    images,
+    facilities,
+    setImages,
+  } = useAddRoom()
   return (
     <AdminLayout>
       <Box
@@ -250,7 +194,15 @@ const AddRoom = () => {
           <Divider />
           {/* Save and Cancel */}
           <Stack alignSelf={'end'} spacing={5} direction='row'>
-            <Button sx={{ px: 3 }} variant='outlined' onClick={() => reset()}>
+            <Button
+              sx={{ px: 3 }}
+              variant='outlined'
+              onClick={() => {
+                reset()
+                setImages([])
+                navigate('/admin/rooms')
+              }}
+            >
               Cancel
             </Button>
             <Button
