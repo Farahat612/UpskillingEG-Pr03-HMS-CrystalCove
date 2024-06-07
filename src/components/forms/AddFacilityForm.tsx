@@ -1,6 +1,6 @@
 import { Stack, TextField, DialogActions, Button } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import useAddData from '../../hooks/admin/useAddData'
+import {useAddData} from '../../hooks/admin'
 import { LoadindButton } from '../shared'
 
 type AddFaciltyFormData = {

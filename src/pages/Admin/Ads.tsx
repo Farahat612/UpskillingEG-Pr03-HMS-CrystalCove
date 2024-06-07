@@ -6,6 +6,10 @@ import { Ad } from '../../types'
 
 import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
 
+import { useModalsContext } from '../../contexts/global/ModalsContext'
+import { AddItemsModal } from '../../components/modals'
+import { AddAdForm } from '../../components/forms'
+
 const Ads = () => {
   const {
     data,
@@ -16,6 +20,8 @@ const Ads = () => {
     handleChangePage,
     handleChangeRowsPerPage,
   } = useFetchPaginatedData('/admin/ads', 'ads')
+
+  const { setAddModalOpened } = useModalsContext()
 
   const columns = [
     { id: 'roomNumber', label: 'Room Number' },
@@ -46,6 +52,7 @@ const Ads = () => {
           sx={{ py: 1.2, px: 5, borderRadius: 3 }}
           variant='contained'
           color='primary'
+          onClick={() => setAddModalOpened(true)}
         >
           Add New Ad
         </Button>
@@ -68,6 +75,10 @@ const Ads = () => {
           </Box>
         </>
       )}
+
+      <AddItemsModal title='Add New Ad'>
+        <AddAdForm />
+      </AddItemsModal>
     </AdminLayout>
   )
 }
