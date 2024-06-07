@@ -18,7 +18,7 @@ const Users = () => {
     handleChangePage,
     handleChangeRowsPerPage,
   } = useFetchPaginatedData('/admin/users', 'users')
-  
+
   const columns = [
     { id: 'userName', label: 'UserName' },
     { id: 'email', label: 'Email' },
@@ -34,7 +34,6 @@ const Users = () => {
     }))
   }
 
-  
   const navigate = useNavigate()
 
   return (
@@ -57,7 +56,7 @@ const Users = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <CustomTable columns={columns} rows={rows} />
+          <CustomTable columns={columns} rows={rows} page='users' />
           <Box display='flex' justifyContent='center' mt={2}>
             <TablePagination
               component='div'

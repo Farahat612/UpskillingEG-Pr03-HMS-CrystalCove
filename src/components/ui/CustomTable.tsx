@@ -36,9 +36,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 interface CustomTableProps {
   columns: Column[]
   rows: User[] | Room[] | Facility[] | Ad[] | Booking[]
+  page: string
 }
 
-export default function CustomTable({ columns, rows }: CustomTableProps) {
+export default function CustomTable({ columns, rows, page }: CustomTableProps) {
   const { deleteModalOpened, setDeleteModalOpened } = useModalsContext()
   const [itemIdToDelete, setItemIdToDelete] = useState('')
 
@@ -53,9 +54,11 @@ export default function CustomTable({ columns, rows }: CustomTableProps) {
                   {column.label}
                 </StyledTableCell>
               ))}
-              <StyledTableCell key='actions' align='center'>
-                Actions
-              </StyledTableCell>
+              {page !== 'users' && (
+                <StyledTableCell key='actions' align='center'>
+                  Actions
+                </StyledTableCell>
+              )}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -66,16 +69,18 @@ export default function CustomTable({ columns, rows }: CustomTableProps) {
                     {row[column.id]}
                   </StyledTableCell>
                 ))}
-                <StyledTableCell key='actions' align='center'>
-                  <Delete
-                    onClick={() => {
-                      setDeleteModalOpened(true)
-                      setItemIdToDelete(row._id)
-                    }}
-                    color='error'
-                    sx={{ cursor: 'pointer' }}
-                  />
-                </StyledTableCell>
+                {page !== 'users' && (
+                  <StyledTableCell key='actions' align='center'>
+                    <Delete
+                      onClick={() => {
+                        setDeleteModalOpened(true)
+                        setItemIdToDelete(row._id)
+                      }}
+                      color='error'
+                      sx={{ cursor: 'pointer' }}
+                    />
+                  </StyledTableCell>
+                )}
               </StyledTableRow>
             ))}
           </TableBody>
@@ -85,6 +90,7 @@ export default function CustomTable({ columns, rows }: CustomTableProps) {
         open={deleteModalOpened}
         setOpen={setDeleteModalOpened}
         itemId={itemIdToDelete}
+        endpoint={page}
       />
     </>
   )

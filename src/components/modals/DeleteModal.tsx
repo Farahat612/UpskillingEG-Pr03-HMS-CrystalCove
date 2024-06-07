@@ -7,14 +7,22 @@ import {
   Typography,
 } from '@mui/material'
 import deleteDataImg from '../../assets/images/delete-data.png'
+import { useDeleteItem } from '../../hooks/admin'
 
 interface DeleteModalProps {
   open: boolean
   setOpen: (open: boolean) => void
   itemId: string
+  endpoint: string
 }
 
-const DeleteModal = ({ open, setOpen, itemId }: DeleteModalProps) => {
+const DeleteModal = ({ open, setOpen, itemId, endpoint }: DeleteModalProps) => {
+  const { deleteItem } = useDeleteItem({ itemId, endpoint })
+
+  const handleDeleteClick = async () => {
+    await deleteItem()
+    setOpen(false)
+  }
   return (
     <>
       <Dialog
@@ -57,10 +65,7 @@ const DeleteModal = ({ open, setOpen, itemId }: DeleteModalProps) => {
 
         <DialogActions>
           <Button
-            onClick={() => {
-              setOpen(false)
-              console.log(`Delete item with id: ${itemId}`)
-            }}
+            onClick={handleDeleteClick}
             color='error'
             variant='contained'
           >

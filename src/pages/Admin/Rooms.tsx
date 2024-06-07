@@ -52,7 +52,7 @@ const Rooms = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <CustomTable columns={columns} rows={rows} />
+          <CustomTable columns={columns} rows={rows} page='rooms' />
           <Box display='flex' justifyContent='center' mt={2}>
             <TablePagination
               component='div'

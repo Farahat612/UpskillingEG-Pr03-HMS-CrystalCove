@@ -51,7 +51,7 @@ const Facilities = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <CustomTable columns={columns} rows={rows} />
+          <CustomTable columns={columns} rows={rows} page='room-facilities' />
           <Box display='flex' justifyContent='center' mt={2}>
             <TablePagination
               component='div'
