@@ -53,17 +53,15 @@ const useAddRoom = () => {
 
   const onSubmit = async (data: Omit<AddRoomFormData, 'imgs'>) => {
     const formData = new FormData()
+    formData.append('roomNumber', data.roomNumber)
+    formData.append('price', data.price.toString())
+    formData.append('capacity', data.capacity.toString())
+    formData.append('discount', data.discount.toString())
+    images.forEach((image) => formData.append('imgs', image))
+    data.facilities.forEach((facility) =>
+      formData.append('facilities', facility)
+    )
 
-    // Append all other fields to formData
-    for (const key in data) {
-      if (Array.isArray(data[key])) {
-        data[key].forEach((item) => {
-          formData.append(key, item)
-        })
-      } else {
-        formData.append(key, data[key])
-      }
-    }
     await addData(formData)
     reset()
     setImages([])
