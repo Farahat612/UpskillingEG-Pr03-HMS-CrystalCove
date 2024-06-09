@@ -1,5 +1,5 @@
 import {
-  createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
@@ -72,7 +72,7 @@ const theme = createTheme({
 })
 
 function App() {
-  const route = createBrowserRouter(
+  const route = createHashRouter(
     createRoutesFromElements([
       <Route>
         {/* Public Routes */}
@@ -132,7 +132,7 @@ function App() {
   if (loading)
     return (
       <>
-        <Box height={'100vh'} >
+        <Box height={'100vh'}>
           <LoadingPage />
         </Box>
       </>
