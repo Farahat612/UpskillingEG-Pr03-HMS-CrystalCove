@@ -1,4 +1,4 @@
-import { Close, ChevronLeft } from '@mui/icons-material'
+import { Close, ChevronLeft, CloudUpload } from '@mui/icons-material'
 import {
   Box,
   Button,
@@ -13,6 +13,7 @@ import {
   Select,
   Stack,
   TextField,
+  Typography,
 } from '@mui/material'
 import { AdminLayout } from '../../layouts'
 
@@ -38,28 +39,29 @@ const AddRoom = () => {
   } = useAddRoom()
   return (
     <AdminLayout>
-      {/* Back to Rooms Page Button */}
-      <Button
-        variant='contained'
-        sx={{ width: 'fit-content', mb: 2, pr: 4 }}
-        onClick={() => {
-          reset()
-          setImages([])
-          navigate('/admin/rooms')
-        }}
-      >
-        <ChevronLeft />
-        Back to Rooms
-      </Button>
-      {/* Form */}
       <Box
         width={'100%'}
         minHeight={'60vh'}
         px={5}
         display='flex'
+        flexDirection={'column'}
         justifyContent='center'
-        alignItems='center'
+        alignItems='start'
       >
+        {/* Back to Rooms Page Button */}
+        <Button
+          variant='contained'
+          sx={{ width: 'fit-content', mb: 5, pr: 4 }}
+          onClick={() => {
+            reset()
+            setImages([])
+            navigate('/admin/rooms')
+          }}
+        >
+          <ChevronLeft />
+          Back to Rooms
+        </Button>
+        {/* Form */}
         <Stack
           component={'form'}
           spacing={5}
@@ -163,11 +165,31 @@ const AddRoom = () => {
               defaultValue={[]}
               render={({ field }) => (
                 <Box>
-                  <Button variant='contained' component='label'>
-                    Upload Images
+                  <Box
+                    sx={{
+                      position: 'relative',
+                      width: '100%',
+                      height: '10rem',
+                      border: '2px dashed #203FC7 ',
+                      borderRadius: '15px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      gap: 2,
+                    }}
+                  >
+                    <Button startIcon={<CloudUpload />} variant='contained'>
+                      Upload Images
+                    </Button>
                     <input
                       accept='image/*'
-                      style={{ display: 'none' }}
+                      style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        opacity: 0,
+                      }}
                       id='raised-button-file'
                       multiple
                       type='file'
@@ -177,7 +199,8 @@ const AddRoom = () => {
                         field.onChange(images)
                       }}
                     />
-                  </Button>
+                    <Typography>Or Drag and drop images here</Typography>
+                  </Box>
                 </Box>
               )}
             />
