@@ -19,7 +19,8 @@ const useLogin = ({ mode }: { mode: 'portal' | 'admin' }) => {
 
   const navigate = useNavigate()
   const location = useLocation()
-  const from = location.state?.from?.pathname || '/'
+  const navigateDest = mode === 'portal' ? '/' : '/admin'
+  const from = location.state?.from?.pathname || navigateDest
 
   const {
     register,
