@@ -51,7 +51,7 @@ const useAddRoom = () => {
 
   const { addData } = useAddData({ endpoint: 'rooms' })
 
-  const onSubmit = async (data: Omit<AddRoomFormData, 'imgs'>) => {
+  const onSubmit = async (data: AddRoomFormData) => {
     const formData = new FormData()
     formData.append('roomNumber', data.roomNumber)
     formData.append('price', data.price.toString())
