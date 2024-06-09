@@ -1,13 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useEffect } from 'react'
-import { jwtDecode, JwtPayload } from 'jwt-decode'
-import { apiProtected } from '../../utils/api'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { User } from '../../types'
+import { apiProtected } from '../../utils/api'
 
 // Types
-interface ExtendedJwtPayload extends JwtPayload {
-  _id?: string
-}
+
 type Mode = 'portal' | 'admin'
 type UserRole = 'user' | 'admin'
 type Auth = {
@@ -15,12 +12,13 @@ type Auth = {
   token: string | null
   mode: Mode | null
   role: UserRole | null
+  userId?: string
 }
 type AuthContextType = {
   auth: Auth
   currentUser: User | object
   loading: boolean
-  login: (token: string, mode: Mode, role: UserRole) => void
+  login: (token: string, mode: Mode, role: UserRole, id: string) => void
   logout: () => void
 }
 
@@ -35,12 +33,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const token = localStorage.getItem('token') as string
     const mode = localStorage.getItem('mode') as Mode | null
     const role = localStorage.getItem('role') as UserRole | null
+    const userId = localStorage.getItem('userId') as string
 
     return {
       isAuthenticated: token !== null,
       token,
       mode,
       role,
+      userId,
     }
   })
 
@@ -50,10 +50,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const fetchUser = async () => {
         try {
           setLoading(true)
-          const decodedToken = jwtDecode(
-            auth.token as string
-          ) as ExtendedJwtPayload
-          const userId = decodedToken['_id']
+          const userId = auth.userId
           const response = await apiProtected.get(
             `/${auth.mode}/users/${userId}`
           )
@@ -68,18 +65,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [auth])
 
-  const login = (token: string, mode: Mode, role: UserRole) => {
+  const login = (token: string, mode: Mode, role: UserRole, id: string) => {
     localStorage.setItem('token', token)
     localStorage.setItem('mode', mode)
     localStorage.setItem('role', role)
-    setAuth({ isAuthenticated: true, token, mode, role })
+    localStorage.setItem('userId', id)
+    setAuth({ isAuthenticated: true, token, mode, role, userId: id })
   }
 
   const logout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('mode')
     localStorage.removeItem('role')
-    setAuth({ isAuthenticated: false, token: null, mode: null, role: null })
+    localStorage.removeItem('userId')
+    setAuth({ isAuthenticated: false, token: null, mode: null, role: null, userId: ''})
   }
 
   return (

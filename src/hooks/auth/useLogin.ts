@@ -33,7 +33,12 @@ const useLogin = ({ mode }: { mode: 'portal' | 'admin' }) => {
       toast.success(res.data.message)
       // storing token and mode in local storage
       const signinData = res.data.data
-      login(signinData.token, mode, signinData.user.role)
+      login(
+        signinData.token,
+        mode,
+        signinData.user.role,
+        signinData.user['_id']
+      )
       navigate(from, { replace: true })
     } catch (error: any) {
       toast.error('Invalid Credentials!')
