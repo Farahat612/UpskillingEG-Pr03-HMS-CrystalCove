@@ -8,22 +8,21 @@ const Dashboard = () => {
   return (
     <>
       <AdminLayout>
-        <Stack>
+        <Stack component={'div'}>
           <Grid
+            component={'div'}
             container
             justifyContent={'center'}
             spacing={4}
           >
-            <Grid
-              item
-              md={3.5}
-              sm={6}
-              xs={12}
-            >
+            <Grid component={'div'} item md={3.5} sm={6} xs={12}>
               <DashboardBoxStyle>
-                <Box>
-                  <Typography variant='h4'>100</Typography>
+                <Box component={'div'}>
+                  <Typography variant='h4' component={'p'}>
+                    100
+                  </Typography>
                   <Typography
+                    component={'p'}
                     variant='h5'
                     color={'textLight.main'}
                   >
@@ -35,16 +34,14 @@ const Dashboard = () => {
                 </Button>
               </DashboardBoxStyle>
             </Grid>
-            <Grid
-              item
-              md={3.5}
-              sm={6}
-              xs={12}
-            >
+            <Grid component={'div'} item md={3.5} sm={6} xs={12}>
               <DashboardBoxStyle display={'flex'}>
-                <Box>
-                  <Typography variant='h4'>160</Typography>
+                <Box component={'div'}>
+                  <Typography variant='h4' component={'p'}>
+                    160
+                  </Typography>
                   <Typography
+                    component={'p'}
                     variant='h5'
                     color={'textLight.main'}
                   >
@@ -56,16 +53,14 @@ const Dashboard = () => {
                 </Button>
               </DashboardBoxStyle>
             </Grid>
-            <Grid
-              item
-              md={3.5}
-              sm={12}
-              xs={12}
-            >
+            <Grid component={'div'} item md={3.5} sm={12} xs={12}>
               <DashboardBoxStyle display={'flex'}>
-                <Box>
-                  <Typography variant='h4'>20</Typography>
+                <Box component={'div'}>
+                  <Typography variant='h4' component={'p'}>
+                    20
+                  </Typography>
                   <Typography
+                    component={'p'}
                     variant='h5'
                     color={'textLight.main'}
                   >

@@ -24,13 +24,15 @@ const Charts = () => {
   const inMobile = useMediaQuery(theme.breakpoints.up('md'))
   return (
     <Stack
+      component={'div'}
       mt={10}
       direction={inMobile ? 'row' : 'column'}
       justifyContent={'space-around'}
       spacing={12}
     >
-      <Box>
+      <Box component={'div'}>
         <PieChart
+          component={'PieChart'}
           colors={platter}
           series={[
             {
@@ -49,10 +51,11 @@ const Charts = () => {
           {...(inMobile ? { ...size } : { width: 300, height: 150 })}
         />
       </Box>
-      <Box width={inMobile ? 400 : '100%'}>
-        <Paper elevation={1}>
-          <Box justifyContent={'center'} display={'flex'}>
+      <Box width={inMobile ? 400 : '100%'} component={'div'}>
+        <Paper elevation={1} component={'div'}>
+          <Box component={'div'} justifyContent={'center'} display={'flex'}>
             <Gauge
+              component={'Gauge'}
               sx={{
                 [`& .${gaugeClasses.valueArc}`]: {
                   fill: 'primary.main',
@@ -65,9 +68,19 @@ const Charts = () => {
               text={'Users'}
             />
           </Box>
-          <Box p={2} display={'flex'} justifyContent={'space-between'}>
-            <Typography display={'flex'} alignItems={'center'}>
+          <Box
+            component={'div'}
+            p={2}
+            display={'flex'}
+            justifyContent={'space-between'}
+          >
+            <Typography
+              component={'span'}
+              display={'flex'}
+              alignItems={'center'}
+            >
               <Typography
+                component={'span'}
                 sx={{
                   borderRadius: '100%',
                   bgcolor: 'primary.main',
@@ -78,11 +91,21 @@ const Charts = () => {
               ></Typography>
               User
             </Typography>
-            <Typography>25</Typography>
+            <Typography component={'span'}>25</Typography>
           </Box>
-          <Box p={2} display={'flex'} justifyContent={'space-between'}>
-            <Typography display={'flex'} alignItems={'center'}>
+          <Box
+            component={'div'}
+            p={2}
+            display={'flex'}
+            justifyContent={'space-between'}
+          >
+            <Typography
+              component={'span'}
+              display={'flex'}
+              alignItems={'center'}
+            >
               <Typography
+                component={'span'}
                 sx={{
                   borderRadius: '100%',
                   bgcolor: 'primary.main',
@@ -93,7 +116,7 @@ const Charts = () => {
               ></Typography>
               Admin
             </Typography>
-            <Typography>10</Typography>
+            <Typography component={'span'}>10</Typography>
           </Box>
         </Paper>
       </Box>
