@@ -10,10 +10,8 @@ import { Gauge, gaugeClasses } from '@mui/x-charts'
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart'
 
 const data = [
-  { value: 55, label: 'Apending' },
-  { value: 20, label: 'completed' },
-  { value: 10 },
-  { value: 25 },
+  { value: 60, label: 'Apending' },
+  { value: 40, label: 'completed' },
 ]
 
 const size = {
@@ -37,7 +35,7 @@ const Charts = () => {
           series={[
             {
               arcLabel: (item) => `(${item.value})`,
-              arcLabelMinAngle: 200,
+              arcLabelMinAngle: 400,
               data,
             },
           ]}
