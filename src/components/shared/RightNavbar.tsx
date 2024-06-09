@@ -12,15 +12,19 @@ export const Draw = () => {
       {/* condition if login or not in mobile media and loop of callback props*/}
       {isLogin ? (
         <Box display={'flex'} flexDirection={'column'}>
-          <Link to={'/'}>
-            <Button>Home</Button>
-          </Link>
-          <Link to={'/Explore'}>
-            <Button sx={{ color: '#152C5B' }}>Explore</Button>
-          </Link>
-          <Link to={'/user/favorites'}>
-            <Button sx={{ color: '#152C5B' }}>Favorites</Button>
-          </Link>
+          <Button component={Link} to={'/'}>
+            Home
+          </Button>
+          <Button component={Link} to={'/Explore'} sx={{ color: '#152C5B' }}>
+            Explore
+          </Button>
+          <Button
+            component={Link}
+            to={'/user/favorites'}
+            sx={{ color: '#152C5B' }}
+          >
+            Favorites
+          </Button>
         </Box>
       ) : (
         <ListItemText
@@ -32,28 +36,28 @@ export const Draw = () => {
             m: 'auto',
           }}
         >
-          <Link to={'/'}>
-            <Button>Home</Button>
-          </Link>
-          <Link to={'/Explore'}>
-            <Button sx={{ color: '#152C5B' }}>Explore</Button>
-          </Link>
-          <Link to={'/register'}>
-            <Button
-              variant='contained'
-              sx={{ backgroundColor: '#3252DF', color: 'white', mt: 2 }}
-            >
-              Register
-            </Button>
-          </Link>
-          <Link to={'/login'}>
-            <Button
-              variant='contained'
-              sx={{ backgroundColor: '#3252DF', color: 'white', mt: 2 }}
-            >
-              Login Now
-            </Button>
-          </Link>
+          <Button component={Link} to={'/'}>
+            Home
+          </Button>
+          <Button component={Link} to={'/Explore'} sx={{ color: '#152C5B' }}>
+            Explore
+          </Button>
+          <Button
+            component={Link}
+            to={'/register'}
+            variant='contained'
+            sx={{ backgroundColor: '#3252DF', color: 'white', mt: 2 }}
+          >
+            Register
+          </Button>
+          <Button
+            component={Link}
+            to={'/login'}
+            variant='contained'
+            sx={{ backgroundColor: '#3252DF', color: 'white', mt: 2 }}
+          >
+            Login Now
+          </Button>
         </ListItemText>
       )}
     </List>
@@ -67,7 +71,7 @@ const RightNavbar = () => {
   return (
     <Box
       sx={{
-        display: { xs: 'none', md: 'flex', },
+        display: { xs: 'none', md: 'flex' },
         alignItems: 'center',
         gap: 2,
       }}
@@ -75,43 +79,45 @@ const RightNavbar = () => {
       {/* condition if login or not in and loop of callback props*/}
       {isLogin ? (
         <>
-          <Link to={'/'}>
-            <Button>Home</Button>
-          </Link>
-          <Link to={'/Explore'}>
-            <Button sx={{ color: '#152C5B' }}>Explore</Button>
-          </Link>
-
-          <Link to={'/user/favorites'}>
-            <Button sx={{ color: '#152C5B' }}>Favorites</Button>
-          </Link>
-
+          <Button component={Link} to={'/'}>
+            Home
+          </Button>
+          <Button component={Link} to={'/Explore'} sx={{ color: '#152C5B' }}>
+            Explore
+          </Button>
+          <Button
+            component={Link}
+            to={'/user/favorites'}
+            sx={{ color: '#152C5B' }}
+          >
+            Favorites
+          </Button>
           <UserAvatar />
         </>
       ) : (
         <>
-          <Link to={'/'}>
-            <Button>Home</Button>
-          </Link>
-          <Link to={'/Explore'}>
-            <Button sx={{ color: '#152C5B' }}>Explore</Button>
-          </Link>
-          <Link to={'/register'}>
-            <Button
-              variant='contained'
-              sx={{ backgroundColor: '#3252DF', color: 'white', ml: 2 }}
-            >
-              Register
-            </Button>
-          </Link>
-          <Link to={'/login'}>
-            <Button
-              variant='contained'
-              sx={{ backgroundColor: '#3252DF', color: 'white', ml: 2 }}
-            >
-              Login Now
-            </Button>
-          </Link>
+          <Button component={Link} to={'/'}>
+            Home
+          </Button>
+          <Button component={Link} to={'/Explore'} sx={{ color: '#152C5B' }}>
+            Explore
+          </Button>
+          <Button
+            component={Link}
+            to={'/register'}
+            variant='contained'
+            sx={{ backgroundColor: '#3252DF', color: 'white', ml: 2 }}
+          >
+            Register
+          </Button>
+          <Button
+            component={Link}
+            to={'/login'}
+            variant='contained'
+            sx={{ backgroundColor: '#3252DF', color: 'white', ml: 2 }}
+          >
+            Login Now
+          </Button>
         </>
       )}
     </Box>

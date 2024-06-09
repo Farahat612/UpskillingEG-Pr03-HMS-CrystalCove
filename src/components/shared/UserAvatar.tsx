@@ -37,7 +37,7 @@ const UserAvatar = () => {
       >
         <Avatar
           // sx={{ width: 56, height: 56 }}
-          alt='Remy Sharp'
+          alt={currentUserData ? currentUserData.userName : 'User'}
           src={
             currentUserData ? currentUserData.profileImage : UserImgPlaceHolder
           }
