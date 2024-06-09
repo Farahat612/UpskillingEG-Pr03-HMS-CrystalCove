@@ -8,7 +8,7 @@ import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
 
 import { useModalsContext } from '../../contexts/global/ModalsContext'
 import { AddItemsModal, EditItemsModal } from '../../components/modals'
-import { AddFacilityForm } from '../../components/forms'
+import { AddOrEditFacilityForm } from '../../components/forms'
 
 const Facilities = () => {
   const {
@@ -21,7 +21,7 @@ const Facilities = () => {
     handleChangeRowsPerPage,
   } = useFetchPaginatedData('/admin/room-facilities', 'facilities')
 
-  const { setAddModalOpened } = useModalsContext()
+  const { setAddModalOpened, itemIdToEdit } = useModalsContext()
 
   const columns = [
     { id: 'name', label: 'Name' },
@@ -73,11 +73,11 @@ const Facilities = () => {
       )}
 
       <AddItemsModal title='Add New Facility'>
-        <AddFacilityForm />
+        <AddOrEditFacilityForm type='add' />
       </AddItemsModal>
 
       <EditItemsModal title='Edit Facility'>
-        <AddFacilityForm />
+        <AddOrEditFacilityForm type='edit' id={itemIdToEdit} />
       </EditItemsModal>
     </AdminLayout>
   )

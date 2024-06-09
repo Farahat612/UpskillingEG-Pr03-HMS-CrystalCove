@@ -1,6 +1,6 @@
 import StartBookingForm from './StartBookingForm'
 import AuthForm from './AuthForm'
-import AddFacilityForm from './AddFacilityForm'
+import AddOrEditFacilityForm from './AddOrEditFacilityForm'
 import AddAdForm from './AddAdForm'
 
-export { StartBookingForm, AuthForm, AddFacilityForm, AddAdForm }
+export { StartBookingForm, AuthForm, AddOrEditFacilityForm, AddAdForm }

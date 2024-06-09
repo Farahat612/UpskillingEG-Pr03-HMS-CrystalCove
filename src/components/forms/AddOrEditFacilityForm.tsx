@@ -1,24 +1,35 @@
 import { Stack, TextField, DialogActions, Button } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import {useAddData} from '../../hooks/admin'
+import { useAddData } from '../../hooks/admin'
 import { LoadindButton } from '../shared'
+import useEditItem from '../../hooks/admin/useEditItem'
 
-type AddFaciltyFormData = {
+type AddOrEditFacilityFormData = {
   name: string
 }
 
-const AddFacilityForm = () => {
+type AddOrEditFacilityFormProps = {
+  type: 'add' | 'edit'
+  id?: string
+}
+
+const AddOrEditFacilityForm = ({ type, id }: AddOrEditFacilityFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<AddFaciltyFormData>()
+  } = useForm<AddOrEditFacilityFormData>()
 
   const { addData } = useAddData({ endpoint: 'room-facilities' })
+  const { editItem } = useEditItem({ endpoint: 'room-facilities' })
 
-  const onSubmit = async (data: AddFaciltyFormData) => {
-    await addData(data)
+  const onSubmit = async (data: AddOrEditFacilityFormData) => {
+    if (type === 'add') {
+      await addData(data)
+    } else {
+      await editItem(data, id!)
+    }
     reset()
   }
 
@@ -40,11 +51,19 @@ const AddFacilityForm = () => {
           color='primary'
           variant='contained'
         >
-          {isSubmitting ? <LoadindButton LoadingText='Adding...' /> : 'Save'}
+          {isSubmitting ? (
+            <LoadindButton
+              LoadingText={type === 'add' ? 'Adding...' : 'Editing...'}
+            />
+          ) : type === 'add' ? (
+            'Add'
+          ) : (
+            'Edit'
+          )}
         </Button>
       </DialogActions>
     </Stack>
   )
 }
 
-export default AddFacilityForm
+export default AddOrEditFacilityForm
