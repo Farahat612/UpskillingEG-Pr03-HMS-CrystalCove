@@ -10,10 +10,8 @@ import { Gauge, gaugeClasses } from '@mui/x-charts'
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart'
 
 const data = [
-  { value: 55, label: 'Apending' },
-  { value: 20, label: 'completed' },
-  { value: 10 },
-  { value: 25 },
+  { value: 60, label: 'Apending' },
+  { value: 40, label: 'completed' },
 ]
 
 const size = {
@@ -37,7 +35,7 @@ const Charts = () => {
           series={[
             {
               arcLabel: (item) => `(${item.value})`,
-              arcLabelMinAngle: 200,
+              arcLabelMinAngle: 400,
               data,
             },
           ]}
@@ -53,10 +51,7 @@ const Charts = () => {
       </Box>
       <Box width={inMobile ? 400 : '100%'}>
         <Paper elevation={1}>
-          <Box
-            justifyContent={'center'}
-            display={'flex'}
-          >
+          <Box justifyContent={'center'} display={'flex'}>
             <Gauge
               sx={{
                 [`& .${gaugeClasses.valueArc}`]: {
@@ -70,15 +65,8 @@ const Charts = () => {
               text={'Users'}
             />
           </Box>
-          <Box
-            p={2}
-            display={'flex'}
-            justifyContent={'space-between'}
-          >
-            <Typography
-              display={'flex'}
-              alignItems={'center'}
-            >
+          <Box p={2} display={'flex'} justifyContent={'space-between'}>
+            <Typography display={'flex'} alignItems={'center'}>
               <Typography
                 sx={{
                   borderRadius: '100%',
@@ -92,15 +80,8 @@ const Charts = () => {
             </Typography>
             <Typography>25</Typography>
           </Box>
-          <Box
-            p={2}
-            display={'flex'}
-            justifyContent={'space-between'}
-          >
-            <Typography
-              display={'flex'}
-              alignItems={'center'}
-            >
+          <Box p={2} display={'flex'} justifyContent={'space-between'}>
+            <Typography display={'flex'} alignItems={'center'}>
               <Typography
                 sx={{
                   borderRadius: '100%',
