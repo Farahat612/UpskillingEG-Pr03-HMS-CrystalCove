@@ -3,10 +3,15 @@ import { RoomImage } from '../styled/RoomImage.styled'
 import largeRoomPicture from '../../assets/images/largeRoom.png'
 import { BadgedBox, IconsBox, LayerBox } from '../styled/RoomBoxStyle'
 import { Favorite, Visibility } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
 export default function LargeRoom() {
+  const navigate = useNavigate()
   return (
-    <Box>
+    <Box
+      component={'div'}
+      onClick={() => navigate('/room-details/6657e5ed6ebbbefbc1a3fb05')}
+    >
       <Box
         sx={{
           position: 'relative',
