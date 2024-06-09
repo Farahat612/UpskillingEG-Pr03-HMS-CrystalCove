@@ -1,29 +1,23 @@
 import { Container, Typography } from '@mui/material'
 import Breadcrumb from './Breadcrumb'
-import { styled } from '@mui/system';
+import { styled } from '@mui/system'
 
 const TypographyHeaderName = styled(Typography)({
-  ' @media (max-width: 767px)' : {
-    fontSize: '2.3rem'
-  },
-  ' @media (max-width: 400px)' : {
-    fontSize: '1.7rem'
-  }
+  fontSize:
+    'clamp(1.7rem, 1.0478260869565217rem + 2.6086956521739126vw, 2.3rem)',
 })
 
 interface HeaderProps {
-  headerName: string; 
-  subtitleHeader: string; 
+  headerName: string
+  subtitleHeader: string
 }
 
-const Header: React.FC<HeaderProps> = ({headerName, subtitleHeader}) => {
-
+const Header: React.FC<HeaderProps> = ({ headerName, subtitleHeader }) => {
   return (
     <>
-      
       <Breadcrumb />
       <Container>
-      <TypographyHeaderName
+        <TypographyHeaderName
           mt={2}
           variant='h3'
           align='center'
@@ -32,11 +26,7 @@ const Header: React.FC<HeaderProps> = ({headerName, subtitleHeader}) => {
           {headerName}
         </TypographyHeaderName>
 
-        <Typography
-          variant='h6'
-          align='center'
-          color={'#B0B0B0'}
-        >
+        <Typography variant='h6' align='center' color={'#B0B0B0'}>
           {subtitleHeader}
         </Typography>
       </Container>

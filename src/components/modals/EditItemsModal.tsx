@@ -1,4 +1,5 @@
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
+import { IconButton } from '@mui/material'
 import {
   Dialog,
   DialogActions,
@@ -36,11 +37,9 @@ const EditItemsModal = ({ children, title }: EditItemsModalProps) => {
             {title}
           </Typography>
           <DialogActions>
-            <HighlightOffIcon
-              onClick={() => setEditModalOpened(false)}
-              color='error'
-              sx={{ cursor: 'pointer' }}
-            />
+            <IconButton aria-label='Close Dialog' color='error'>
+              <HighlightOffIcon onClick={() => setEditModalOpened(false)} />
+            </IconButton>
           </DialogActions>
         </DialogTitle>
 

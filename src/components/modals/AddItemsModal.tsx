@@ -1,4 +1,5 @@
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
+import { IconButton } from '@mui/material'
 import {
   Dialog,
   DialogActions,
@@ -11,15 +12,10 @@ import { useModalsContext } from '../../contexts/global/ModalsContext'
 interface AddItemsModalProps {
   children: React.ReactNode
   title: string
-  
 }
 
-const AddItemsModal = ({
-  children,
-  title,
-}: AddItemsModalProps) => {
-
-  const {addModalOpened, setAddModalOpened} = useModalsContext()
+const AddItemsModal = ({ children, title }: AddItemsModalProps) => {
+  const { addModalOpened, setAddModalOpened } = useModalsContext()
   return (
     <>
       <Dialog
@@ -41,11 +37,9 @@ const AddItemsModal = ({
             {title}
           </Typography>
           <DialogActions>
-            <HighlightOffIcon
-              onClick={() => setAddModalOpened(false)}
-              color='error'
-              sx={{ cursor: 'pointer' }}
-            />
+            <IconButton aria-label='Close Dialog' color='error'>
+              <HighlightOffIcon onClick={() => setAddModalOpened(false)} />
+            </IconButton>
           </DialogActions>
         </DialogTitle>
 
