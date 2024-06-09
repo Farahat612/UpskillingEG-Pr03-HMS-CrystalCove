@@ -8,7 +8,7 @@ import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
 
 import { useModalsContext } from '../../contexts/global/ModalsContext'
 import { AddItemsModal, EditItemsModal } from '../../components/modals'
-import { AddAdForm } from '../../components/forms'
+import { AddOrEditAdForm } from '../../components/forms'
 
 const Ads = () => {
   const {
@@ -21,7 +21,7 @@ const Ads = () => {
     handleChangeRowsPerPage,
   } = useFetchPaginatedData('/admin/ads', 'ads')
 
-  const { setAddModalOpened } = useModalsContext()
+  const { setAddModalOpened, itemIdToEdit } = useModalsContext()
 
   const columns = [
     { id: 'roomNumber', label: 'Room Number' },
@@ -77,11 +77,11 @@ const Ads = () => {
       )}
 
       <AddItemsModal title='Add New Ad'>
-        <AddAdForm />
+        <AddOrEditAdForm type='add' />
       </AddItemsModal>
 
       <EditItemsModal title='Edit Ad'>
-        <AddAdForm />
+        <AddOrEditAdForm type='edit' id={itemIdToEdit} />
       </EditItemsModal>
     </AdminLayout>
   )

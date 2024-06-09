@@ -14,14 +14,20 @@ import { Controller, useForm } from 'react-hook-form'
 import { useAddData, useFetchAllData } from '../../hooks/admin'
 import { LoadindButton } from '../shared'
 import { Room } from '../../types'
+import useEditItem from '../../hooks/admin/useEditItem'
 
-type AddAdFormData = {
+type AddOrEditAdFormData = {
   room: string
   discount: number
   isActive: boolean
 }
 
-const AddAdForm = () => {
+type AddOrEditAdFormProps = {
+  type: 'add' | 'edit'
+  id?: string
+}
+
+const AddOrEditAdForm = ({ type, id }: AddOrEditAdFormProps) => {
   const { data: rooms } = useFetchAllData('/admin/rooms', 'rooms')
   const {
     register,
@@ -29,41 +35,53 @@ const AddAdForm = () => {
     formState: { errors, isSubmitting },
     reset,
     control,
-  } = useForm<AddAdFormData>()
+  } = useForm<AddOrEditAdFormData>()
 
   const { addData } = useAddData({ endpoint: 'ads' })
+  const { editItem } = useEditItem({ endpoint: 'ads' })
 
-  const onSubmit = async (data: AddAdFormData) => {
-    await addData(data)
+  const onSubmit = async (data: AddOrEditAdFormData) => {
+    if (type === 'add') {
+      await addData(data)
+    } else {
+      await editItem(data, id!)
+    }
     reset()
   }
   return (
-    <Stack component={'form'} onSubmit={handleSubmit(onSubmit)} px={1} spacing={4}>
-      <FormControl fullWidth variant='outlined'>
-        <InputLabel id='room'>Select Room</InputLabel>
-        <Controller
-          name='room'
-          control={control}
-          defaultValue={''}
-          render={({ field }) => (
-            <Select
-              {...field}
-              labelId='room'
-              label='Select Room'
-              error={errors.room ? true : false}
-            >
-              {rooms.map((room: Room) => (
-                <MenuItem key={room._id} value={room._id}>
-                  {room.roomNumber}
-                </MenuItem>
-              ))}
-            </Select>
-          )}
-        />
-        <FormHelperText error={errors.room ? true : false}>
-          {errors.room ? errors.room.message : null}
-        </FormHelperText>
-      </FormControl>
+    <Stack
+      component={'form'}
+      onSubmit={handleSubmit(onSubmit)}
+      px={1}
+      spacing={4}
+    >
+      {type == 'add' && (
+        <FormControl fullWidth variant='outlined'>
+          <InputLabel id='room'>Select Room</InputLabel>
+          <Controller
+            name='room'
+            control={control}
+            defaultValue={''}
+            render={({ field }) => (
+              <Select
+                {...field}
+                labelId='room'
+                label='Select Room'
+                error={errors.room ? true : false}
+              >
+                {rooms.map((room: Room) => (
+                  <MenuItem key={room._id} value={room._id}>
+                    {room.roomNumber}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+          />
+          <FormHelperText error={errors.room ? true : false}>
+            {errors.room ? errors.room.message : null}
+          </FormHelperText>
+        </FormControl>
+      )}
 
       <TextField
         label='Discount'
@@ -75,8 +93,6 @@ const AddAdForm = () => {
         error={errors.discount ? true : false}
         helperText={errors.discount ? errors.discount.message : null}
       />
-
-
 
       <FormControl fullWidth variant='outlined'>
         <InputLabel id='isActive'>Is Active</InputLabel>
@@ -110,11 +126,19 @@ const AddAdForm = () => {
           color='primary'
           variant='contained'
         >
-          {isSubmitting ? <LoadindButton LoadingText='Adding...' /> : 'Save'}
+          {isSubmitting ? (
+            <LoadindButton
+              LoadingText={type === 'add' ? 'Adding...' : 'Editing...'}
+            />
+          ) : type === 'add' ? (
+            'Add'
+          ) : (
+            'Edit'
+          )}
         </Button>
       </DialogActions>
     </Stack>
   )
 }
 
-export default AddAdForm
+export default AddOrEditAdForm

@@ -99,7 +99,7 @@ export default function CustomTable({ columns, rows, page }: CustomTableProps) {
                     />
 
                     {/* Edit Icon */}
-                    {page !== 'booking' && (
+                    {page !== 'booking' && page !== 'rooms' && (
                       <EditNote
                         color='primary'
                         sx={{ cursor: 'pointer' }}
