@@ -3,10 +3,11 @@ import { Box, Button, TablePagination } from '@mui/material'
 import { HeaderDashboard } from '../../components/shared'
 import { CustomTable } from '../../components/ui'
 import { AdminLayout } from '../../layouts'
-import { Room } from '../../types'
+import { Column, Room } from '../../types'
 
 import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const Rooms = () => {
   const {
@@ -19,9 +20,9 @@ const Rooms = () => {
     handleChangeRowsPerPage,
   } = useFetchPaginatedData('/admin/rooms', 'rooms')
 
-  const columns = [
+  const columns: Column[] = [
     { id: 'roomNumber', label: 'Room Number' },
-    { id: 'image', label: 'Image' },
+    { id: 'images', label: 'Images', align: 'left' },
     { id: 'price', label: 'Price' },
     { id: 'discount', label: 'Discount' },
     { id: 'capacity', label: 'Capacity' },
@@ -35,6 +36,10 @@ const Rooms = () => {
   }
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    console.log('data:', data)
+  }, [data])
 
   return (
     <AdminLayout>

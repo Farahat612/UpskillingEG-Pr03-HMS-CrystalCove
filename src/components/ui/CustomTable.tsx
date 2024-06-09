@@ -9,10 +9,11 @@ import { styled } from '@mui/material/styles'
 import { Ad, Booking, Column, Facility, Room, User } from '../../types'
 
 import { Delete, EditNote } from '@mui/icons-material'
-import { useModalsContext } from '../../contexts/global/ModalsContext'
-import { DeleteModal } from '../modals'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useModalsContext } from '../../contexts/global/ModalsContext'
+import { DeleteModal } from '../modals'
+import { ImageList } from './TableImageList'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -67,7 +68,10 @@ export default function CustomTable({ columns, rows, page }: CustomTableProps) {
           <TableHead>
             <TableRow>
               {columns.map((column) => (
-                <StyledTableCell key={column.id} align='center'>
+                <StyledTableCell
+                  key={column.id}
+                  align={column.align ? column.align : 'center'}
+                >
                   {column.label}
                 </StyledTableCell>
               ))}
@@ -83,7 +87,11 @@ export default function CustomTable({ columns, rows, page }: CustomTableProps) {
               <StyledTableRow key={index}>
                 {columns.map((column) => (
                   <StyledTableCell key={column.id} align='center'>
-                    {row[column.id]}
+                    {column.id === 'images' ? (
+                      <ImageList images={row[column.id]} />
+                    ) : (
+                      row[column.id]
+                    )}
                   </StyledTableCell>
                 ))}
                 {page !== 'users' && (
