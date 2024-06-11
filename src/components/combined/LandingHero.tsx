@@ -1,20 +1,43 @@
-import { Box, Stack } from '@mui/material'
+import { Box, Grid, useMediaQuery, useTheme } from '@mui/material'
 import { HeroImage, LandingHeroForm } from '../ui'
 
 const LandingHero = () => {
+  const theme = useTheme()
+  const isMedia = useMediaQuery(theme.breakpoints.up('md'))
   return (
-    <Stack direction='row' spacing={6}>
-      <LandingHeroForm />
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+    <Grid
+      justifyContent={'center'}
+      alignItems={'center'}
+      container
+      direction={isMedia ? 'row' : 'column'}
+      mt={4}
+    >
+      <Grid
+        md={6}
+        sm={12}
+        xs={12}
+        item
       >
-        <HeroImage />
-      </Box>
-    </Stack>
+        <LandingHeroForm />
+      </Grid>
+      <Grid
+        md={6}
+        sm={12}
+        item
+        sx={isMedia ? { mt: 0 } : { mt: 5 }}
+      >
+        <Box
+          justifyContent={'center'}
+          alignItems={'center'}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <HeroImage />
+        </Box>
+      </Grid>
+    </Grid>
   )
 }
 

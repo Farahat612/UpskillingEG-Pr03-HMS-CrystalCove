@@ -1,21 +1,31 @@
-import { useState } from 'react'
+import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import {
   Button,
   Dialog,
-  DialogContent,
   DialogActions,
+  DialogContent,
   Typography,
 } from '@mui/material'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import deleteDataImg from '../../assets/images/delete-data.png'
+import { useDeleteItem } from '../../hooks/admin'
+import { LoadindButton } from '../shared'
 
-const DeleteModal = () => {
-  const [open, setOpen] = useState(false)
+interface DeleteModalProps {
+  open: boolean
+  setOpen: (open: boolean) => void
+  itemId: string
+  endpoint: string
+}
+
+const DeleteModal = ({ open, setOpen, itemId, endpoint }: DeleteModalProps) => {
+  const { deleteItem, loading } = useDeleteItem({ itemId, endpoint })
+
+  const handleDeleteClick = async () => {
+    await deleteItem()
+  }
+
   return (
     <>
-      <Button variant='contained' color='error' onClick={() => setOpen(true)}>
-        Delete Modal
-      </Button>
       <Dialog
         open={open}
         onClose={() => setOpen(false)}
@@ -56,11 +66,12 @@ const DeleteModal = () => {
 
         <DialogActions>
           <Button
-            onClick={() => setOpen(false)}
+            onClick={handleDeleteClick}
             color='error'
             variant='contained'
+            disabled={loading}
           >
-            Delete
+            {loading ? <LoadindButton LoadingText='deleting' /> : 'Delete'}
           </Button>
         </DialogActions>
       </Dialog>

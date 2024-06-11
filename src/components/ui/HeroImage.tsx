@@ -1,11 +1,13 @@
-import { Box } from '@mui/material'
+import { Box, useMediaQuery, useTheme } from '@mui/material'
 import { HeroCurvedImage } from '../styled/CurvedImage.styled'
 
 import HeroImg from '../../assets/images/hero.png'
 
 const HeroImage = () => {
+  const theme = useTheme()
+  const isMedia = useMediaQuery(theme.breakpoints.up('md'))
   return (
-    <Box width={300}>
+    <Box  maxWidth={'85%'} ml={isMedia ? 'auto' : '0'}>
       <HeroCurvedImage src={HeroImg} alt='Hero Image' />
     </Box>
   )

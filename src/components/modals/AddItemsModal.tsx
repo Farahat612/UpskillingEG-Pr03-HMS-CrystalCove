@@ -1,30 +1,26 @@
-import { useState } from 'react'
+import HighlightOffIcon from '@mui/icons-material/HighlightOff'
+import { IconButton } from '@mui/material'
 import {
-  Button,
   Dialog,
-  DialogTitle,
-  DialogContent,
   DialogActions,
+  DialogContent,
+  DialogTitle,
   Typography,
 } from '@mui/material'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff'
+import { useModalsContext } from '../../contexts/global/ModalsContext'
 
-const AddItemsModal = ({
-  children,
-  title,
-}: {
+interface AddItemsModalProps {
   children: React.ReactNode
   title: string
-}) => {
-  const [open, setOpen] = useState(false)
+}
+
+const AddItemsModal = ({ children, title }: AddItemsModalProps) => {
+  const { addModalOpened, setAddModalOpened } = useModalsContext()
   return (
     <>
-      <Button variant='contained' color='primary' onClick={() => setOpen(true)}>
-        {title}
-      </Button>
       <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
+        open={addModalOpened}
+        onClose={() => setAddModalOpened(false)}
         fullWidth
         maxWidth='sm'
         aria-labelledby='dialog-title'
@@ -37,29 +33,17 @@ const AddItemsModal = ({
             alignItems: 'center',
           }}
         >
-          <Typography id='dialog-title' variant='h6'>
+          <Typography id='dialog-title' variant='h6' component={'div'}>
             {title}
           </Typography>
           <DialogActions>
-            <HighlightOffIcon
-              onClick={() => setOpen(false)}
-              color='error'
-              sx={{ cursor: 'pointer' }}
-            />
+            <IconButton aria-label='Close Dialog' color='error'>
+              <HighlightOffIcon onClick={() => setAddModalOpened(false)} />
+            </IconButton>
           </DialogActions>
         </DialogTitle>
 
         <DialogContent id='dialog-description'> {children} </DialogContent>
-
-        <DialogActions sx={{ px: 4, pt: 4, mb: 2 }}>
-          <Button
-            onClick={() => setOpen(false)}
-            color='primary'
-            variant='contained'
-          >
-            Save
-          </Button>
-        </DialogActions>
       </Dialog>
     </>
   )

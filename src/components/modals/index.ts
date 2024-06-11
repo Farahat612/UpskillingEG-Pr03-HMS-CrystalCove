@@ -1,4 +1,5 @@
 import DeleteModal from './DeleteModal'
 import AddItemsModal from './AddItemsModal'
+import EditItemsModal from './EditItemsModal'
 
-export { DeleteModal, AddItemsModal }
+export { DeleteModal, AddItemsModal, EditItemsModal }

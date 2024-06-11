@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { apiPublic } from '../../utils/api'
 import { FormData } from '../../types'
@@ -18,6 +18,9 @@ const useLogin = ({ mode }: { mode: 'portal' | 'admin' }) => {
   }
 
   const navigate = useNavigate()
+  const location = useLocation()
+  const navigateDest = mode === 'portal' ? '/' : '/admin'
+  const from = location.state?.from?.pathname || navigateDest
 
   const {
     register,
@@ -31,8 +34,13 @@ const useLogin = ({ mode }: { mode: 'portal' | 'admin' }) => {
       toast.success(res.data.message)
       // storing token and mode in local storage
       const signinData = res.data.data
-      login(signinData.token, mode, signinData.user.role)
-      navigate('/')
+      login(
+        signinData.token,
+        mode,
+        signinData.user.role,
+        signinData.user['_id']
+      )
+      navigate(from, { replace: true })
     } catch (error: any) {
       toast.error('Invalid Credentials!')
     }
