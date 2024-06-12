@@ -10,5 +10,6 @@ import CustomTable from './CustomTable'
 import ADSRoom from './ADSRoomCard'
 import LargeRoom from './LargeRoom'
 import Charts from './Charts'
+import CommentDetails from './CommentDetails'
 
-export { HeroImage, TestmonialsImage, TestmonialsData, DetailsHero, LandingHeroForm, AboutDetails, BookingDetails, RatingDetails, CustomTable, ADSRoom, LargeRoom, Charts }
+export { HeroImage, TestmonialsImage, TestmonialsData, DetailsHero, LandingHeroForm, AboutDetails, BookingDetails, RatingDetails, CustomTable, ADSRoom, LargeRoom, Charts, CommentDetails }
