@@ -8,18 +8,22 @@ import {
 } from '@mui/material'
 import { Gauge, gaugeClasses } from '@mui/x-charts'
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart'
-
-const data = [
-  { value: 60, label: 'Apending' },
-  { value: 40, label: 'completed' },
-]
+import { DataType } from '../../pages/Admin/Dashboard'
 
 const size = {
   width: 400,
   height: 200,
 }
 const platter = ['#526BE8', '#A05ACE', '#FFA93A', '#FF2C38']
-const Charts = () => {
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Charts = ({ chartsData }: DataType | any) => {
+  console.log(chartsData)
+  const data = [
+    { value: chartsData.bookings?.pending || 0, label: 'Pending' },
+    { value: chartsData.bookings?.completed || 0, label: 'Completed' },
+  ]
+
   const theme = useTheme()
   const inMobile = useMediaQuery(theme.breakpoints.up('md'))
   return (
@@ -51,9 +55,19 @@ const Charts = () => {
           {...(inMobile ? { ...size } : { width: 300, height: 150 })}
         />
       </Box>
-      <Box width={inMobile ? 400 : '100%'} component={'div'}>
-        <Paper elevation={1} component={'div'}>
-          <Box component={'div'} justifyContent={'center'} display={'flex'}>
+      <Box
+        width={inMobile ? 400 : '100%'}
+        component={'div'}
+      >
+        <Paper
+          elevation={1}
+          component={'div'}
+        >
+          <Box
+            component={'div'}
+            justifyContent={'center'}
+            display={'flex'}
+          >
             <Gauge
               component={'Gauge'}
               sx={{
@@ -63,7 +77,7 @@ const Charts = () => {
               }}
               width={200}
               height={150}
-              value={100}
+              value={chartsData?.users?.user - chartsData?.users?.admin}
               outerRadius='90%'
               text={'Users'}
             />
@@ -91,7 +105,9 @@ const Charts = () => {
               ></Typography>
               User
             </Typography>
-            <Typography component={'span'}>25</Typography>
+            <Typography component={'span'}>
+              {chartsData?.users?.user}
+            </Typography>
           </Box>
           <Box
             component={'div'}
@@ -116,7 +132,9 @@ const Charts = () => {
               ></Typography>
               Admin
             </Typography>
-            <Typography component={'span'}>10</Typography>
+            <Typography component={'span'}>
+              {chartsData?.users?.admin}
+            </Typography>
           </Box>
         </Paper>
       </Box>
