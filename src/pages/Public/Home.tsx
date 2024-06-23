@@ -1,87 +1,59 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
-import { LandingHero } from "../../components/combined";
-import { Footer, Navbar } from "../../components/shared";
+import { Box, Container, Grid, Typography } from '@mui/material'
+import { LandingHero } from '../../components/combined'
+import { Footer, Navbar } from '../../components/shared'
 import {
   LargeRoom,
   TestmonialsData,
   TestmonialsImage,
-} from "../../components/ui";
-import { apiPublic } from "../../utils/api";
-import { useState, useEffect } from "react";
-
-
-interface Room {
-  _id: string;
-  price: number;
-  discount: number;
-  roomNumber: string;
-  images: string[];
-  facilities: string[];
-}
-
-interface Ad {
-  _id: string;
-  isActive: boolean;
-  room: Room;
-}
-
-
-
+} from '../../components/ui'
+import { useFetchPublicData } from '../../hooks/portal/useFetchPublicData'
+import { Ad } from '../../types'
 
 const Home = () => {
-  const [ads, setAds] = useState<Ad[]>([]);
-  const getItem = async () => {
-  try {
-    const { data } = await apiPublic.get(`/portal/ads`);
-    setAds(data.data.ads);
-  } catch (err) {
-    console.error("Error fetching data", err);
-  }
-};
-
-useEffect(() => {
-  getItem();
-
-}, []);
-
+  const { data: ads, loading } = useFetchPublicData<Ad[]>('ads', 'ads')
 
   // Get the last 4 ads
-const lastFourAds = ads.slice(-4);
+  const recentAds = ads.slice(-4)
   return (
     <>
       <Navbar />
-      <Container maxWidth="xl" sx={{ m: "auto" }}>
+      <Container maxWidth='xl' sx={{ m: 'auto' }}>
         <LandingHero />
         {/* ads grid */}
         <Box mt={10}>
           <Typography
             mb={2}
-            variant="h5"
+            variant='h5'
             fontWeight={700}
-            color={"primary.dark"}>
+            color={'primary.dark'}
+          >
             Most Popular Adds
           </Typography>
-          <Grid container spacing={2} margin={"auto"} justifyContent={"center"}>
-            {lastFourAds.map((item, index) => (
-              <Grid item md={3} key={index}>
-                <LargeRoom
-                  roomPicture={item.room.images[0]}
-                  price={item.room.discount}
-                  title={item.room.roomNumber}
-                  location={"Depok, Indonesia"}
-                />
-              </Grid>
-            ))}
+          <Grid container spacing={2} margin={'auto'} justifyContent={'center'}>
+            {!loading ? (
+              recentAds.map((item, index) => (
+                <Grid item md={3} key={index}>
+                  <LargeRoom
+                    roomPicture={item.room.images[0]}
+                    price={item.room.discount}
+                    title={item.room.roomNumber}
+                  />
+                </Grid>
+              ))
+            ) : (
+              <div>Loading...</div>
+            )}
           </Grid>
         </Box>
 
         {/* Testmonials grid */}
         <Grid
-          mx={"auto"}
+          mx={'auto'}
           mt={10}
           container
           spacing={0}
-          justifyContent={"center"}>
+          justifyContent={'center'}
+        >
           <Grid md={4} sm={5} xs={5} item>
             <TestmonialsImage />
           </Grid>
@@ -93,7 +65,7 @@ const lastFourAds = ads.slice(-4);
       </Container>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
