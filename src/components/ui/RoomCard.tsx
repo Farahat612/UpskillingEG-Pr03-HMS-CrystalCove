@@ -4,8 +4,10 @@ import { RoomImage } from '../styled/RoomImage.styled'
 import { Favorite, Visibility } from '@mui/icons-material'
 import { BadgedBox, IconsBox, LayerBox, RoomName } from '../styled/RoomBoxStyle'
 import { Room } from '../../types'
+import { useNavigate } from 'react-router-dom'
 
 export default function RoomCard({ item }: { item: Room }) {
+  const navigate = useNavigate()
   return (
     <>
       <Box
@@ -17,7 +19,7 @@ export default function RoomCard({ item }: { item: Room }) {
           cursor: 'pointer',
         }}
       >
-        <Box sx={{}}>
+        <Box>
           <RoomImage src={item.images[0]} alt='RoomPicture' />
         </Box>
         <BadgedBox>{item.price}</BadgedBox>
@@ -30,7 +32,10 @@ export default function RoomCard({ item }: { item: Room }) {
             <IconButton sx={{ color: '#FFFFFF' }}>
               <Favorite />
             </IconButton>
-            <IconButton sx={{ color: '#FFFFFF' }}>
+            <IconButton
+              onClick={() => navigate(`/room-details/${item._id}`)}
+              sx={{ color: '#FFFFFF' }}
+            >
               <Visibility />
             </IconButton>
           </IconsBox>
