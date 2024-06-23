@@ -1,7 +1,7 @@
 import { Container, Grid, Typography } from '@mui/material'
 import { Footer, Header, Navbar } from '../../components/shared'
 
-import RoomCard from '../../components/ui/RoomCard'
+import {RoomCard} from '../../components/ui'
 import { useFetchProtectedData } from '../../hooks/portal/useFetchProtectedData'
 import { Room } from '../../types'
 
