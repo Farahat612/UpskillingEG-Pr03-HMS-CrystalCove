@@ -18,7 +18,7 @@ const NotFound = () => {
             This Page doesn't exist or was removed! We suggest you back to home.
           </Typography>
           <Box className="flex">
-            <Button onClick={handleClick}>Back To Home</Button>
+            <Button onClick={handleClick} variant="contained" >Back To Home</Button>
           </Box>
         </Box>
       </Box>
