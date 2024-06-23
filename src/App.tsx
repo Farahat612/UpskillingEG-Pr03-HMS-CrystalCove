@@ -9,41 +9,40 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 import {
-  createTheme,
-  ThemeProvider,
-  colors,
-  CssBaseline,
   Box,
+  colors,
+  createTheme,
+  CssBaseline,
+  ThemeProvider,
 } from '@mui/material'
 import { Toaster } from 'sonner'
 
+import { NotFound, RouteGuard, UnAuthorized } from './components/routing'
+import { LoadingPage } from './components/shared'
+import { useAuthContext } from './contexts/global/AuthContext'
 import {
+  AddRoom,
+  Ads,
+  Bookings,
+  Dashboard,
+  Facilities,
+  Rooms,
+  Users,
+} from './pages/Admin'
+import {
+  ForgotPassPage,
   LoginPage,
   RegisterPage,
   ResetPassPage,
-  ForgotPassPage,
 } from './pages/Authentication'
 import {
-  Dashboard,
-  Rooms,
-  AddRoom,
-  Ads,
-  Users,
-  Bookings,
-  Facilities,
-} from './pages/Admin'
-import { Favorites } from './pages/User'
-import {
-  Home,
-  Explore,
-  Components,
-  RoomDetails,
   AddDetails,
   AllAds,
-} from "./pages/Public";
-import { RouteGuard, NotFound, UnAuthorized } from './components/routing'
-import { LoadingPage } from './components/shared'
-import { useAuthContext } from './contexts/global/AuthContext'
+  Explore,
+  Home,
+  RoomDetails
+} from "./pages/Public"
+import { Favorites } from './pages/User'
 
 
 
@@ -91,7 +90,6 @@ function App() {
         <Route path="all-ads" element={<AllAds />} />
         <Route path="room-details/:id" element={<RoomDetails />} />
         <Route path="add-details/:id" element={<AddDetails />} />
-        <Route path="components" element={<Components />} />
 
         {/* Admin's Routes */}
         <Route path="admin" element={<RouteGuard allowedRoles={["admin"]} />}>
