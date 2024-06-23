@@ -1,36 +1,45 @@
-import { Container, Grid, Typography } from "@mui/material";
-import { Footer, Header, Navbar } from "../../components/shared";
-import FavRoomsCards from "../../components/ui/FavRoomsCard";
+import { Container, Grid, Typography } from '@mui/material'
+import { Footer, Header, Navbar } from '../../components/shared'
+
+import RoomCard from '../../components/ui/RoomCard'
+import { useFetchProtectedData } from '../../hooks/portal/useFetchProtectedData'
+import { Room } from '../../types'
+
+type favoriteRoom = {
+  _id: string
+  rooms: Room[]
+}
 
 const Favorites = () => {
+  const { data: favoriteRooms, loading } = useFetchProtectedData<
+    favoriteRoom[]
+  >('favorite-rooms', 'favoriteRooms')
+
   return (
     <>
       <Navbar />
       <Container>
-        <Header headerName={"Your Favorites"} subtitleHeader={""} />
-        <Typography mt={3} variant="h6" color={"#152C5B"}>
+        <Header headerName={'Your Favorites'} subtitleHeader={''} />
+        <Typography mt={3} variant='h6' color={'#152C5B'}>
           Your Favorites Rooms
         </Typography>
-        <Grid
-          container
-          rowSpacing={2}
-          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-          mt={1}
-        >
-          <Grid item xs={12} sm={6} md={4}>
-            <FavRoomsCards />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <FavRoomsCards />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <FavRoomsCards />
-          </Grid>
+        <Grid container spacing={2} margin={'auto'} justifyContent={'center'}>
+          {!loading ? (
+            favoriteRooms.map((item) =>
+              item.rooms.map((room, index) => (
+                <Grid item md={3} key={index}>
+                  <RoomCard item={room} />
+                </Grid>
+              ))
+            )
+          ) : (
+            <div>Loading...</div>
+          )}
         </Grid>
       </Container>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Favorites;
+export default Favorites
