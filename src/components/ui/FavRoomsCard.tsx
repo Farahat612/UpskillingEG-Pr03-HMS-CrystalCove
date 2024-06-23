@@ -12,7 +12,7 @@ import { useGetAllRooms } from "../../hooks/portal/useGetAllRooms";
 import { Room } from "../../types";
 import { useEffect } from "react";
 
-export default function ADSRoom() {
+export default function FavRoomsCards() {
   const { data, loading } = useGetAllRooms();
   useEffect(() => {
     console.log(data);
