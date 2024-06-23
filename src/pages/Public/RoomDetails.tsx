@@ -17,7 +17,7 @@ const RoomDetails = () => {
       <Container maxWidth='xl' sx={{ margin: 'auto' }}>
         <Header headerName='Village Angga' subtitleHeader='Bogor, Indonesia' />
         <DetailsHero item={item as Room} loading={loading} />
-        <AboutDetails />
+        <AboutDetails item={item as Room} loading={loading} />
         <RatingDetails />
       </Container>
       <Footer />
