@@ -6,7 +6,7 @@ import { useFetchPublicData } from '../../hooks/portal/useFetchPublicData'
 import { Room } from '../../types'
 
 const Explore = () => {
-  const { data, loading } = useFetchPublicData<Room[]>(
+  const { data: allRooms, loading } = useFetchPublicData<Room[]>(
     'rooms/available',
     'rooms'
   )
@@ -22,7 +22,7 @@ const Explore = () => {
 
         <Grid container spacing={2} margin={'auto'} justifyContent={'center'}>
           {!loading ? (
-            data.map((item, index) => (
+            allRooms.map((item, index) => (
               <Grid item md={3} key={index}>
                 <RoomCard item={item} />
               </Grid>
