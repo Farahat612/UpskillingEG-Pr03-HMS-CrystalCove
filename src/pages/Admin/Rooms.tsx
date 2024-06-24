@@ -1,6 +1,6 @@
 // Users.tsx
 import { Box, Button, TablePagination } from '@mui/material'
-import { HeaderDashboard } from '../../components/shared'
+import { HeaderDashboard, LoadingTable } from '../../components/shared'
 import { CustomTable } from '../../components/ui'
 import { AdminLayout } from '../../layouts'
 import { Column, Room } from '../../types'
@@ -28,6 +28,7 @@ const Rooms = () => {
     { id: 'capacity', label: 'Capacity' },
   ]
 
+
   let rows: Room[] = []
   if (!loading && data) {
     rows = data.map((room: Room) => ({
@@ -38,7 +39,6 @@ const Rooms = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log('data:', data)
   }, [data])
 
   return (
@@ -58,11 +58,19 @@ const Rooms = () => {
       </HeaderDashboard>
 
       {loading ? (
-        <div>Loading...</div>
+        <LoadingTable />
       ) : (
         <>
-          <CustomTable columns={columns} rows={rows} page='rooms' />
-          <Box display='flex' justifyContent='center' mt={2}>
+          <CustomTable
+            columns={columns}
+            rows={rows}
+            page='rooms'
+          />
+          <Box
+            display='flex'
+            justifyContent='center'
+            mt={2}
+          >
             <TablePagination
               component='div'
               count={totalCount}

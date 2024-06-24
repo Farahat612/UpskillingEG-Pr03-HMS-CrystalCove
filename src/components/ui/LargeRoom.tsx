@@ -22,14 +22,15 @@ export default function LargeRoom({ item }: LargeRoomProps) {
     <Box>
       <Box
         sx={{
-          position: 'relative',
-          borderRadius: '15px',
-          width: 'inherit',
-          cursor: 'pointer',
-        }}
-      >
-        <RoomImage src={item.room.images[0]} alt='RoomPicture' />
-        <BadgedBox>{item.price} per night</BadgedBox>
+
+          position: "relative",
+          borderRadius: "15px",
+          width: "fit-content",
+          cursor: "pointer",
+        }}>
+        <RoomImage src={roomPicture} alt="RoomPicture" />
+        <BadgedBox>{price} per night</BadgedBox>
+
         <LayerBox>
           <IconsBox>
             <IconButton
