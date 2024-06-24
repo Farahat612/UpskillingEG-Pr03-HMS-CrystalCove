@@ -37,8 +37,8 @@ const AddItemsModal = ({ children, title }: AddItemsModalProps) => {
             {title}
           </Typography>
           <DialogActions>
-            <IconButton aria-label='Close Dialog' color='error'>
-              <HighlightOffIcon onClick={() => setAddModalOpened(false)} />
+            <IconButton aria-label='Close Dialog' color='error'  onClick={() => setAddModalOpened(false)}>
+              <HighlightOffIcon />
             </IconButton>
           </DialogActions>
         </DialogTitle>

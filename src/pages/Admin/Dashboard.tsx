@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Stack, Typography } from '@mui/material'
+import { Box, Button, Grid, Skeleton, Stack, Typography } from '@mui/material'
 import { AdminLayout } from '../../layouts'
 import { CardTravel } from '@mui/icons-material'
 import { DashboardBoxStyle } from '../../components/styled/Dashboard.styled'
@@ -21,6 +21,7 @@ export interface DataType {
 }
 
 const Dashboard = () => {
+  const [loading, setLoading] = useState(true)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<DataType | any>([])
   useEffect(() => {
@@ -30,6 +31,8 @@ const Dashboard = () => {
         setData(response.data.data)
       } catch (error) {
         console.log(error)
+      } finally {
+        setLoading(false)
       }
     }
     getData()
@@ -57,7 +60,14 @@ const Dashboard = () => {
                     variant='h4'
                     component={'p'}
                   >
-                    {data.rooms}
+                    {loading ? (
+                      <Skeleton
+                        variant='text'
+                        sx={{ bgcolor: 'grey.900' }}
+                      />
+                    ) : (
+                      data.rooms
+                    )}
                   </Typography>
                   <Typography
                     component={'p'}
@@ -85,7 +95,14 @@ const Dashboard = () => {
                     variant='h4'
                     component={'p'}
                   >
-                    {data.facilities}
+                    {loading ? (
+                      <Skeleton
+                        variant='text'
+                        sx={{ bgcolor: 'grey.900' }}
+                      />
+                    ) : (
+                      data.facilities
+                    )}
                   </Typography>
                   <Typography
                     component={'p'}
@@ -113,7 +130,14 @@ const Dashboard = () => {
                     variant='h4'
                     component={'p'}
                   >
-                    {data.ads}
+                    {loading ? (
+                      <Skeleton
+                        variant='text'
+                        sx={{ bgcolor: 'grey.900' }}
+                      />
+                    ) : (
+                      data.ads
+                    )}
                   </Typography>
                   <Typography
                     component={'p'}

@@ -18,12 +18,16 @@ const platter = ['#526BE8', '#A05ACE', '#FFA93A', '#FF2C38']
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Charts = ({ chartsData }: DataType | any) => {
-  console.log(chartsData)
   const data = [
     { value: chartsData.bookings?.pending || 0, label: 'Pending' },
     { value: chartsData.bookings?.completed || 0, label: 'Completed' },
   ]
 
+  const adminValue = chartsData?.users?.admin
+  const userValue = chartsData?.users?.user
+
+  const gaugeValue = (typeof userValue === 'number' && typeof adminValue === 'number') ? userValue - adminValue : 0
+  
   const theme = useTheme()
   const inMobile = useMediaQuery(theme.breakpoints.up('md'))
   return (
@@ -77,7 +81,7 @@ const Charts = ({ chartsData }: DataType | any) => {
               }}
               width={200}
               height={150}
-              value={chartsData?.users?.user - chartsData?.users?.admin}
+              value={gaugeValue}
               outerRadius='90%'
               text={'Users'}
             />
@@ -106,7 +110,7 @@ const Charts = ({ chartsData }: DataType | any) => {
               User
             </Typography>
             <Typography component={'span'}>
-              {chartsData?.users?.user}
+              {userValue || 0}
             </Typography>
           </Box>
           <Box
@@ -133,7 +137,7 @@ const Charts = ({ chartsData }: DataType | any) => {
               Admin
             </Typography>
             <Typography component={'span'}>
-              {chartsData?.users?.admin}
+              {adminValue || 0}
             </Typography>
           </Box>
         </Paper>
