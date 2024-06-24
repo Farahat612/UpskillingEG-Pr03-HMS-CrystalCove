@@ -28,8 +28,8 @@ export default function LargeRoom({ item }: LargeRoomProps) {
           width: "fit-content",
           cursor: "pointer",
         }}>
-        <RoomImage src={roomPicture} alt="RoomPicture" />
-        <BadgedBox>{price} per night</BadgedBox>
+        <RoomImage src={item.room.images[0]} alt="RoomPicture" />
+        <BadgedBox>{item.room.price} per night</BadgedBox>
 
         <LayerBox>
           <IconsBox>
