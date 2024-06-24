@@ -16,7 +16,7 @@ export default function LargeRoom({ roomPicture, price, title, location }: Large
         sx={{
           position: "relative",
           borderRadius: "15px",
-          width: "inherit",
+          width: "fit-content",
           cursor: "pointer",
         }}>
         <RoomImage src={roomPicture} alt="RoomPicture" />
