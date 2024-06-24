@@ -1,15 +1,15 @@
 import { Button, Stack, Typography } from '@mui/material'
-import { DatePick, CapacityButtonGroup } from '../forms_utilities'
+import dayjs, { Dayjs } from 'dayjs'
+import { useState } from 'react'
+import { CapacityButtonGroup, DatePick } from '../forms_utilities'
 
 const StartBookingForm = () => {
+  const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs())
 
+  
   return (
     <>
-      <Stack
-        direction='column'
-        spacing={2}
-        sx={{ pt: 2 }}
-      >
+      <Stack direction='column' spacing={2} sx={{ pt: 2 }}>
         <Typography
           variant='h6'
           component={'div'}
@@ -27,7 +27,10 @@ const StartBookingForm = () => {
             Pick a Date
           </Typography>
         </Typography>
-        <DatePick />
+        <DatePick
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+        />
         <Typography
           variant='h6'
           fontSize={15}
@@ -37,10 +40,7 @@ const StartBookingForm = () => {
           Capacity
         </Typography>
         <CapacityButtonGroup />
-        <Button
-          variant='contained'
-          fullWidth
-        >
+        <Button variant='contained' fullWidth>
           Explore
         </Button>
       </Stack>
