@@ -1,17 +1,20 @@
 import { DatePicker } from '@mui/x-date-pickers'
-import { useState } from 'react'
 import { Dayjs } from 'dayjs'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 
-const DatePick = () => {
-  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null)
+interface DatePickProps {
+  date: Dayjs
+  setDate: (date: Dayjs) => void
+}
+
+const DatePick = ({ date, setDate }: DatePickProps) => {
   return (
     <>
       <DatePicker
         label='Pick a Date'
-        value={selectedDate}
+        value={date}
         disablePast
-        onChange={(newDate) => setSelectedDate(newDate)}
+        onChange={(newDate) => newDate && setDate(newDate)}
         slots={{
           openPickerIcon: () => (
             <CalendarMonthIcon

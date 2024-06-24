@@ -34,9 +34,8 @@ const Home = () => {
               recentAds.map((item, index) => (
                 <Grid item md={3} key={index}>
                   <LargeRoom
-                    roomPicture={item.room.images[0]}
-                    price={item.room.discount}
-                    title={item.room.roomNumber}
+                    item={item}
+                    
                   />
                 </Grid>
               ))

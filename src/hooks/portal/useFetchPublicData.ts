@@ -2,14 +2,20 @@
 import { apiPublic } from '../../utils/api'
 import { useEffect, useState } from 'react'
 
-export const useFetchPublicData = <T>(endpoint: string, responseListName: string) => {
+export const useFetchPublicData = <T>(
+  endpoint: string,
+  responseListName: string,
+  params?: object
+) => {
   const [data, setData] = useState<T | []>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiPublic.get(`/portal/${endpoint}`)
+        const response = await apiPublic.get(`/portal/${endpoint}`, {
+          params: params,
+        })
         setData(response.data.data[responseListName])
       } catch (error) {
         console.log(error)
@@ -19,7 +25,7 @@ export const useFetchPublicData = <T>(endpoint: string, responseListName: string
     }
 
     fetchData()
-  }, [endpoint, responseListName])
+  }, [endpoint, responseListName, params])
 
   return {
     data,

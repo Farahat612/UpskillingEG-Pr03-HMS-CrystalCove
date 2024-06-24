@@ -1,14 +1,17 @@
 import { Container, Grid, Typography } from '@mui/material'
 import { Footer, Header, Navbar } from '../../components/shared'
-
+import { useLocation } from 'react-router-dom'
 import { RoomCard } from '../../components/ui'
 import { useFetchPublicData } from '../../hooks/portal/useFetchPublicData'
 import { Room } from '../../types'
 
 const Explore = () => {
+  const { state } = useLocation()
+
   const { data: allRooms, loading } = useFetchPublicData<Room[]>(
     'rooms/available',
-    'rooms'
+    'rooms',
+    state
   )
 
   return (
