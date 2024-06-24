@@ -3,18 +3,18 @@ import { Dayjs } from 'dayjs'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 
 interface DatePickProps {
-  selectedDate: Dayjs
-  setSelectedDate: (date: Dayjs) => void
+  date: Dayjs
+  setDate: (date: Dayjs) => void
 }
 
-const DatePick = ({ selectedDate, setSelectedDate }: DatePickProps) => {
+const DatePick = ({ date, setDate }: DatePickProps) => {
   return (
     <>
       <DatePicker
         label='Pick a Date'
-        value={selectedDate}
+        value={date}
         disablePast
-        onChange={(newDate) => newDate && setSelectedDate(newDate)}
+        onChange={(newDate) => newDate && setDate(newDate)}
         slots={{
           openPickerIcon: () => (
             <CalendarMonthIcon
