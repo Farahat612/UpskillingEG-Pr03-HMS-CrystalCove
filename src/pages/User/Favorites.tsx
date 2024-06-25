@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from '@mui/material'
+import { Container, Grid, Skeleton, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { Footer, Header, Navbar } from '../../components/shared'
 
 import {RoomCard} from '../../components/ui'
@@ -14,7 +14,8 @@ const Favorites = () => {
   const { data: favoriteRooms, loading } = useFetchProtectedData<
     favoriteRoom[]
   >('favorite-rooms', 'favoriteRooms')
-
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <>
       <Navbar />
@@ -23,7 +24,7 @@ const Favorites = () => {
         <Typography mt={3} variant='h6' color={'#152C5B'}>
           Your Favorites Rooms
         </Typography>
-        <Grid container spacing={2} margin={'auto'} justifyContent={'center'}>
+        <Grid container spacing={2} mt={2} justifyContent={'center'}>
           {!loading ? (
             favoriteRooms.map((item) =>
               item.rooms.map((room, index) => (
@@ -33,7 +34,41 @@ const Favorites = () => {
               ))
             )
           ) : (
-            <div>Loading...</div>
+            <>
+            <Stack
+              spacing={10}
+              direction={matches ? 'column' : 'row'}
+            >
+              <Stack>
+                <Skeleton
+                  height={230}
+                  width={230}
+                  variant='rounded'
+                />
+              </Stack>
+              <Stack>
+                <Skeleton
+                  height={230}
+                  width={230}
+                  variant='rounded'
+                />
+              </Stack>
+              <Stack>
+                <Skeleton
+                  height={230}
+                  width={230}
+                  variant='rounded'
+                />
+              </Stack>
+              <Stack>
+                <Skeleton
+                  height={230}
+                  width={230}
+                  variant='rounded'
+                />
+              </Stack>
+            </Stack>
+          </>
           )}
         </Grid>
       </Container>

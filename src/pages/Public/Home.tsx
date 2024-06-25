@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography } from '@mui/material'
+import { Box, Container, Grid, Skeleton, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { LandingHero } from '../../components/combined'
 import { Footer, Navbar } from '../../components/shared'
 import {
@@ -11,6 +11,8 @@ import { Ad } from '../../types'
 
 const Home = () => {
   const { data: ads, loading } = useFetchPublicData<Ad[]>('ads', 'ads')
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
   // Get the last 4 ads
   const recentAds = ads.slice(-4)
@@ -29,7 +31,7 @@ const Home = () => {
           >
             Most Popular Adds
           </Typography>
-          <Grid container spacing={2} margin={'auto'} justifyContent={'center'}>
+          <Grid container spacing={2} mt={'2'} justifyContent={'center'}>
             {!loading ? (
               recentAds.map((item, index) => (
                 <Grid item md={3} key={index}>
@@ -40,7 +42,57 @@ const Home = () => {
                 </Grid>
               ))
             ) : (
-              <div>Loading...</div>
+              <>
+              <Stack
+                spacing={10}
+                direction={matches ? 'column' : 'row'}
+              >
+                <Stack>
+                  <Skeleton
+                    height={300}
+                    width={300}
+                    variant='rounded'
+                  />
+                  <Skeleton
+                    variant='text'
+                    width={100}
+                  />
+                </Stack>
+                <Stack>
+                  <Skeleton
+                    height={300}
+                    width={300}
+                    variant='rounded'
+                  />
+                  <Skeleton
+                    variant='text'
+                    width={100}
+                  />
+                </Stack>
+                <Stack>
+                  <Skeleton
+                    height={300}
+                    width={300}
+                    variant='rounded'
+                  />
+                  <Skeleton
+                    variant='text'
+                    width={100}
+                  />
+                </Stack>
+                <Stack>
+                  <Skeleton
+                    height={300}
+                    width={300}
+                    variant='rounded'
+                  />
+                  <Skeleton
+                    variant='text'
+                    width={100}
+                  />
+                </Stack>
+              </Stack>
+            </>
             )}
           </Grid>
         </Box>
