@@ -1,9 +1,9 @@
 import { Container, Grid, Typography } from '@mui/material'
 import { Footer, Header, Navbar } from '../../components/shared'
-
-import {RoomCard} from '../../components/ui'
+import { RoomCard } from '../../components/ui'
 import { useFetchProtectedData } from '../../hooks/portal/useFetchProtectedData'
 import { Room } from '../../types'
+
 
 type favoriteRoom = {
   _id: string
@@ -20,7 +20,7 @@ const Favorites = () => {
       <Navbar />
       <Container>
         <Header headerName={'Your Favorites'} subtitleHeader={''} />
-        <Typography mt={3} variant='h6' color={'#152C5B'}>
+        <Typography mt={3} variant='h6' color={'primary.dark'}>
           Your Favorites Rooms
         </Typography>
         <Grid container spacing={2} margin={'auto'} justifyContent={'center'}>

@@ -6,18 +6,29 @@ import { BadgedBox, IconsBox, LayerBox, RoomName } from '../styled/RoomBoxStyle'
 import { Room } from '../../types'
 import { useNavigate } from 'react-router-dom'
 import usePostData from '../../hooks/portal/usePostData'
+import useDeleteData from '../../hooks/portal/useDeleteData'
 
 export default function RoomCard({ item }: { item: Room }) {
+  
   const navigate = useNavigate()
 
   const { addData } = usePostData({
     endpoint: 'favorite-rooms',
     successMSG: 'Room added to favorites successfully',
   })
+  const { deleteData } = useDeleteData({
+    endpoint: `favorite-rooms`,
+    successMSG: 'Room removed from favorites successfully',
+  })
 
-  const addToFavorites = (id: string) => {
-    addData({ roomId: id })
-  }
+  const addOrRemove = (id: string) => {
+    if(window.location.pathname === '/user/favorites') {
+        deleteData({ roomId: id })
+      } else {
+        addData({ roomId: id })
+      }
+    } 
+  
   return (
     <>
       <Box
@@ -41,7 +52,7 @@ export default function RoomCard({ item }: { item: Room }) {
           <IconsBox>
             <IconButton
               sx={{ color: '#FFFFFF' }}
-              onClick={() => addToFavorites(item._id)}
+              onClick={() => addOrRemove(item._id)}
             >
               <Favorite />
             </IconButton>
