@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from '@mui/material'
+import { Container, Grid, Skeleton, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { Footer, Header, Navbar } from '../../components/shared'
 import { useLocation } from 'react-router-dom'
 import { RoomCard } from '../../components/ui'
@@ -7,12 +7,15 @@ import { Room } from '../../types'
 
 const Explore = () => {
   const { state } = useLocation()
-
+  
   const { data: allRooms, loading } = useFetchPublicData<Room[]>(
     'rooms/available',
     'rooms',
     state
   )
+
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <>
@@ -23,7 +26,7 @@ const Explore = () => {
           All Rooms
         </Typography>
 
-        <Grid container spacing={2} margin={'auto'} justifyContent={'center'}>
+        <Grid container spacing={2} mt={2} justifyContent={'center'}>
           {!loading ? (
             allRooms.map((item, index) => (
               <Grid item md={3} key={index}>
@@ -31,7 +34,41 @@ const Explore = () => {
               </Grid>
             ))
           ) : (
-            <div>Loading...</div>
+            <>
+            <Stack
+              spacing={10}
+              direction={matches ? 'column' : 'row'}
+            >
+              <Stack>
+                <Skeleton
+                  height={230}
+                  width={230}
+                  variant='rounded'
+                />
+              </Stack>
+              <Stack>
+                <Skeleton
+                  height={230}
+                  width={230}
+                  variant='rounded'
+                />
+              </Stack>
+              <Stack>
+                <Skeleton
+                  height={230}
+                  width={230}
+                  variant='rounded'
+                />
+              </Stack>
+              <Stack>
+                <Skeleton
+                  height={230}
+                  width={230}
+                  variant='rounded'
+                />
+              </Stack>
+            </Stack>
+          </>
           )}
         </Grid>
       </Container>
