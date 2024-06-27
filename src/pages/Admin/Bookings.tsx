@@ -5,6 +5,7 @@ import { AdminLayout } from '../../layouts'
 import { Booking } from '../../types'
 
 import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
+import { LoadingTable } from '../../components/shared'
 
 const Bookings = () => {
   const {
@@ -44,7 +45,7 @@ const Bookings = () => {
       </HeaderDashboard>
 
       {loading ? (
-        <div>Loading...</div>
+                  <LoadingTable />
       ) : (
         <>
           <CustomTable columns={columns} rows={rows} page='booking' />

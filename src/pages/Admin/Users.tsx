@@ -7,6 +7,7 @@ import { AdminLayout } from '../../layouts'
 import { User } from '../../types'
 
 import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
+import { LoadingTable } from '../../components/shared'
 
 const Users = () => {
   const {
@@ -53,11 +54,19 @@ const Users = () => {
       </HeaderDashboard>
 
       {loading ? (
-        <div>Loading...</div>
+        <LoadingTable />
       ) : (
         <>
-          <CustomTable columns={columns} rows={rows} page='users' />
-          <Box display='flex' justifyContent='center' mt={2}>
+          <CustomTable
+            columns={columns}
+            rows={rows}
+            page='users'
+          />
+          <Box
+            display='flex'
+            justifyContent='center'
+            mt={2}
+          >
             <TablePagination
               component='div'
               count={totalCount}

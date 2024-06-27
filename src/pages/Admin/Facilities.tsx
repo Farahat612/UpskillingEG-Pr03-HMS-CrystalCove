@@ -9,6 +9,7 @@ import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
 import { useModalsContext } from '../../contexts/global/ModalsContext'
 import { AddItemsModal, EditItemsModal } from '../../components/modals'
 import { AddOrEditFacilityForm } from '../../components/forms'
+import { LoadingTable } from '../../components/shared'
 
 const Facilities = () => {
   const {
@@ -55,7 +56,7 @@ const Facilities = () => {
       </HeaderDashboard>
 
       {loading ? (
-        <div>Loading...</div>
+        <LoadingTable />
       ) : (
         <>
           <CustomTable columns={columns} rows={rows} page='room-facilities' />

@@ -1,62 +1,32 @@
-import { Box, Grid, Typography } from '@mui/material'
 import {
-  AirOutlined,
   BedOutlined,
-  DoorSlidingOutlined,
   Light,
-  LiveTv,
-  NetworkWifi,
   ShowerOutlined,
   TableRestaurant,
 } from '@mui/icons-material'
+import { Box, Grid, Paper, Skeleton, Typography } from '@mui/material'
 import BookingDetails from './BookingDetails'
+import { Room } from '../../types'
 
-const AboutDetails = () => {
+interface AboutProps {
+  item: Room
+  loading: boolean
+}
+
+const AboutDetails = ({ item, loading }: AboutProps) => {
   return (
     <Box>
       <Grid container item spacing={2}>
         <Grid mt={10} item lg={8} md={6} sm={12} xs={12}>
           {/* paraghs  */}
-          <Box>
-            <Typography paragraph={true} color={`textLight.main`}>
-              Minimal techno is a minimalist subgenre of techno music. It is
-              characterized by a stripped-down aesthetic that exploits the use
-              of repetition and understated development. Minimal techno is
-              thought to have been originally developed in the early 1990s by
-              Detroit-based producers Robert Hood and Daniel Bell.
-            </Typography>
-            <Typography paragraph={true} color={`textLight.main`}>
-              Such trends saw the demise of the soul-infused techno that
-              typified the original Detroit sound. Robert Hood has noted that he
-              and Daniel Bell both realized something was missing from techno in
-              the post-rave era.
-            </Typography>
-            <Typography paragraph={true} color={`textLight.main`}>
-              Design is a plan or specification for the construction of an
-              object or system or for the implementation of an activity or
-              process, or the result of that plan or specification in the form
-              of a prototype, product or process. The national agency for
-              design: enabling Singapore to use design for economic growth and
-              to make lives better.
-            </Typography>
-          </Box>
           {/* first row of icons */}
-          <Grid
-            item
-            display={'flex'}
-            container
-            md={12}
-            sm={12}
-            justifyContent={'center'}
-            spacing={2}
-          >
-            <Grid item md={3} sm={6} xs={5}>
+          <Grid item container md={12} sm={12} spacing={2} m={'auto'}>
+            <Grid item md={3} sm={3} xs={6}>
               <BedOutlined sx={{ fontSize: 40 }} color={'primary'} />
               <Typography
                 variant='h6'
                 component={'div'}
                 color={`primary.main`}
-                mr={10}
                 display={'flex'}
               >
                 5
@@ -66,12 +36,11 @@ const AboutDetails = () => {
               </Typography>
             </Grid>
 
-            <Grid item md={3} sm={6} xs={5}>
+            <Grid item md={3} sm={3} xs={6}>
               <Light sx={{ fontSize: 40 }} color={'primary'} />
               <Typography
                 variant='h6'
                 color={`primary.main`}
-                mr={10}
                 display={'flex'}
                 component={'div'}
               >
@@ -81,28 +50,25 @@ const AboutDetails = () => {
                 </Typography>
               </Typography>
             </Grid>
-
-            <Grid item md={3} sm={6} xs={5}>
+            <Grid item md={3} sm={3} xs={6}>
               <ShowerOutlined sx={{ fontSize: 40 }} color={'primary'} />
               <Typography
                 variant='h6'
                 color={`primary.main`}
-                mr={10}
                 display={'flex'}
                 component={'div'}
               >
-                3
+                1
                 <Typography ml={1} color={`textLight.main`} variant='h6'>
-                  bathroom
+                  diningroom
                 </Typography>
               </Typography>
             </Grid>
-            <Grid item md={3} sm={6} xs={5}>
+            <Grid item md={3} sm={3} xs={6}>
               <TableRestaurant sx={{ fontSize: 40 }} color={'primary'} />
               <Typography
                 variant='h6'
                 color={`primary.main`}
-                mr={10}
                 display={'flex'}
                 component={'div'}
               >
@@ -113,82 +79,47 @@ const AboutDetails = () => {
               </Typography>
             </Grid>
           </Grid>
-          {/* second row of icons */}
-          <Grid
-            item
-            display={'flex'}
-            container
-            md={12}
-            mt={3}
-            sm={12}
-            justifyContent={'center'}
-            spacing={2}
-          >
-            <Grid item md={3} sm={6} xs={5}>
-              <NetworkWifi sx={{ fontSize: 40 }} color={'primary'} />
-              <Typography
-                variant='h6'
-                color={`primary.main`}
-                mr={10}
-                display={'flex'}
-                component={'div'}
-              >
-                10
-                <Typography ml={1} color={`textLight.main`} variant='h6'>
-                  mbp/s
-                </Typography>
-              </Typography>
-            </Grid>
-
-            <Grid item md={3} sm={6} xs={5}>
-              <AirOutlined sx={{ fontSize: 40 }} color={'primary'} />
-              <Typography
-                variant='h6'
-                color={`primary.main`}
-                mr={10}
-                display={'flex'}
-                component={'div'}
-              >
-                7
-                <Typography ml={1} color={`textLight.main`} variant='h6'>
-                  unitready
-                </Typography>
-              </Typography>
-            </Grid>
-
-            <Grid item md={3} sm={6} xs={5}>
-              <DoorSlidingOutlined sx={{ fontSize: 40 }} color={'primary'} />
-              <Typography
-                variant='h6'
-                color={`primary.main`}
-                mr={10}
-                display={'flex'}
-                component={'div'}
-              >
-                2
-                <Typography ml={1} color={`textLight.main`} variant='h6'>
-                  refigrator
-                </Typography>
-              </Typography>
-            </Grid>
-            <Grid item md={3} sm={6} xs={5}>
-              <LiveTv sx={{ fontSize: 40 }} color={'primary'} />
-              <Typography
-                variant='h6'
-                color={`primary.main`}
-                mr={10}
-                display={'flex'}
-                component={'div'}
-              >
-                2
-                <Typography ml={1} color={`textLight.main`} variant='h6'>
-                  refigrator
-                </Typography>
-              </Typography>
+          {/* paper price */}
+          <Grid item container md={12} mt={3} sm={12} spacing={1}>
+            <Grid xs={12} item>
+              <Paper sx={{ borderRadius: 3 }}>
+                <Box p={5}>
+                  <Typography variant='h6' color={`primary.dark`}>
+                    Price
+                  </Typography>
+                  {!loading ? (
+                    <>
+                      <Typography
+                        variant='h4'
+                        color={`teal.main`}
+                        display={'flex'}
+                        component={'div'}
+                      >
+                        ${item.price}
+                        <Typography
+                          ml={1}
+                          color={`textLight.main`}
+                          variant='h4'
+                        >
+                          per night
+                        </Typography>
+                      </Typography>
+                      <Typography variant='subtitle1' color={`error.light`}>
+                        Discount {item.discount}% Off
+                      </Typography>
+                    </>
+                  ) : (
+                    <Box>
+                      <Skeleton animation='wave' />
+                      <Skeleton animation='wave' />
+                    </Box>
+                  )}
+                </Box>
+              </Paper>
             </Grid>
           </Grid>
         </Grid>
-        {/* the right gird form */}
+        {/* the right gird form Booking*/}
         <Grid
           justifyContent={'center'}
           mt={5}
