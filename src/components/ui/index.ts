@@ -11,6 +11,7 @@ import RoomCard from './RoomCard'
 import LargeRoom from './LargeRoom'
 import Charts from './Charts'
 import CommentDetails from './CommentDetails'
+import Payment from './Payment'
 
 export {
   HeroImage,
@@ -26,4 +27,5 @@ export {
   LargeRoom,
   Charts,
   CommentDetails,
+  Payment
 }

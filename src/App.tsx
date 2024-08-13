@@ -37,6 +37,7 @@ import {
 } from './pages/Authentication'
 import { AddDetails, AllAds, Explore, Home, RoomDetails } from './pages/Public'
 import { Favorites } from './pages/User'
+import { Payment } from './components/ui'
 
 const theme = createTheme({
   palette: {
@@ -98,7 +99,7 @@ function App() {
         {/* User's Routes */}
         <Route path='user' element={<RouteGuard allowedRoles={['user']} />}>
           <Route path='favorites' element={<Favorites />} />
-          <Route path='booking' element={<div>Pay now</div>} />
+          <Route path='booking' element={<Payment />} />
         </Route>
 
         {/* Authentication Routes */}

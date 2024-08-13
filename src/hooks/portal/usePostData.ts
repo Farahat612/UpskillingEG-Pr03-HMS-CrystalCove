@@ -12,8 +12,9 @@ const usePostData = ({
     try {
       await apiProtected.post(`/portal/${endpoint}`, item)
       toast.success(successMSG || `Item added to ${endpoint} successfully`)
-    } catch (error) {
-      toast.error('Error adding item - Try again')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(`${error ? error.response.data.message : 'Error adding item - Try again'}`)
       console.error(error)
     }
   }
