@@ -130,7 +130,9 @@ const AboutDetails = ({ item, loading }: AboutProps) => {
           sm={12}
           spacing={0}
         >
-          <BookingDetails />
+          <BookingDetails
+            room={item}
+          />
         </Grid>
       </Grid>
     </Box>
