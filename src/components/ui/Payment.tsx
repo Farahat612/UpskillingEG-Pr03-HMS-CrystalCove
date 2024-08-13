@@ -54,13 +54,11 @@ const CheckoutForm = () => {
     const { error, token } = await stripe!.createToken(cardElement)
 
     if (error) {
-      console.error('Error:', error)
       toast.error(error.message)
     } else {
       await addData({
         token: token.id,
       })
-      console.log('Success! We saved your card!', token.id)
     }
   }
   return (
