@@ -98,7 +98,7 @@ function App() {
         {/* User's Routes */}
         <Route path='user' element={<RouteGuard allowedRoles={['user']} />}>
           <Route path='favorites' element={<Favorites />} />
-          <Route path='booking' element={<Bookings />} />
+          <Route path='booking' element={<div>Pay now</div>} />
         </Route>
 
         {/* Authentication Routes */}

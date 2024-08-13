@@ -22,7 +22,7 @@ const BookingDetails = ({ room }: Room) => {
         totalPrice: room.price * capacity,
       })
 
-      navigate('/user/booking', { state: res.data.data.token })
+      navigate('/user/booking', { state: res.data.data.booking._id })
     } catch (error) {
       console.error(error)
     }
