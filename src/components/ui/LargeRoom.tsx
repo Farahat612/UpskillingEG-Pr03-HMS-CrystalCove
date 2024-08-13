@@ -46,7 +46,7 @@ export default function LargeRoom({ item }: LargeRoomProps) {
         </LayerBox>
       </Box>
       <Box fontSize='clamp(.5rem, 3.4vw, 1rem)'>
-        <Typography variant='h6' color='#152C5B'>
+        <Typography variant='h6' color='primary.dark'>
           {item.room.roomNumber}
         </Typography>
       </Box>
