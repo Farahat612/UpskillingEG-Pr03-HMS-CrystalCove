@@ -13,16 +13,16 @@ const BookingDetails = ({ room }: Room) => {
   const [startDate, setStartDate] = useState<Dayjs>(dayjs())
   const [endDate, setEndDate] = useState<Dayjs>(dayjs())
 
-  const handleBookingClick = () => {
+  const handleBookingClick = async () => {
     try {
-      apiProtected.post('/portal/booking', {
+      const res = await apiProtected.post('/portal/booking', {
         startDate: startDate.format('YYYY-MM-DD'),
         endDate: endDate.format('YYYY-MM-DD'),
         room: room._id,
         totalPrice: room.price * capacity,
       })
 
-      navigate('/user/booking')
+      navigate('/user/booking', { state: res.data.data.token })
     } catch (error) {
       console.error(error)
     }
