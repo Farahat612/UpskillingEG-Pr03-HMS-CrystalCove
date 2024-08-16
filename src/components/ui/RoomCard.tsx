@@ -1,34 +1,38 @@
-import { Box, IconButton, Typography } from '@mui/material'
-import { RoomImage } from '../styled/RoomImage.styled'
+import { Box, IconButton, Typography } from '@mui/material';
+import { RoomImage } from '../styled/RoomImage.styled';
 // import roomPicture from "../../assets/images/room.png";
-import { Favorite, Visibility } from '@mui/icons-material'
-import { BadgedBox, IconsBox, LayerBox, RoomName } from '../styled/RoomBoxStyle'
-import { Room } from '../../types'
-import { useNavigate } from 'react-router-dom'
-import usePostData from '../../hooks/portal/usePostData'
-import useDeleteData from '../../hooks/portal/useDeleteData'
+import { Favorite, Visibility } from '@mui/icons-material';
+import {
+  BadgedBox,
+  IconsBox,
+  LayerBox,
+  RoomName,
+} from '../styled/RoomBoxStyle';
+import { Room } from '../../types';
+import { useNavigate } from 'react-router-dom';
+import usePostData from '../../hooks/portal/usePostData';
+import useDeleteData from '../../hooks/portal/useDeleteData';
 
 export default function RoomCard({ item }: { item: Room }) {
-  
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { addData } = usePostData({
     endpoint: 'favorite-rooms',
     successMSG: 'Room added to favorites successfully',
-  })
+  });
   const { deleteData } = useDeleteData({
     endpoint: `favorite-rooms`,
     successMSG: 'Room removed from favorites successfully',
-  })
+  });
 
   const addOrRemove = (id: string) => {
-    if(window.location.pathname === '/user/favorites') {
-        deleteData({ roomId: id })
-      } else {
-        addData({ roomId: id })
-      }
-    } 
-  
+    if (window.location.pathname === '/user/favorites') {
+      deleteData({ roomId: id });
+    } else {
+      addData({ roomId: id });
+    }
+  };
+
   return (
     <>
       <Box
@@ -43,7 +47,7 @@ export default function RoomCard({ item }: { item: Room }) {
         <Box>
           <RoomImage src={item.images[0]} alt='RoomPicture' />
         </Box>
-        <BadgedBox>{item.price}</BadgedBox>
+        <BadgedBox>{item.price} $</BadgedBox>
         <RoomName>
           <Typography variant='h6'>{item.roomNumber}</Typography>
           <Typography>{item.capacity} Persons</Typography>
@@ -66,5 +70,5 @@ export default function RoomCard({ item }: { item: Room }) {
         </LayerBox>
       </Box>
     </>
-  )
+  );
 }

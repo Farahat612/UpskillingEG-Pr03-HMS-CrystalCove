@@ -1,5 +1,5 @@
-import { Stack, Typography } from '@mui/material'
-import { StartBookingForm } from '../forms'
+import { Stack, Typography } from '@mui/material';
+import { StartBookingForm } from '../forms';
 
 const LandingHeroForm = () => {
   return (
@@ -8,15 +8,8 @@ const LandingHeroForm = () => {
         maxWidth: 450,
       }}
     >
-      <Stack
-        direction='column'
-        spacing={0}
-      >
-        <Typography
-          variant='h3'
-          fontWeight={700}
-          color={'primary.dark'}
-        >
+      <Stack direction='column' spacing={0}>
+        <Typography variant='h3' fontWeight={700} color={'primary.dark'}>
           Forget Busy Work,
         </Typography>
         <Typography
@@ -29,24 +22,20 @@ const LandingHeroForm = () => {
         </Typography>
       </Stack>
 
-      <Stack
-        direction='column'
-        spacing={0}
-        sx={{ mb: 2 }}
-      >
+      <Stack direction='column' spacing={0} sx={{ mb: 2 }}>
         <Typography
-          color={'textLight.main'}
+          color={'textLight.light'}
           variant='subtitle1'
-          fontSize={15}
+          fontSize={16}
           lineHeight={1.5}
           gutterBottom
         >
           We provide what you need to enjoy your holiday with family.
         </Typography>
         <Typography
-          color={'textLight.main'}
+          color={'textLight.light'}
           variant='subtitle1'
-          fontSize={15}
+          fontSize={16}
           lineHeight={1.5}
           gutterBottom
         >
@@ -55,7 +44,7 @@ const LandingHeroForm = () => {
       </Stack>
       <StartBookingForm />
     </Stack>
-  )
-}
+  );
+};
 
-export default LandingHeroForm
+export default LandingHeroForm;

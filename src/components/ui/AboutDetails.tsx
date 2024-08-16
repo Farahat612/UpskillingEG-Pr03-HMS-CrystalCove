@@ -1,16 +1,16 @@
-import {
-  BedOutlined,
-  Light,
-  ShowerOutlined,
-  TableRestaurant,
-} from '@mui/icons-material'
-import { Box, Grid, Paper, Skeleton, Typography } from '@mui/material'
-import BookingDetails from './BookingDetails'
-import { Room } from '../../types'
+import { BedOutlined, Wifi } from '@mui/icons-material';
+import PoolOutlinedIcon from '@mui/icons-material/PoolOutlined';
+import SmokeFreeOutlinedIcon from '@mui/icons-material/SmokeFreeOutlined';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import WineBarIcon from '@mui/icons-material/WineBar';
+import { Box, Grid, Paper, Skeleton, Typography } from '@mui/material';
+import BookingDetails from './BookingDetails';
+import { Room } from '../../types';
 
 interface AboutProps {
-  item: Room
-  loading: boolean
+  item: Room;
+  loading: boolean;
 }
 
 const AboutDetails = ({ item, loading }: AboutProps) => {
@@ -22,60 +22,42 @@ const AboutDetails = ({ item, loading }: AboutProps) => {
           {/* first row of icons */}
           <Grid item container md={12} sm={12} spacing={2} m={'auto'}>
             <Grid item md={3} sm={3} xs={6}>
-              <BedOutlined sx={{ fontSize: 40 }} color={'primary'} />
-              <Typography
-                variant='h6'
-                component={'div'}
-                color={`primary.main`}
-                display={'flex'}
-              >
-                5
-                <Typography ml={1} color={`textLight.main`} variant='h6'>
-                  bedroom
-                </Typography>
+              <BedOutlined sx={{ fontSize: 33 }} />
+              <Typography fontSize={21} component={'div'} display={'flex'}>
+                <Typography fontSize={18}>5 Bed Rooms</Typography>
               </Typography>
             </Grid>
+            <Grid item md={3} sm={3} xs={6}>
+              <Wifi sx={{ fontSize: 33 }} />
+              <Typography fontSize={18}>Free WiFi</Typography>
+            </Grid>
+            <Grid item md={3} sm={3} xs={6}>
+              <RestaurantIcon sx={{ fontSize: 31 }} />
+              <Typography fontSize={18}>4 Restaurants</Typography>
+            </Grid>
+            <Grid item md={3} sm={3} xs={6}>
+              <WineBarIcon sx={{ fontSize: 33 }} />
 
-            <Grid item md={3} sm={3} xs={6}>
-              <Light sx={{ fontSize: 40 }} color={'primary'} />
-              <Typography
-                variant='h6'
-                color={`primary.main`}
-                display={'flex'}
-                component={'div'}
-              >
-                1
-                <Typography ml={1} color={`textLight.main`} variant='h6'>
-                  livingroom
-                </Typography>
+              <Typography ml={1} fontSize={18}>
+                Bar
               </Typography>
             </Grid>
-            <Grid item md={3} sm={3} xs={6}>
-              <ShowerOutlined sx={{ fontSize: 40 }} color={'primary'} />
-              <Typography
-                variant='h6'
-                color={`primary.main`}
-                display={'flex'}
-                component={'div'}
-              >
-                1
-                <Typography ml={1} color={`textLight.main`} variant='h6'>
-                  diningroom
-                </Typography>
+            <Grid item md={3} sm={3} xs={6} mt={4}>
+              <PoolOutlinedIcon sx={{ fontSize: 33 }} />
+              <Typography fontSize={18}>2 Swimming pools</Typography>
+            </Grid>
+            <Grid item md={3} sm={3} xs={6} mt={4}>
+              <FitnessCenterIcon sx={{ fontSize: 33 }} />
+
+              <Typography mr={1} fontSize={18}>
+                Fitness Club
               </Typography>
             </Grid>
-            <Grid item md={3} sm={3} xs={6}>
-              <TableRestaurant sx={{ fontSize: 40 }} color={'primary'} />
-              <Typography
-                variant='h6'
-                color={`primary.main`}
-                display={'flex'}
-                component={'div'}
-              >
-                1
-                <Typography ml={1} color={`textLight.main`} variant='h6'>
-                  diningroom
-                </Typography>
+            <Grid item md={3} sm={3} xs={6} mt={4}>
+              <SmokeFreeOutlinedIcon sx={{ fontSize: 33 }} />
+
+              <Typography mr={1} fontSize={18}>
+                Non-smoking rooms
               </Typography>
             </Grid>
           </Grid>
@@ -135,7 +117,7 @@ const AboutDetails = ({ item, loading }: AboutProps) => {
         </Grid>
       </Grid>
     </Box>
-  )
-}
+  );
+};
 
-export default AboutDetails
+export default AboutDetails;

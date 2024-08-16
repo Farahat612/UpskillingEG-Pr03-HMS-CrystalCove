@@ -1,35 +1,35 @@
-import { Favorite } from '@mui/icons-material'
-import { Box, IconButton, Typography } from '@mui/material'
-import { Ad } from '../../types'
-import { BadgedBox, IconsBox, LayerBox } from '../styled/RoomBoxStyle'
-import { RoomImage } from '../styled/RoomImage.styled'
-import usePostData from '../../hooks/portal/usePostData'
+import { Favorite } from '@mui/icons-material';
+import { Box, IconButton, Typography } from '@mui/material';
+import { Ad } from '../../types';
+import { BadgedBox, IconsBox, LayerBox } from '../styled/RoomBoxStyle';
+import { RoomImage } from '../styled/RoomImage.styled';
+import usePostData from '../../hooks/portal/usePostData';
 interface LargeRoomProps {
-  item: Ad
+  item: Ad;
 }
 
 export default function LargeRoom({ item }: LargeRoomProps) {
   const { addData } = usePostData({
     endpoint: 'favorite-rooms',
     successMSG: 'Room added to favorites successfully',
-  })
+  });
 
   const addToFavorites = (id: string) => {
-    addData({ roomId: id })
-  }
+    addData({ roomId: id });
+  };
 
   return (
     <Box>
       <Box
         sx={{
-
-          position: "relative",
-          borderRadius: "15px",
-          width: "fit-content",
-          cursor: "pointer",
-        }}>
-        <RoomImage src={item.room.images[0]} alt="RoomPicture" />
-        <BadgedBox>{item.room.price} per night</BadgedBox>
+          position: 'relative',
+          borderRadius: '15px',
+          width: 'fit-content',
+          cursor: 'pointer',
+        }}
+      >
+        <RoomImage src={item.room.images[0]} alt='RoomPicture' />
+        <BadgedBox>{item.room.price}$ Per night</BadgedBox>
 
         <LayerBox>
           <IconsBox>
@@ -51,5 +51,5 @@ export default function LargeRoom({ item }: LargeRoomProps) {
         </Typography>
       </Box>
     </Box>
-  )
+  );
 }

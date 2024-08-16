@@ -1,18 +1,28 @@
-import { Favorite, Visibility } from '@mui/icons-material'
-import { Box, Container, Grid, IconButton, Skeleton, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
-import { Footer, Header, Navbar } from '../../components/shared'
-import { useFetchPublicData } from '../../hooks/portal/useFetchPublicData'
-import { Ad } from '../../types'
+import { Favorite, Visibility } from '@mui/icons-material';
+import {
+  Box,
+  Container,
+  Grid,
+  IconButton,
+  Skeleton,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+import { Footer, Header, Navbar } from '../../components/shared';
+import { useFetchPublicData } from '../../hooks/portal/useFetchPublicData';
+import { Ad } from '../../types';
 import {
   BadgedBox,
   IconsBox,
   LayerBox,
   RoomName,
-} from './../../components/styled/RoomBoxStyle'
-import { RoomImage } from './../../components/styled/RoomImage.styled'
+} from './../../components/styled/RoomBoxStyle';
+import { RoomImage } from './../../components/styled/RoomImage.styled';
 
 const AllAds = () => {
-  const { data: ads, loading } = useFetchPublicData<Ad[]>('ads', 'ads')
+  const { data: ads, loading } = useFetchPublicData<Ad[]>('ads', 'ads');
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -62,46 +72,27 @@ const AllAds = () => {
             ))
           ) : (
             <>
-            <Stack
-              spacing={10}
-              direction={matches ? 'column' : 'row'}
-            >
-              <Stack>
-                <Skeleton
-                  height={230}
-                  width={230}
-                  variant='rounded'
-                />
+              <Stack spacing={10} direction={matches ? 'column' : 'row'}>
+                <Stack>
+                  <Skeleton height={230} width={230} variant='rounded' />
+                </Stack>
+                <Stack>
+                  <Skeleton height={230} width={230} variant='rounded' />
+                </Stack>
+                <Stack>
+                  <Skeleton height={230} width={230} variant='rounded' />
+                </Stack>
+                <Stack>
+                  <Skeleton height={230} width={230} variant='rounded' />
+                </Stack>
               </Stack>
-              <Stack>
-                <Skeleton
-                  height={230}
-                  width={230}
-                  variant='rounded'
-                />
-              </Stack>
-              <Stack>
-                <Skeleton
-                  height={230}
-                  width={230}
-                  variant='rounded'
-                />
-              </Stack>
-              <Stack>
-                <Skeleton
-                  height={230}
-                  width={230}
-                  variant='rounded'
-                />
-              </Stack>
-            </Stack>
-          </>
+            </>
           )}
         </Grid>
       </Container>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default AllAds
+export default AllAds;
