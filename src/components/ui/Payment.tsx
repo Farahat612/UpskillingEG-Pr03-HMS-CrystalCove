@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Box,
   Button,
   Container,
+  Paper,
   Stack,
   Typography,
   useMediaQuery,
-  useTheme
+  useTheme,
 } from '@mui/material'
 import {
   CardElement,
@@ -15,16 +17,13 @@ import {
 } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { FormEvent } from 'react'
-import { useLocation } from 'react-router-dom'
-import Logo from '../../assets/logo/logo.png'
-import usePostData from '../../hooks/portal/usePostData'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
+import usePostData from '../../hooks/portal/usePostData'
 
 const strapi = loadStripe(
   'pk_test_51OTjURBQWp069pqTmqhKZHNNd3kMf9TTynJtLJQIJDOSYcGM7xz3DabzCzE7bTxvuYMY0IX96OHBjsysHEKIrwCK006Mu7mKw8'
 )
-
-
 
 const Payment = () => {
   return (
@@ -35,13 +34,14 @@ const Payment = () => {
 }
 
 const CheckoutForm = () => {
+  const navigate = useNavigate()
   const theme = useTheme()
   const isMedia = useMediaQuery(theme.breakpoints.up('md'))
   const location = useLocation()
   const bookingId = location.state
   const { addData } = usePostData({
     endpoint: `booking/${bookingId}/pay`,
-    successMSG: 'Booking payed successfully',
+    successMSG: 'Booking Paid successfully',
   })
 
   const elements = useElements()
@@ -56,26 +56,16 @@ const CheckoutForm = () => {
     if (error) {
       toast.error(error.message)
     } else {
-      await addData({
-        token: token.id,
-      })
+      try {
+        await addData({ token })
+        navigate('/')
+      } catch (error: any) {
+        toast.error(error.message)
+      }
     }
   }
   return (
     <Box>
-      <Typography
-        variant='h1'
-        sx={{ display: 'flex', justifyContent: 'center' }}
-        borderBottom={1}
-        borderColor={'textLight.main'}
-        paddingBlock={2}
-      >
-        <img
-          src={Logo}
-          alt='logo'
-          width={170}
-        />
-      </Typography>
       <Container maxWidth='lg'>
         <Typography
           color={'primary.main'}
@@ -83,6 +73,7 @@ const CheckoutForm = () => {
           textAlign={'center'}
           mt={10}
           variant='h2'
+          fontWeight={600}
         >
           Payment
         </Typography>
@@ -91,25 +82,33 @@ const CheckoutForm = () => {
           fontSize={18}
           textAlign={'center'}
           variant='h3'
+          mt={4}
         >
-          Kindly follow the instructions below
+          Kindly fill in your card details to pay for your booking
         </Typography>
-        <Stack
-          component={'form'}
-          onSubmit={submitHandler}
-          spacing={4}
-          sx={{ mt: 4, bgcolor: 'textLight.main', padding: '20px' , borderRadius: 2, mx: 'auto'}}
-          width={isMedia ? '50%' : '80%'}
+        <Paper
+          sx={{
+            mt: 10,
+            p: 3,
+            borderRadius: 2,
+            mx: 'auto',
+            width: isMedia ? '50%' : '80%',
+            boxShadow: 'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px'
+          }}
         >
-          <CardElement />
-          <Button
-          type='submit'
-            variant='contained'
-            size={'medium'}
+          <Stack
+            component={'form'}
+            onSubmit={submitHandler}
+            spacing={4}
+            sx={{ mt: 4, padding: '20px', borderRadius: 2, mx: 'auto' }}
+            width={isMedia ? '50%' : '80%'}
           >
-            Pay booking
-          </Button>
-        </Stack>
+            <CardElement />
+            <Button type='submit' variant='contained' size={'medium'}>
+              Pay booking
+            </Button>
+          </Stack>
+        </Paper>
       </Container>
     </Box>
   )
