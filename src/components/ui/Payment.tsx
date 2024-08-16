@@ -16,10 +16,11 @@ import {
   useStripe,
 } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import usePostData from '../../hooks/portal/usePostData'
+import { LoadindButton } from '../shared'
 
 const strapi = loadStripe(
   'pk_test_51OTjURBQWp069pqTmqhKZHNNd3kMf9TTynJtLJQIJDOSYcGM7xz3DabzCzE7bTxvuYMY0IX96OHBjsysHEKIrwCK006Mu7mKw8'
@@ -34,11 +35,13 @@ const Payment = () => {
 }
 
 const CheckoutForm = () => {
+  
   const navigate = useNavigate()
   const theme = useTheme()
   const isMedia = useMediaQuery(theme.breakpoints.up('md'))
   const location = useLocation()
   const bookingId = location.state
+  const [loading, setLoading] = useState(false);
   const { addData } = usePostData({
     endpoint: `booking/${bookingId}/pay`,
     successMSG: 'Booking Paid successfully',
@@ -56,11 +59,14 @@ const CheckoutForm = () => {
     if (error) {
       toast.error(error.message)
     } else {
+      setLoading(true)
       try {
         await addData({ token: token.id })
         navigate('/')
       } catch (error: any) {
         toast.error(error.message)
+      } finally {
+        setLoading(false)
       }
     }
   }
@@ -105,8 +111,9 @@ const CheckoutForm = () => {
             width={isMedia ? '50%' : '80%'}
           >
             <CardElement />
-            <Button type='submit' variant='contained' size={'medium'}>
-              Pay booking
+            
+            <Button type='submit' variant='contained' size={'medium'} >
+              {loading ? <LoadindButton LoadingText='Pay booking...'/> : 'Pay booking'}
             </Button>
           </Stack>
         </Paper>
