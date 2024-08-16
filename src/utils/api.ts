@@ -1,19 +1,19 @@
-import axios from "axios";
+import axios from 'axios'
 
-const baseURL = "https://upskilling-egypt.com:3000/api/v0";
-const staticURL = "https://upskilling-egypt.com:3000";
+const baseURL = import.meta.env.VITE_API_BASE_URL as string
+const staticURL = import.meta.env.VITE_API_STATIC_URL as string
 
 const apiPublic = axios.create({
   baseURL,
-});
+})
 const apiProtected = axios.create({
   baseURL,
-});
+})
 
 apiProtected.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  config.headers.Authorization = token;
-  return config;
-});
+  const token = localStorage.getItem('token')
+  config.headers.Authorization = token
+  return config
+})
 
-export { baseURL, staticURL, apiPublic, apiProtected };
+export { baseURL, staticURL, apiPublic, apiProtected }
