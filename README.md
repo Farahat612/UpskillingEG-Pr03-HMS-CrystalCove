@@ -92,7 +92,8 @@ To get the application running locally on your machine, follow these steps:
    ```sh
    git clone https://github.com/Farahat612/UpskillingEG-Pr02-HMS
    ```
-   2. Change directory
+
+2. Change directory
 
    ```shell
    cd UpskillingEG-Pr02-HMS
@@ -104,7 +105,7 @@ To get the application running locally on your machine, follow these steps:
    npm install
    ```
 
-   4. Start the development server
+4. Start the development server
 
    ```shell
    npm run dev
