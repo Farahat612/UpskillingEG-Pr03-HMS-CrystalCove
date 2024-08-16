@@ -1,0 +1,34 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { apiPublic } from '../../utils/api'
+import { useEffect, useState } from 'react'
+
+export const useFetchPublicData = <T>(
+  endpoint: string,
+  responseListName: string,
+  params?: object
+) => {
+  const [data, setData] = useState<T | []>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await apiPublic.get(`/portal/${endpoint}`, {
+          params: params,
+        })
+        setData(response.data.data[responseListName])
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [endpoint, responseListName, params])
+
+  return {
+    data,
+    loading,
+  }
+}

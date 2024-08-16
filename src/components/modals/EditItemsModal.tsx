@@ -37,8 +37,8 @@ const EditItemsModal = ({ children, title }: EditItemsModalProps) => {
             {title}
           </Typography>
           <DialogActions>
-            <IconButton aria-label='Close Dialog' color='error'>
-              <HighlightOffIcon onClick={() => setEditModalOpened(false)} />
+            <IconButton aria-label='Close Dialog' color='error'  onClick={() => setEditModalOpened(false)}>
+              <HighlightOffIcon />
             </IconButton>
           </DialogActions>
         </DialogTitle>

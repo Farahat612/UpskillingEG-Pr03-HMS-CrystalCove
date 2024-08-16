@@ -9,6 +9,7 @@ import { useFetchPaginatedData } from '../../hooks/admin/useFetchPaginatedData'
 import { useModalsContext } from '../../contexts/global/ModalsContext'
 import { AddItemsModal, EditItemsModal } from '../../components/modals'
 import { AddOrEditAdForm } from '../../components/forms'
+import { LoadingTable } from '../../components/shared'
 
 const Ads = () => {
   const {
@@ -31,6 +32,7 @@ const Ads = () => {
     { id: 'isActive', label: 'Active Status' },
   ]
 
+  
   let rows: Ad[] = []
   if (!loading && data) {
     rows = data.map((ad: Ad) => ({
@@ -59,7 +61,7 @@ const Ads = () => {
       </HeaderDashboard>
 
       {loading ? (
-        <div>Loading...</div>
+        <LoadingTable />
       ) : (
         <>
           <CustomTable columns={columns} rows={rows} page='ads' />

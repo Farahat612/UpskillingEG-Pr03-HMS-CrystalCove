@@ -25,6 +25,13 @@ export const Draw = () => {
           >
             Favorites
           </Button>
+          <Button
+            component={Link}
+            to={'/all-ads'}
+            sx={{ color: '#152C5B' }}
+          >
+            All Ads
+          </Button>
         </Box>
       ) : (
         <ListItemText
@@ -91,6 +98,13 @@ const RightNavbar = () => {
             sx={{ color: '#152C5B' }}
           >
             Favorites
+          </Button>
+          <Button
+            component={Link}
+            to={'/all-ads'}
+            sx={{ color: '#152C5B' }}
+          >
+            All Ads
           </Button>
           <UserAvatar />
         </>

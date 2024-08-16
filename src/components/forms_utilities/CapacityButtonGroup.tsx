@@ -1,12 +1,17 @@
-import {
-  Button,
-  ButtonGroup
-} from '@mui/material'
+import { Button, ButtonGroup } from '@mui/material'
 
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 
-const CapacityButtonGroup = () => {
+interface CapacityButtonGroupProps {
+  capacity: number
+  setCapacity: (capacity: number) => void
+}
+
+const CapacityButtonGroup = ({
+  capacity,
+  setCapacity,
+}: CapacityButtonGroupProps) => {
   return (
     <ButtonGroup
       aria-label='Capacity button group'
@@ -23,6 +28,8 @@ const CapacityButtonGroup = () => {
             backgroundColor: 'error.dark',
           },
         }}
+        onClick={() => setCapacity(capacity - 1)}
+        disabled={capacity === 1}
       >
         <RemoveIcon />
       </Button>
@@ -35,7 +42,7 @@ const CapacityButtonGroup = () => {
           textTransform: 'none',
         }}
       >
-        2 persons
+        {capacity} persons
       </Button>
       <Button
         aria-label='Decrease capacity'
@@ -46,6 +53,7 @@ const CapacityButtonGroup = () => {
             backgroundColor: 'success.dark',
           },
         }}
+        onClick={() => setCapacity(capacity + 1)}
       >
         <AddIcon />
       </Button>

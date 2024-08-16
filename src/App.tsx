@@ -9,34 +9,34 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 import {
-  createTheme,
-  ThemeProvider,
-  colors,
-  CssBaseline,
   Box,
+  colors,
+  createTheme,
+  CssBaseline,
+  ThemeProvider,
 } from '@mui/material'
 import { Toaster } from 'sonner'
 
+import { NotFound, RouteGuard, UnAuthorized } from './components/routing'
+import { LoadingPage } from './components/shared'
+import { useAuthContext } from './contexts/global/AuthContext'
 import {
+  AddRoom,
+  Ads,
+  Bookings,
+  Dashboard,
+  Facilities,
+  Rooms,
+  Users,
+} from './pages/Admin'
+import {
+  ForgotPassPage,
   LoginPage,
   RegisterPage,
   ResetPassPage,
-  ForgotPassPage,
 } from './pages/Authentication'
-import {
-  Dashboard,
-  Rooms,
-  AddRoom,
-  Ads,
-  Users,
-  Bookings,
-  Facilities,
-} from './pages/Admin'
-import { Favorites } from './pages/User'
-import { Home, Explore, Components, RoomDetails } from './pages/Public'
-import { RouteGuard, NotFound, UnAuthorized } from './components/routing'
-import { LoadingPage } from './components/shared'
-import { useAuthContext } from './contexts/global/AuthContext'
+import { AddDetails, AllAds, Explore, Home, RoomDetails } from './pages/Public'
+import { Booking, Favorites } from './pages/User'
 
 const theme = createTheme({
   palette: {
@@ -79,8 +79,9 @@ function App() {
         <Route index element={<Home />} />
         <Route path='home' element={<Home />} />
         <Route path='explore' element={<Explore />} />
+        <Route path='all-ads' element={<AllAds />} />
         <Route path='room-details/:id' element={<RoomDetails />} />
-        <Route path='components' element={<Components />} />
+        <Route path='add-details/:id' element={<AddDetails />} />
 
         {/* Admin's Routes */}
         <Route path='admin' element={<RouteGuard allowedRoles={['admin']} />}>
@@ -97,6 +98,7 @@ function App() {
         {/* User's Routes */}
         <Route path='user' element={<RouteGuard allowedRoles={['user']} />}>
           <Route path='favorites' element={<Favorites />} />
+          <Route path='booking' element={<Booking />} />
         </Route>
 
         {/* Authentication Routes */}

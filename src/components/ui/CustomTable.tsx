@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom'
 import { useModalsContext } from '../../contexts/global/ModalsContext'
 import { DeleteModal } from '../modals'
 import { ImageList } from './TableImageList'
+import { IconButton } from '@mui/material'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -64,7 +65,10 @@ export default function CustomTable({ columns, rows, page }: CustomTableProps) {
   return (
     <>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+        <Table
+          sx={{ minWidth: 700 }}
+          aria-label='customized table'
+        >
           <TableHead>
             <TableRow>
               {columns.map((column) => (
@@ -76,7 +80,10 @@ export default function CustomTable({ columns, rows, page }: CustomTableProps) {
                 </StyledTableCell>
               ))}
               {page !== 'users' && (
-                <StyledTableCell key='actions' align='center'>
+                <StyledTableCell
+                  key='actions'
+                  align='center'
+                >
                   Actions
                 </StyledTableCell>
               )}
@@ -86,7 +93,10 @@ export default function CustomTable({ columns, rows, page }: CustomTableProps) {
             {rows.map((row, index) => (
               <StyledTableRow key={index}>
                 {columns.map((column) => (
-                  <StyledTableCell key={column.id} align='center'>
+                  <StyledTableCell
+                    key={column.id}
+                    align='center'
+                  >
                     {column.id === 'images' ? (
                       <ImageList images={row[column.id]} />
                     ) : (
@@ -96,25 +106,33 @@ export default function CustomTable({ columns, rows, page }: CustomTableProps) {
                 ))}
                 {page !== 'users' && (
                   //  Delete Icon
-                  <StyledTableCell key='actions' align='center'>
-                    <Delete
+                  <StyledTableCell
+                    key='actions'
+                    align='center'
+                  >
+                    <IconButton
                       onClick={() => {
                         setDeleteModalOpened(true)
                         setItemIdToDelete(row._id)
                       }}
-                      color='error'
-                      sx={{ cursor: 'pointer' }}
-                    />
-
+                    >
+                      <Delete
+                        color='error'
+                        sx={{ cursor: 'pointer' }}
+                      />
+                    </IconButton>
                     {/* Edit Icon */}
                     {page !== 'booking' && page !== 'rooms' && (
-                      <EditNote
-                        color='primary'
-                        sx={{ cursor: 'pointer' }}
+                      <IconButton
                         onClick={() =>
                           handleEditClick(row as Room | Facility | Ad)
                         }
-                      />
+                      >
+                        <EditNote
+                          color='primary'
+                          sx={{ cursor: 'pointer' }}
+                        />
+                      </IconButton>
                     )}
                   </StyledTableCell>
                 )}
