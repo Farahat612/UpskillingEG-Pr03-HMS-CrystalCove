@@ -1,2 +1,6 @@
-# UpskillingEG-Pr03-HMS-CrystalCove
-UpSkillingEG Front-end Job Simulation Bootcamp Project 03: Hotel Management System
+# CrystalCove Hotel Management System HMS
+
+## Introduction
+
+This Hotel Management System (HMS) is a web-based application developed as part of the UpSkillingEG Front-end Job Simulation Bootcamp. It aims to provide a comprehensive solution for managing hotels, reservations, and Rooms.
+
