@@ -57,7 +57,7 @@ const CheckoutForm = () => {
       toast.error(error.message)
     } else {
       try {
-        await addData({ token })
+        await addData({ token: token.id })
         navigate('/')
       } catch (error: any) {
         toast.error(error.message)
@@ -93,7 +93,8 @@ const CheckoutForm = () => {
             borderRadius: 2,
             mx: 'auto',
             width: isMedia ? '50%' : '80%',
-            boxShadow: 'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px'
+            boxShadow:
+              'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px',
           }}
         >
           <Stack
