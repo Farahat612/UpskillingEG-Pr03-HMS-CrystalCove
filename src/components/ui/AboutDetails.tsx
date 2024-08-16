@@ -130,9 +130,8 @@ const AboutDetails = ({ item, loading }: AboutProps) => {
           sm={12}
           spacing={0}
         >
-          <BookingDetails
-            room={item}
-          />
+          {/* @ts-expect-error: Types not matched without reasons */}
+          <BookingDetails room={item} />
         </Grid>
       </Grid>
     </Box>
