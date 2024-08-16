@@ -3,10 +3,10 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
-} from 'react-router-dom'
+} from 'react-router-dom';
 
-import { LocalizationProvider } from '@mui/x-date-pickers'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import {
   Box,
@@ -14,12 +14,12 @@ import {
   createTheme,
   CssBaseline,
   ThemeProvider,
-} from '@mui/material'
-import { Toaster } from 'sonner'
+} from '@mui/material';
+import { Toaster } from 'sonner';
 
-import { NotFound, RouteGuard, UnAuthorized } from './components/routing'
-import { LoadingPage } from './components/shared'
-import { useAuthContext } from './contexts/global/AuthContext'
+import { NotFound, RouteGuard, UnAuthorized } from './components/routing';
+import { LoadingPage } from './components/shared';
+import { useAuthContext } from './contexts/global/AuthContext';
 import {
   AddRoom,
   Ads,
@@ -28,17 +28,20 @@ import {
   Facilities,
   Rooms,
   Users,
-} from './pages/Admin'
+} from './pages/Admin';
 import {
   ForgotPassPage,
   LoginPage,
   RegisterPage,
   ResetPassPage,
-} from './pages/Authentication'
-import { AddDetails, AllAds, Explore, Home, RoomDetails } from './pages/Public'
-import { Booking, Favorites } from './pages/User'
+} from './pages/Authentication';
+import { AddDetails, AllAds, Explore, Home, RoomDetails } from './pages/Public';
+import { Booking, Favorites } from './pages/User';
 
 const theme = createTheme({
+  typography: {
+    fontFamily: ['Almarai', 'sans-serif'].join(','),
+  },
   palette: {
     primary: {
       main: '#203FC7',
@@ -51,6 +54,8 @@ const theme = createTheme({
     },
     textLight: {
       main: colors.grey[400],
+      light: colors.grey[500],
+      dark: colors.grey[800],
     },
     pink: {
       main: colors.pink[500],
@@ -69,7 +74,7 @@ const theme = createTheme({
       },
     },
   },
-})
+});
 
 function App() {
   const route = createBrowserRouter(
@@ -128,9 +133,9 @@ function App() {
         <Route path='*' element={<NotFound />} />
       </Route>,
     ])
-  )
+  );
 
-  const { loading } = useAuthContext()
+  const { loading } = useAuthContext();
   if (loading)
     return (
       <>
@@ -138,7 +143,7 @@ function App() {
           <LoadingPage />
         </Box>
       </>
-    )
+    );
   return (
     <>
       <Toaster richColors />
@@ -149,7 +154,7 @@ function App() {
         </LocalizationProvider>
       </ThemeProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
