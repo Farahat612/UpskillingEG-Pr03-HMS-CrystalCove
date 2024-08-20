@@ -1,9 +1,12 @@
-import { BedOutlined, Wifi } from '@mui/icons-material';
-import PoolOutlinedIcon from '@mui/icons-material/PoolOutlined';
-import SmokeFreeOutlinedIcon from '@mui/icons-material/SmokeFreeOutlined';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import WineBarIcon from '@mui/icons-material/WineBar';
+import {
+  BedOutlined,
+  Wifi,
+  PoolOutlined,
+  SmokeFreeOutlined,
+  Restaurant,
+  FitnessCenter,
+  WineBar,
+} from '@mui/icons-material';
 import { Box, Grid, Paper, Skeleton, Typography } from '@mui/material';
 import BookingDetails from './BookingDetails';
 import { Room } from '../../types';
@@ -32,29 +35,29 @@ const AboutDetails = ({ item, loading }: AboutProps) => {
               <Typography fontSize={18}>Free WiFi</Typography>
             </Grid>
             <Grid item md={3} sm={3} xs={6}>
-              <RestaurantIcon sx={{ fontSize: 31 }} />
+              <Restaurant sx={{ fontSize: 31 }} />
               <Typography fontSize={18}>4 Restaurants</Typography>
             </Grid>
             <Grid item md={3} sm={3} xs={6}>
-              <WineBarIcon sx={{ fontSize: 33 }} />
+              <WineBar sx={{ fontSize: 33 }} />
 
               <Typography ml={1} fontSize={18}>
                 Bar
               </Typography>
             </Grid>
             <Grid item md={3} sm={3} xs={6} mt={4}>
-              <PoolOutlinedIcon sx={{ fontSize: 33 }} />
+              <PoolOutlined sx={{ fontSize: 33 }} />
               <Typography fontSize={18}>2 Swimming pools</Typography>
             </Grid>
             <Grid item md={3} sm={3} xs={6} mt={4}>
-              <FitnessCenterIcon sx={{ fontSize: 33 }} />
+              <FitnessCenter sx={{ fontSize: 33 }} />
 
               <Typography mr={1} fontSize={18}>
                 Fitness Club
               </Typography>
             </Grid>
             <Grid item md={3} sm={3} xs={6} mt={4}>
-              <SmokeFreeOutlinedIcon sx={{ fontSize: 33 }} />
+              <SmokeFreeOutlined sx={{ fontSize: 33 }} />
 
               <Typography mr={1} fontSize={18}>
                 Non-smoking rooms
